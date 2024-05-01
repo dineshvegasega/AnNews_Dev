@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_bar"
+    app:startDestination="@id/home"
+    >
+
+
+    <fragment
+        android:name="com.vegasega.amnews.ui.main.home.Home"
+        android:label="Home"
+        android:id="@+id/home"
+        tools:layout="@layout/home">
+<!--        <action-->
+<!--            android:id="@+id/action_dashboard_to_profile"-->
+<!--            app:destination="@id/profiles"-->
+<!--            app:launchSingleTop="true"-->
+<!--            />-->
+<!--        <action-->
+<!--            android:id="@+id/action_dashboard_to_notifications"-->
+<!--            app:destination="@id/notifications"-->
+<!--            app:launchSingleTop="true"-->
+<!--            />-->
+    </fragment>
+
+</navigation>

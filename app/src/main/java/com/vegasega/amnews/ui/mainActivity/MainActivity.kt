@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -49,7 +50,16 @@ class MainActivity : AppCompatActivity() {
 
     private val connectivityManager by lazy { ConnectivityManager(this) }
 
+    private val recordAUDIOPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        if (granted) {
+//            Log.e("TAG", "AAAAgranted " + granted)
 
+        } else {
+//            Log.e("TAG", "BBBBgranted " + granted)
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = MainActivityBinding.inflate(layoutInflater)
@@ -64,6 +74,7 @@ class MainActivity : AppCompatActivity() {
 
 
         observeConnectivityManager()
+        recordAUDIOPermissionLauncher.launch(android.Manifest.permission.RECORD_AUDIO)
 
     }
 

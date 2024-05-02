@@ -20,8 +20,13 @@ class HomePagerAdapter : ListAdapter<HomeVM.Item, HomePagerAdapter.PremiumPacksV
 
         fun bind(model: HomeVM.Item) {
             binding.apply {
-//                textHeaderadfdsfTxt3.text = ""+model.name
-//                textHeaderTxt2.text = ""+model.desc
+                textTitle0.text = ""+model.name
+                textTitle1.text = ""+model.itemList[0].name
+                textTitle2.text = ""+model.itemList[1].name
+                textTitle3.text = ""+model.itemList[2].name
+                textTitle4.text = ""+model.itemList[3].name
+                textTitle5.text = ""+model.itemList[4].name
+
                 imageLogo.setImageResource(model.image)
 
                 timeline1.initLine(1)

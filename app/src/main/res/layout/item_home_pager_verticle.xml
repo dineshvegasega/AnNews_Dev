@@ -45,7 +45,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/barrier"
+                app:layout_constraintBottom_toTopOf="@+id/baseButtonsPlay"
                 android:orientation="vertical"
                 android:paddingBottom="@dimen/_10sdp"
                 >
@@ -67,9 +67,9 @@
                         tools:ignore="MissingConstraints"
                         app:fontFamily="@font/product_sans_bold"
                         android:lines="2"
-                        android:text="Elon Musk confirms  SpaceX is sticking to 2022 launch date goal for Mars"
+                        android:text="Elon Musk confirms Elon Musk confirms"
                         android:autoSizeTextType="uniform"
-                        android:autoSizePresetSizes="@array/autosize_4_5_35"
+                        android:autoSizePresetSizes="@array/autosize_4_5_20"
                         android:autoSizeStepGranularity="@dimen/_1sdp"
                         />
 
@@ -83,7 +83,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:background="@color/_C4C4C4"
+                    android:background="@color/_E8EBF4"
                     >
                 </View>
 
@@ -126,7 +126,7 @@
                         android:autoSizeTextType="uniform"
                         android:autoSizePresetSizes="@array/autosize_4_5_12"
                         android:autoSizeStepGranularity="@dimen/_1sdp"
-android:paddingVertical="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_10sdp"
                         />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -321,7 +321,7 @@ android:paddingVertical="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:visibility="visible"
+                android:visibility="gone"
                 >
                 <View
                     android:id="@+id/view"
@@ -330,7 +330,7 @@ android:paddingVertical="@dimen/_10sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:background="@color/_C4C4C4"
+                    android:background="@color/_E8EBF4"
                     >
                 </View>
 
@@ -420,7 +420,6 @@ android:paddingVertical="@dimen/_10sdp"
 
 
 
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/baseButtonsPlay"
                 android:layout_width="match_parent"
@@ -428,7 +427,7 @@ android:paddingVertical="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:visibility="gone"
+                android:visibility="visible"
                 >
 
 
@@ -467,7 +466,7 @@ android:paddingVertical="@dimen/_10sdp"
                         />
 
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/ivPlaypause"
+                        android:id="@+id/ivPlayPause"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:layout_constraintDimensionRatio="H,1:1.1"
@@ -503,8 +502,6 @@ android:paddingVertical="@dimen/_10sdp"
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -525,12 +522,155 @@ android:paddingVertical="@dimen/_10sdp"
                 android:visibility="gone"
                 />
 
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/baseShare"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:visibility="gone"
+                android:background="@color/_F1F3F9"
+                >
+                <View
+                    android:id="@+id/view4"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:background="@color/_E8EBF4"
+                    >
+                </View>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view4"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    >
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view4"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    >
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/_718491"
+                        android:gravity="center"
+                        android:src="@drawable/arrowleft"
+                        />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textTopic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/_718491"
+                        android:gravity="center"
+                        tools:ignore="MissingConstraints"
+                        app:fontFamily="@font/product_sans_regular"
+                        android:text="Topics"
+                        android:textSize="@dimen/_12sdp"
+                        />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/baseShareCenter"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:background="@drawable/all_radius"
+                        android:layout_margin="10dp"
+                        >
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivBookmark"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintDimensionRatio="H,1:1.1"
+                            app:srcCompat="@drawable/bookmark"
+                            android:background="@color/_F1F3F9"
+                            android:scaleType="centerInside"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/ivShare"
+                            android:backgroundTint="@color/white"
+                            />
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivShare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintDimensionRatio="H,1:1.1"
+                            app:srcCompat="@drawable/share"
+                            android:background="@color/_F1F3F9"
+                            android:scaleType="centerInside"
+                            android:layout_weight="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/ivBookmark"
+                            android:backgroundTint="@color/white"
+                            />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/view4"
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        >
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/textArticle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/_718491"
+                            android:gravity="center"
+                            tools:ignore="MissingConstraints"
+                            app:fontFamily="@font/product_sans_regular"
+                            android:text="Article"
+                            android:textSize="@dimen/_12sdp"
+                            />
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/_718491"
+                            android:gravity="center"
+                            android:src="@drawable/arrowright"
+                            />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
             <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:barrierDirection="top"
-                app:constraint_referenced_ids="baseButtons,seekbar" />
+                app:constraint_referenced_ids="baseButtons,seekbar"
+                android:visibility="gone"/>
 
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/group"

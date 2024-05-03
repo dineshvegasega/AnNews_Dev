@@ -19,7 +19,7 @@ class HomeVM @Inject constructor() : ViewModel() {
     var itemMain : ArrayList<Item> = ArrayList()
 
     init {
-        itemMain?.add(Item(MainActivity.context.get()!!.getString(R.string.something_went_wrong),R.drawable.m1,
+        itemMain?.add(Item("A",R.drawable.m1,
             arrayListOf(
                 ItemList("I can easily put icon"),
                 ItemList("but if I set gravity to center") ,
@@ -27,45 +27,45 @@ class HomeVM @Inject constructor() : ViewModel() {
                 ItemList("but no icon"),
                 ItemList(" my drawableLeft icon"),
             )))
-        itemMain?.add(Item(MainActivity.context.get()!!.getString(R.string.something_went_wrong),R.drawable.m1,
+        itemMain?.add(Item("B",R.drawable.m1,
             arrayListOf(
-                ItemList("I can easily put icon"),
-                ItemList("but if I set gravity to center") ,
-                ItemList("then only text is centered"),
-                ItemList("but no icon"),
-                ItemList(" my drawableLeft icon"),
+                ItemList("1"),
+                ItemList("2") ,
+                ItemList("3"),
+                ItemList("4"),
+                ItemList("5"),
             )))
-        itemMain?.add(Item(MainActivity.context.get()!!.getString(R.string.something_went_wrong),R.drawable.m1,
+        itemMain?.add(Item("C",R.drawable.m1,
             arrayListOf(
-                ItemList("I can easily put icon"),
-                ItemList("but if I set gravity to center") ,
-                ItemList("then only text is centered"),
-                ItemList("but no icon"),
-                ItemList(" my drawableLeft icon"),
+                ItemList("1C"),
+                ItemList("2C") ,
+                ItemList("3C"),
+                ItemList("4C"),
+                ItemList("5C"),
             )))
-        itemMain?.add(Item(MainActivity.context.get()!!.getString(R.string.something_went_wrong),R.drawable.m1,
+        itemMain?.add(Item("D",R.drawable.m1,
             arrayListOf(
-                ItemList("I can easily put icon"),
-                ItemList("but if I set gravity to center") ,
-                ItemList("then only text is centered"),
-                ItemList("but no icon"),
-                ItemList(" my drawableLeft icon"),
+                ItemList("put icon"),
+                ItemList("set gravity") ,
+                ItemList("only text"),
+                ItemList("no icon"),
+                ItemList("icon"),
             )))
-        itemMain?.add(Item(MainActivity.context.get()!!.getString(R.string.something_went_wrong),R.drawable.m1,
+        itemMain?.add(Item("E",R.drawable.m1,
             arrayListOf(
-                ItemList("I can easily put icon"),
-                ItemList("but if I set gravity to center") ,
-                ItemList("then only text is centered"),
-                ItemList("but no icon"),
-                ItemList(" my drawableLeft icon"),
+                ItemList("I can icon"),
+                ItemList("but gravity to center") ,
+                ItemList("then centered"),
+                ItemList("but icon"),
+                ItemList("my icon"),
             )))
-        itemMain?.add(Item(MainActivity.context.get()!!.getString(R.string.something_went_wrong),R.drawable.m1,
+        itemMain?.add(Item("F",R.drawable.m1,
             arrayListOf(
-                ItemList("I can easily put icon"),
-                ItemList("but if I set gravity to center") ,
-                ItemList("then only text is centered"),
-                ItemList("but no icon"),
-                ItemList(" my drawableLeft icon"),
+                ItemList("I put icon"),
+                ItemList("I set gravity center") ,
+                ItemList("then centered"),
+                ItemList("icon icon"),
+                ItemList("my icon"),
             )))
 
     }

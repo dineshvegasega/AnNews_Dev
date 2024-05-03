@@ -12,16 +12,24 @@
         android:label="Home"
         android:id="@+id/home"
         tools:layout="@layout/home">
-<!--        <action-->
-<!--            android:id="@+id/action_dashboard_to_profile"-->
-<!--            app:destination="@id/profiles"-->
-<!--            app:launchSingleTop="true"-->
-<!--            />-->
+        <action
+            android:id="@+id/action_home_to_search"
+            app:destination="@id/search"
+            app:launchSingleTop="true"
+            />
 <!--        <action-->
 <!--            android:id="@+id/action_dashboard_to_notifications"-->
 <!--            app:destination="@id/notifications"-->
 <!--            app:launchSingleTop="true"-->
 <!--            />-->
+    </fragment>
+
+
+    <fragment
+        android:name="com.vegasega.amnews.ui.main.search.Search"
+        android:label="Search"
+        android:id="@+id/search"
+        tools:layout="@layout/search">
     </fragment>
 
 </navigation>

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -75,6 +76,9 @@ class MainActivity : AppCompatActivity() {
 
         observeConnectivityManager()
         recordAUDIOPermissionLauncher.launch(android.Manifest.permission.RECORD_AUDIO)
+
+
+
 
     }
 

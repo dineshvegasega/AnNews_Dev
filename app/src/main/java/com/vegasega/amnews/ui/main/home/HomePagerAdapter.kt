@@ -1,20 +1,24 @@
 package com.vegasega.amnews.ui.main.home
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.vegasega.amnews.databinding.ItemHomePagerVerticleBinding
+import com.vegasega.amnews.ui.interfaces.OnItemClickListener
 import com.vegasega.amnews.utils.singleClick
 
-class HomePagerAdapter : ListAdapter<HomeVM.Item, HomePagerAdapter.PremiumPacksViewHolder>(
+class HomePagerAdapter(private val listener: OnItemClickListener) : ListAdapter<HomeVM.Item, HomePagerAdapter.PremiumPacksViewHolder>(
     DELIVERY_ITEM_COMPARATOR
 ) {
     inner class PremiumPacksViewHolder(private val binding: ItemHomePagerVerticleBinding) :
         RecyclerView.ViewHolder(binding.root) {
         init {
             binding.root.singleClick {
+                Log.e("TAG", "mainLayout")
+                listener.onClickMain()
             }
         }
 
@@ -34,6 +38,25 @@ class HomePagerAdapter : ListAdapter<HomeVM.Item, HomePagerAdapter.PremiumPacksV
                 timeline3.initLine(0)
                 timeline4.initLine(0)
                 timeline5.initLine(2)
+
+                textTitle0.setOnClickListener {
+                    listener.onClickItem()
+                }
+                textTitle1.setOnClickListener {
+                    listener.onClickItem()
+                }
+                textTitle2.setOnClickListener {
+                    listener.onClickItem()
+                }
+                textTitle3.setOnClickListener {
+                    listener.onClickItem()
+                }
+                textTitle4.setOnClickListener {
+                    listener.onClickItem()
+                }
+                textTitle5.setOnClickListener {
+                    listener.onClickItem()
+                }
             }
         }
     }

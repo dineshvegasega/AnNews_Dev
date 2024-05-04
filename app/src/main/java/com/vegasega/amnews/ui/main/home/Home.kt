@@ -55,6 +55,11 @@ class Home : Fragment(), OnItemClickListener {
             ivUp.setOnClickListener {
             }
 
+//            baseButtons.visibility = View.GONE
+//            baseShare.visibility = View.GONE
+//            baseButtonsPlay.visibility = View.VISIBLE
+//            seekbar.visibility = View.VISIBLE
+
             ivAudio.setOnClickListener {
                 baseButtons.visibility = View.GONE
                 baseShare.visibility = View.GONE
@@ -125,8 +130,10 @@ class Home : Fragment(), OnItemClickListener {
 
 
             var imageCounter = 0
-            ivPlayPause.setOnClickListener {
-
+            ivPlay.setOnClickListener {
+                ivPlay.visibility = View.GONE
+                ivPause.visibility = View.VISIBLE
+                playSong(viewModel.itemMain[counter])
 //                if(ivPlayPause.getDrawable().getConstantState()!!.equals(getResources().getDrawable(R.drawable.play).getConstantState()))
 //                {
 //                    Toast.makeText(requireContext(), "work", Toast.LENGTH_SHORT).show();
@@ -139,21 +146,29 @@ class Home : Fragment(), OnItemClickListener {
 //                }
 //                val drawableCompat = ContextCompat.getDrawable(requireContext(), R.drawable.play)
 
-                val ff = ivPlayPause.resources.getResourceName(R.drawable.play)
-                val gg = ivPlayPause.resources.getResourceName(R.drawable.pause)
-                Log.e("TAG", "AAAAAA "+ff)
-                Log.e("TAG", "AAAAAA "+gg)
-                val hh = ivPlayPause.resources.getResourceName(R.drawable.play)
-                Log.e("TAG", "AAAAAA "+hh)
-
 //                val ff = ivPlayPause.resources.getResourceName(R.drawable.play)
 //                val gg = ivPlayPause.resources.getResourceName(R.drawable.pause)
 //                Log.e("TAG", "AAAAAA "+ff)
-                if(ff == "com.vegasega.amnews:drawable/play"){
-                    ivPlayPause.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.pause));
-                } else {
-                    ivPlayPause.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.play));
-                }
+//                Log.e("TAG", "AAAAAA "+gg)
+//                val hh = ivPlayPause.resources.getResourceName(R.drawable.play)
+//                Log.e("TAG", "AAAAAA "+hh)
+//
+////                val ff = ivPlayPause.resources.getResourceName(R.drawable.play)
+////                val gg = ivPlayPause.resources.getResourceName(R.drawable.pause)
+////                Log.e("TAG", "AAAAAA "+ff)
+//                if(ff == "com.vegasega.amnews:drawable/play"){
+//                    ivPlayPause.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.pause));
+//                } else {
+//                    ivPlayPause.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.play));
+//                }
+
+//                if(ivPlayPause.getDrawable()==getResources().getDrawable(R.drawable.play)){
+//                    ivPlayPause.setImageResource(R.drawable.pause)
+//                } else {
+//                    ivPlayPause.setImageResource(R.drawable.play)
+//                }
+
+
 
 //
 //                if(drawableCompat == R.drawable.play){
@@ -268,6 +283,13 @@ class Home : Fragment(), OnItemClickListener {
 
             }
 
+            ivPause.setOnClickListener {
+                ivPlay.visibility = View.VISIBLE
+                ivPause.visibility = View.GONE
+                if (textToSpeech.isSpeaking) {
+                        textToSpeech.stop()
+                    }
+            }
 
 //                    seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
 //                        override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -326,7 +348,7 @@ class Home : Fragment(), OnItemClickListener {
         binding.apply {
             if (textToSpeech.isSpeaking) {
                 textToSpeech.stop()
-                ivPlayPause.setImageResource(R.drawable.play)
+                ivPlay.setImageResource(R.drawable.play)
             } else {
                 textToSpeech.speak(itemMain.name, TextToSpeech.QUEUE_FLUSH, null, itemMain.name)
                 textToSpeech.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
@@ -334,12 +356,12 @@ class Home : Fragment(), OnItemClickListener {
                         Log.e("MainActivity", "TTS onDone " + utteranceId);
 //                        ivPlayPause.setImageResource(R.drawable.play)
                         if (itemMain.name == utteranceId) {
-
                             if(counter != viewModel.itemMain.size - 1){
                                 counter++
                                 playSong(viewModel.itemMain[counter])
                             } else {
-                                ivPlayPause.setImageResource(R.drawable.play)
+                                ivPlay.visibility = View.VISIBLE
+                                ivPause.visibility = View.GONE
                             }
                             Log.e("MainActivity", "counter " + counter);
                         }

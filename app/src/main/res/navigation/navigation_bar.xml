@@ -30,6 +30,13 @@
         android:label="Search"
         android:id="@+id/search"
         tools:layout="@layout/search">
+        <action
+            android:id="@+id/action_search_to_home"
+            app:destination="@id/home"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/home"
+            app:popUpToInclusive="true"
+            />
     </fragment>
 
 </navigation>

@@ -7,10 +7,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.vegasega.amnews.databinding.ItemHomePagerVerticleBinding
+import com.vegasega.amnews.models.Item
 import com.vegasega.amnews.ui.interfaces.OnItemClickListener
 import com.vegasega.amnews.utils.singleClick
 
-class HomePagerAdapter(private val listener: OnItemClickListener) : ListAdapter<HomeVM.Item, HomePagerAdapter.PremiumPacksViewHolder>(
+class HomePagerAdapter(private val listener: OnItemClickListener) : ListAdapter<Item, HomePagerAdapter.PremiumPacksViewHolder>(
     DELIVERY_ITEM_COMPARATOR
 ) {
     inner class PremiumPacksViewHolder(private val binding: ItemHomePagerVerticleBinding) :
@@ -22,7 +23,7 @@ class HomePagerAdapter(private val listener: OnItemClickListener) : ListAdapter<
             }
         }
 
-        fun bind(model: HomeVM.Item) {
+        fun bind(model: Item) {
             binding.apply {
                 textTitle0.text = ""+model.name
                 textTitle1.text = ""+model.itemList[0].name
@@ -75,17 +76,17 @@ class HomePagerAdapter(private val listener: OnItemClickListener) : ListAdapter<
     }
 
     companion object {
-        private val DELIVERY_ITEM_COMPARATOR = object : DiffUtil.ItemCallback<HomeVM.Item>() {
+        private val DELIVERY_ITEM_COMPARATOR = object : DiffUtil.ItemCallback<Item>() {
             override fun areItemsTheSame(
-                oldItem: HomeVM.Item,
-                newItem: HomeVM.Item
+                oldItem: Item,
+                newItem: Item
             ): Boolean {
                 return false
             }
 
             override fun areContentsTheSame(
-                oldItem: HomeVM.Item,
-                newItem: HomeVM.Item
+                oldItem: Item,
+                newItem: Item
             ): Boolean {
                 return false
             }

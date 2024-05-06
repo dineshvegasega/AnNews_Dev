@@ -2,10 +2,14 @@ package com.vegasega.amnews.models
 
 import com.google.gson.annotations.SerializedName
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 
+@Parcelize
 data class BaseResponseDC<T>(
     @SerializedName("data")
-    val `data`: T? = null,
+    val `data`: @RawValue T? = null,
     @SerializedName("message")
     val message: String? = null,
     @SerializedName("status_code")
@@ -18,8 +22,10 @@ data class BaseResponseDC<T>(
     val vendor_id: String? = null,
     @SerializedName("meta")
     val meta: Meta? = null,
-)
+) : Parcelable
 
+
+@Parcelize
 data class Meta(
     val first_page: String,
     val last_page: String,
@@ -27,4 +33,4 @@ data class Meta(
     val prev_page_url: String,
     val total_items: Int,
     val total_pages: Int
-)
+) : Parcelable

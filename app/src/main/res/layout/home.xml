@@ -18,6 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/barrier"
         android:orientation="vertical"
+        android:scrollbars="vertical"
         >
     </androidx.viewpager2.widget.ViewPager2>
 
@@ -407,17 +408,17 @@
 
     <SeekBar
         android:id="@+id/seekbar"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:max="100"
-        android:progress="50"
+        android:progress="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/baseButtonsPlay"
         android:progressTint="@color/_ED2525"
         android:thumbTint="@color/_ED2525"
-        android:paddingStart="0dp"
-        android:paddingEnd="0dp"
+        android:paddingStart="@dimen/_5sdp"
+        android:paddingEnd="@dimen/_5sdp"
         android:layout_marginBottom="@dimen/_minus8sdp"
         android:visibility="gone"
         />

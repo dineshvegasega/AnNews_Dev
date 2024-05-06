@@ -4,17 +4,23 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
 import com.vegasega.amnews.R
 import com.vegasega.amnews.databinding.ItemHomeHorizontalMenusBinding
 import com.vegasega.amnews.genericAdapter.GenericAdapter
+import com.vegasega.amnews.models.Item
+import com.vegasega.amnews.models.ItemList
 import com.vegasega.amnews.ui.mainActivity.MainActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeVM @Inject constructor() : ViewModel() {
+
+//    var itemSongs = MutableLiveData<Int>()
+
 
     var itemMain : ArrayList<Item> = ArrayList()
 
@@ -104,14 +110,4 @@ class HomeVM @Inject constructor() : ViewModel() {
 
 
 
-    data class Item (
-        var name: String = "",
-        var image: Int = 0,
-        var itemList: ArrayList<ItemList> = ArrayList()
-    )
-
-
-    data class ItemList (
-        var name: String = ""
-    )
 }

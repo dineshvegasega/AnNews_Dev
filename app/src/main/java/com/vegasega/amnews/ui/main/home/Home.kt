@@ -52,7 +52,7 @@ class Home : Fragment(), OnItemClickListener {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = HomeBinding.inflate(inflater)
         return binding.root
     }

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.vegasega.amnews.databinding.LeftHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -15,11 +16,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class LeftHome : Fragment(){
     private var _binding: LeftHomeBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: HomeVM by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = LeftHomeBinding.inflate(inflater)
         return binding.root
     }

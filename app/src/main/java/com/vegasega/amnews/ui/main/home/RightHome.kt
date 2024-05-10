@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.vegasega.amnews.databinding.RightHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -15,11 +16,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class RightHome : Fragment(){
     private var _binding: RightHomeBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: HomeVM by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = RightHomeBinding.inflate(inflater)
         return binding.root
     }

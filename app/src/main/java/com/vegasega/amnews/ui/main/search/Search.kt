@@ -25,7 +25,7 @@ class Search : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = SearchBinding.inflate(inflater)
         return binding.root
     }

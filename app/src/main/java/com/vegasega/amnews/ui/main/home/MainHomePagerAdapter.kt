@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
-class MainHomeAdapter (fragmentActivity: FragmentActivity) :
+class MainHomePagerAdapter (fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity, ) {
 
     override fun createFragment(position: Int): Fragment {

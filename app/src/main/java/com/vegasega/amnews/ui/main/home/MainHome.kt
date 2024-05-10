@@ -3,12 +3,12 @@ package com.vegasega.amnews.ui.main.home
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.streetsaarthi.nasvi.screens.interfaces.CallBackListener
 import com.vegasega.amnews.databinding.MainHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,6 +18,7 @@ class MainHome : Fragment(), CallBackListener {
     private var _binding: MainHomeBinding? = null
     private val binding get() = _binding!!
 
+    private val viewModel: HomeVM by viewModels()
 
     companion object {
         var callBackListener: CallBackListener? = null
@@ -27,7 +28,7 @@ class MainHome : Fragment(), CallBackListener {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = MainHomeBinding.inflate(inflater)
         return binding.root
     }
@@ -39,7 +40,7 @@ class MainHome : Fragment(), CallBackListener {
         super.onViewCreated(view, savedInstanceState)
         callBackListener = this
         binding.apply {
-            val adapter = MainHomeAdapter(requireActivity())
+            val adapter = MainHomePagerAdapter(requireActivity())
             introViewPager.adapter = adapter
             adapter.notifyDataSetChanged()
             introViewPager.setCurrentItem(adapter.itemCount-2, false)

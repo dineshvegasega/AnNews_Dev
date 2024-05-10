@@ -15,7 +15,7 @@ import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.daimajia.swipe.SwipeLayout
+//import com.daimajia.swipe.SwipeLayout
 import com.vegasega.amnews.R
 import com.vegasega.amnews.utils.SwipeRevealLayout
 import java.util.Locale

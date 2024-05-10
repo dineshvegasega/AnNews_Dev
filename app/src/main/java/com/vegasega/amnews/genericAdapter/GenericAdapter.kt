@@ -69,4 +69,6 @@ abstract class GenericAdapter<T : ViewBinding, M>(@AnimRes val animation: Int? =
         e.printStackTrace()
     }
 
+    abstract fun updatePosition(position: Int)
+
 }

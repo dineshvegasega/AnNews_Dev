@@ -12,9 +12,18 @@ data class ItemMain (
 
 
 @Parcelize
+data class ItemMenu (
+    var name: String = "",
+    var image: Int = 0,
+    var isSelected: Boolean = false
+) : Parcelable
+
+
+@Parcelize
     data class Item (
         var name: String = "",
         var image: Int = 0,
+        var isSelected: Boolean = false,
         var itemList: ArrayList<ItemList> = ArrayList()
     ) : Parcelable
 

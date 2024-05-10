@@ -40,24 +40,24 @@ class HomePagerAdapter(private val listener: OnItemClickListener) : ListAdapter<
                 timeline4.initLine(0)
                 timeline5.initLine(2)
 
-                textTitle0.setOnClickListener {
-                    listener.onClickItem()
-                }
-                textTitle1.setOnClickListener {
-                    listener.onClickItem()
-                }
-                textTitle2.setOnClickListener {
-                    listener.onClickItem()
-                }
-                textTitle3.setOnClickListener {
-                    listener.onClickItem()
-                }
-                textTitle4.setOnClickListener {
-                    listener.onClickItem()
-                }
-                textTitle5.setOnClickListener {
-                    listener.onClickItem()
-                }
+//                textTitle0.setOnClickListener {
+//                    listener.onClickItem()
+//                }
+//                textTitle1.setOnClickListener {
+//                    listener.onClickItem()
+//                }
+//                textTitle2.setOnClickListener {
+//                    listener.onClickItem()
+//                }
+//                textTitle3.setOnClickListener {
+//                    listener.onClickItem()
+//                }
+//                textTitle4.setOnClickListener {
+//                    listener.onClickItem()
+//                }
+//                textTitle5.setOnClickListener {
+//                    listener.onClickItem()
+//                }
             }
         }
     }

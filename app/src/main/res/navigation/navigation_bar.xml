@@ -3,25 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_bar"
-    app:startDestination="@id/home"
+    app:startDestination="@id/main_home"
     >
 
+    <fragment
+        android:name="com.vegasega.amnews.ui.main.home.MainHome"
+        android:label="MainHome"
+        android:id="@+id/main_home"
+        tools:layout="@layout/main_home">
+
+        <action
+            android:id="@+id/action_mainHome_to_search"
+            app:destination="@id/search"
+            app:launchSingleTop="true"
+            />
+
+    </fragment>
 
     <fragment
         android:name="com.vegasega.amnews.ui.main.home.Home"
         android:label="Home"
         android:id="@+id/home"
         tools:layout="@layout/home">
-        <action
-            android:id="@+id/action_home_to_search"
-            app:destination="@id/search"
-            app:launchSingleTop="true"
-            />
-<!--        <action-->
-<!--            android:id="@+id/action_dashboard_to_notifications"-->
-<!--            app:destination="@id/notifications"-->
-<!--            app:launchSingleTop="true"-->
-<!--            />-->
+
     </fragment>
 
 

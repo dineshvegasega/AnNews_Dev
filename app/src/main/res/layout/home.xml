@@ -1,224 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/mainLayout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/_ffffff"
-    android:clickable="true">
+ >
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/introViewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/barrier"
-        android:orientation="vertical"
-        android:scrollbars="vertical"
-        >
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusable="false">
+
     </androidx.viewpager2.widget.ViewPager2>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        tools:listitem="@layout/item_home_horizontal_menus"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:background="@color/white"
         android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/_5sdp"
+        android:visibility="invisible"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toTopOf="parent"
         tools:itemCount="6"
-        android:paddingHorizontal="@dimen/_5sdp"
-        android:background="@color/white"
-        android:visibility="gone"
-        />
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:tabGravity="center"
-        android:background="@color/white"
-        app:tabIndicatorHeight="0dp"
-        app:tabPaddingEnd="@dimen/_10sdp"
-        app:tabPaddingStart="@dimen/_10sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-     android:visibility="gone"
-        tools:ignore="MissingConstraints" />
-
-
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/baseButtons"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_60sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:visibility="visible"
-        >
-        <View
-            android:id="@+id/view"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@color/_E8EBF4"
-            >
-        </View>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view"
-            android:orientation="vertical"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="@dimen/_15sdp"
-
-            >
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textSource"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/_718491"
-                android:gravity="center_vertical"
-                tools:ignore="MissingConstraints"
-                app:fontFamily="@font/product_sans_regular"
-                android:text="Sourced : Twitter"
-                android:textSize="@dimen/_11sdp"
-                />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/_718491"
-                android:gravity="center_vertical"
-                tools:ignore="MissingConstraints"
-                app:fontFamily="@font/product_sans_regular"
-                android:text="5 mins ago"
-                android:textSize="@dimen/_11sdp"
-                />
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivUp"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="wrap_content"
-            app:layout_constraintDimensionRatio="H,1:1.1"
-            app:layout_constraintEnd_toStartOf="@+id/ivAudio"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:srcCompat="@drawable/up"
-            android:background="@color/white"
-            android:scaleType="centerInside"
-            android:layout_marginEnd="@dimen/_15sdp"
-            />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivAudio"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="wrap_content"
-            app:layout_constraintDimensionRatio="H,1:1.1"
-            app:layout_constraintEnd_toStartOf="@+id/ivSearch"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:srcCompat="@drawable/speker"
-            android:background="@color/white"
-            android:scaleType="centerInside"
-            android:layout_marginEnd="@dimen/_15sdp"
-            />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivSearch"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="wrap_content"
-            app:layout_constraintDimensionRatio="H,1:1.1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:srcCompat="@drawable/search"
-            android:background="@color/white"
-            android:scaleType="centerInside"
-            android:layout_marginEnd="@dimen/_15sdp"
-            />
-
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
+        tools:listitem="@layout/item_home_horizontal_menus" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/baseShare"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_60sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:background="@color/_F1F3F9"
-        android:visibility="gone"
-        >
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
         <View
             android:id="@+id/view4"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
+            android:background="@color/_E8EBF4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@color/_E8EBF4"
-            >
-        </View>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view4"
-            android:orientation="horizontal"
             android:gravity="center_vertical"
-            >
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view4">
+
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/linearTopics"
+                android:id="@+id/layoutTopic"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view4"
-                android:orientation="horizontal"
                 android:layout_weight="1"
                 android:gravity="center"
-                >
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view4">
+
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/iv12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/_718491"
                     android:gravity="center"
                     android:src="@drawable/arrowleft"
-                    />
+                    android:textColor="@color/_718491" />
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textTopic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/_718491"
                     android:gravity="center"
-                    tools:ignore="MissingConstraints"
-                    app:fontFamily="@font/product_sans_regular"
                     android:text="Topics"
+                    android:textColor="@color/_718491"
                     android:textSize="@dimen/_12sdp"
-                    />
+                    app:fontFamily="@font/product_sans_regular"
+                    tools:ignore="MissingConstraints" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
 
@@ -226,211 +97,77 @@
                 android:id="@+id/baseShareCenter"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0.9"
-                android:background="@drawable/all_radius"
                 android:layout_margin="10dp"
-                >
+                android:layout_weight="0.9"
+                android:background="@drawable/all_radius">
+
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivBookmark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintDimensionRatio="H,1:1.1"
-                    app:srcCompat="@drawable/bookmark"
                     android:background="@color/_F1F3F9"
+                    android:backgroundTint="@color/white"
                     android:scaleType="centerInside"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="H,1:1.1"
+                    app:layout_constraintEnd_toStartOf="@+id/ivShare"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/ivShare"
-                    android:backgroundTint="@color/white"
-                    />
+                    app:srcCompat="@drawable/bookmark" />
+
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivShare"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintDimensionRatio="H,1:1.1"
-                    app:srcCompat="@drawable/share"
-                    android:background="@color/_F1F3F9"
-                    android:scaleType="centerInside"
                     android:layout_weight="1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/ivBookmark"
+                    android:background="@color/_F1F3F9"
                     android:backgroundTint="@color/white"
-                    />
+                    android:scaleType="centerInside"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="H,1:1.1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ivBookmark"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/share" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/linearArticles"
+                android:id="@+id/layoutArticle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view4"
-                android:orientation="horizontal"
                 android:layout_weight="1"
                 android:gravity="center"
-                >
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view4">
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textArticle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/_718491"
                     android:gravity="center"
-                    tools:ignore="MissingConstraints"
-                    app:fontFamily="@font/product_sans_regular"
                     android:text="Article"
+                    android:textColor="@color/_718491"
                     android:textSize="@dimen/_12sdp"
-                    />
+                    app:fontFamily="@font/product_sans_regular"
+                    tools:ignore="MissingConstraints" />
+
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/iv13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/_718491"
                     android:gravity="center"
                     android:src="@drawable/arrowright"
-                    />
+                    android:textColor="@color/_718491" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/baseButtonsPlay"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_53sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:visibility="gone"
-        >
-
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@color/_F1F3F9"
-            >
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ivCross"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintDimensionRatio="H,1:1.1"
-                app:srcCompat="@drawable/x"
-                android:background="@color/_F1F3F9"
-                android:scaleType="centerInside"
-                android:layout_weight="1"
-                />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ivPlayback"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintDimensionRatio="H,1:1.1"
-                app:srcCompat="@drawable/skip_back"
-                android:background="@color/_F1F3F9"
-                android:scaleType="centerInside"
-                android:layout_weight="1"
-                />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:background="@color/_F1F3F9"
-            android:layout_weight="1"
-            >
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ivPlay"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintDimensionRatio="H,1:1.1"
-                app:srcCompat="@drawable/play"
-                android:scaleType="centerInside"
-                >
-            </androidx.appcompat.widget.AppCompatImageView>
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ivPause"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintDimensionRatio="H,1:1.1"
-                app:srcCompat="@drawable/pause"
-                android:scaleType="centerInside"
-                android:visibility="gone"
-                >
-            </androidx.appcompat.widget.AppCompatImageView>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ivPlaynext"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintDimensionRatio="H,1:1.1"
-                app:srcCompat="@drawable/skip_forward"
-                android:background="@color/_F1F3F9"
-                android:scaleType="centerInside"
-                android:layout_weight="1"
-                />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textPlay"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@color/_A1ADB6"
-                android:gravity="center"
-                app:fontFamily="@font/product_sans_regular"
-                android:text="H"
-                android:textSize="@dimen/_20sdp"
-                android:layout_weight="1"
-                />
-
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <SeekBar
-        android:id="@+id/seekbar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:max="100"
-        android:progress="0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/baseButtonsPlay"
-        android:progressTint="@color/_ED2525"
-        android:thumbTint="@color/_ED2525"
-        android:paddingStart="@dimen/_5sdp"
-        android:paddingEnd="@dimen/_5sdp"
-        android:layout_marginBottom="@dimen/_minus8sdp"
-        android:visibility="gone"
-        />
-
-
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="top"
-        app:constraint_referenced_ids="baseButtons, baseButtonsPlay, seekbar, baseShare"
-        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

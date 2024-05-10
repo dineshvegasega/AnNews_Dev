@@ -146,4 +146,8 @@ dependencies {
 //    implementation ("com.google.android.play:review-ktx:2.0.1")
     implementation ("org.jsoup:jsoup:1.17.2")
     implementation ("com.github.vipulasri:timelineview:1.1.5")
+
+//    implementation ("com.daimajia.swipelayout:library:1.2.0")
+
+//    implementation ("com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.0")
 }

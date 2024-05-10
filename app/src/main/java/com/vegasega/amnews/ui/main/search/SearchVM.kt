@@ -29,7 +29,7 @@ class SearchVM @Inject constructor() : ViewModel() {
     init {
         itemMain?.add(
             Item(
-                "I", R.drawable.m1,
+                "I", R.drawable.m1,false,
                 arrayListOf(
                     ItemList("I can easily put icon"),
                     ItemList("but if I set gravity to center"),
@@ -41,7 +41,7 @@ class SearchVM @Inject constructor() : ViewModel() {
         )
         itemMain?.add(
             Item(
-                "J", R.drawable.m1,
+                "J", R.drawable.m1,false,
                 arrayListOf(
                     ItemList("1"),
                     ItemList("2"),
@@ -53,7 +53,7 @@ class SearchVM @Inject constructor() : ViewModel() {
         )
         itemMain?.add(
             Item(
-                "K", R.drawable.m1,
+                "K", R.drawable.m1,false,
                 arrayListOf(
                     ItemList("1C"),
                     ItemList("2C"),
@@ -73,6 +73,10 @@ class SearchVM @Inject constructor() : ViewModel() {
             viewType: Int
         ) = ItemSearchBinding.inflate(inflater, parent, false)
 
+        override fun updatePosition(position: Int) {
+            
+        }
+
         @SuppressLint("SuspiciousIndentation")
         override fun onBindHolder(
             binding: ItemSearchBinding,
@@ -83,8 +87,8 @@ class SearchVM @Inject constructor() : ViewModel() {
                 root.setOnClickListener {
                     var bundle : Bundle = Bundle()
                     root.findNavController().navigate(R.id.action_search_to_home, Bundle().apply {
-                        putInt("pos", position)
-                        putParcelable("key", ItemMain(data = itemMain))
+//                        putInt("pos", position)
+                        putParcelable("key", dataClass)
                     })
                 }
 

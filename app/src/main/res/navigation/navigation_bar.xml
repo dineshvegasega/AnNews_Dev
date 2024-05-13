@@ -7,10 +7,10 @@
     >
 
     <fragment
-        android:name="com.vegasega.amnews.ui.main.home.MainHome"
+        android:name="com.vegasega.amnews.ui.main.home.Home"
         android:label="MainHome"
         android:id="@+id/main_home"
-        tools:layout="@layout/main_home">
+        tools:layout="@layout/home">
 
         <action
             android:id="@+id/action_mainHome_to_search"
@@ -21,10 +21,10 @@
     </fragment>
 
     <fragment
-        android:name="com.vegasega.amnews.ui.main.home.Home"
+        android:name="com.vegasega.amnews.ui.main.home.CenterHome"
         android:label="Home"
         android:id="@+id/home"
-        tools:layout="@layout/home">
+        tools:layout="@layout/center_home">
 
     </fragment>
 

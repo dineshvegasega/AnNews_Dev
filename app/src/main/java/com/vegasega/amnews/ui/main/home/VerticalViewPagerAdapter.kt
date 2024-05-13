@@ -136,11 +136,17 @@ class VerticalViewPagerAdapter(
 
 
         holder.ivPlayback.setOnClickListener {
-            listener.onClickItem(counter - 1)
+            if(counter != 0){
+                listener.onClickItem(counter - 1)
+                Log.e("TAG", "ivPlayback "+counter)
+            }
         }
 
         holder.ivPlaynext.setOnClickListener {
-            listener.onClickItem(counter + 1)
+            if(counter != list.size - 1){
+                listener.onClickItem(counter + 1)
+                Log.e("TAG", "ivPlaynext "+counter)
+            }
         }
 
 
@@ -243,7 +249,7 @@ class VerticalViewPagerAdapter(
         }
 
         val bundle = Bundle()
-        bundle.putInt(TextToSpeech.Engine.KEY_PARAM_STREAM, AudioManager.STREAM_MUSIC)
+        bundle.putInt(TextToSpeech.Engine.KEY_PARAM_STREAM,3)
         holder.textPlay.text = "0"+(counterChild+1)
         holder.seekbar.max = 5
         holder.seekbar.progress = counterChild+1

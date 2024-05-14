@@ -2,4 +2,8 @@
 <resources>
     <dimen name="pageMargin">20dp</dimen>
     <dimen name="offset">50dp</dimen>
+    <dimen name="viewpager_next_item_visible">26dp</dimen>
+    <dimen name="viewpager_current_item_horizontal_margin">10dp</dimen>
+
+
 </resources>

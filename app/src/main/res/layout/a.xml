@@ -7,30 +7,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<!--    <com.vegasega.amnews.utils.SwipeRevealLayout-->
-<!--        android:id="@+id/swipe"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        app:mode="same_level"-->
-<!--        app:dragEdge="right">-->
+    <com.vegasega.amnews.utils.VerticalViewPager
+        android:id="@+id/introViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusable="false">
 
-<!--        &lt;!&ndash; Your secondary layout here &ndash;&gt;-->
-<!--        <FrameLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:background="@color/white"/>-->
+    </com.vegasega.amnews.utils.VerticalViewPager>
 
-<!--        &lt;!&ndash; Your main layout here &ndash;&gt;-->
-<!--        <FrameLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:background="@color/black"/>-->
-
-<!--        <FrameLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:background="@color/_79747E"/>-->
-
-<!--    </com.vegasega.amnews.utils.SwipeRevealLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

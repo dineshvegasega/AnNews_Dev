@@ -38,23 +38,12 @@ class VerticalViewPagerAdapter(
     var list: ArrayList<Item>,
     textToSpeechVoice: TextToSpeech
 ) : RecyclerView.Adapter<VerticalViewPagerAdapter.PagerViewHolder>() {
+    var isActive = false
     var isHide = false
     var counter = 0
     var counterChild = 0
 
     var textToSpeech: TextToSpeech = textToSpeechVoice
-
-    init {
-//        textToSpeech = TextToSpeech(
-//            requireContext(), { status ->
-//                if (status != TextToSpeech.ERROR) {
-//                    Log.i("XXX", "Google tts initialized")
-//                } else {
-//                    Log.i("XXX", "Internal Google engine init error.")
-//                }
-//            }, "com.google.android.tts"
-//        )
-    }
 
     inner class PagerViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder
         (LayoutInflater.from(parent.context).inflate(R.layout.card_item_view, parent, false)) {
@@ -122,10 +111,10 @@ class VerticalViewPagerAdapter(
 
         if (position == counter) {
             Log.e("TAG", "QQQQQQQ " + position)
-
             counterChild = 0
-//            playSong(model, holder)
-
+            if (isActive == true){
+                playSong(model, holder)
+            }
         } else {
             Log.e("TAG", "WWWWWWW " + position)
             if (textToSpeech.isSpeaking) {
@@ -153,8 +142,10 @@ class VerticalViewPagerAdapter(
         holder.ivPlayPause.setOnClickListener {
             if (textToSpeech.isSpeaking) {
                 textToSpeech.stop()
+                isActive = false
                 holder.ivPlayPause.setImageResource(R.drawable.play)
             } else {
+                isActive = true
                 playSong(model, holder)
                 holder.ivPlayPause.setImageResource(R.drawable.pause)
             }
@@ -163,6 +154,10 @@ class VerticalViewPagerAdapter(
 
         holder.ivCross.setOnClickListener {
             isHide = false
+            if (textToSpeech.isSpeaking) {
+                textToSpeech.stop()
+                isActive = false
+            }
             notifyItemChanged(counter)
             holder.baseButtons.visibility = View.VISIBLE
             holder.group.visibility = View.GONE
@@ -170,6 +165,7 @@ class VerticalViewPagerAdapter(
 
         holder.ivAudio.setOnClickListener {
             isHide = true
+            isActive = true
             notifyItemChanged(counter)
             holder.baseButtons.visibility = View.GONE
             holder.group.visibility = View.VISIBLE
@@ -186,6 +182,7 @@ class VerticalViewPagerAdapter(
 
 
         holder.ivUp.setOnClickListener {
+            isActive = false
             listener.onClickItemUp(0)
         }
 

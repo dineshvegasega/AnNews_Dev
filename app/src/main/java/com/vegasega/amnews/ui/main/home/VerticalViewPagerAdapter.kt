@@ -35,7 +35,6 @@ import kotlinx.coroutines.launch
 
 class VerticalViewPagerAdapter(
     private val listener: OnItemClickListener,
-    var list: ArrayList<Item>,
     textToSpeechVoice: TextToSpeech
 ) : RecyclerView.Adapter<VerticalViewPagerAdapter.PagerViewHolder>() {
     var isActive = false
@@ -44,6 +43,12 @@ class VerticalViewPagerAdapter(
     var counterChild = 0
 
     var textToSpeech: TextToSpeech = textToSpeechVoice
+
+    var list: ArrayList<Item> = ArrayList()
+
+    override fun getItemCount(): Int = list.size
+
+
 
     inner class PagerViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder
         (LayoutInflater.from(parent.context).inflate(R.layout.card_item_view, parent, false)) {
@@ -83,7 +88,7 @@ class VerticalViewPagerAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerViewHolder =
         PagerViewHolder(parent)
 
-    override fun getItemCount(): Int = list.size
+
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
@@ -156,8 +161,9 @@ class VerticalViewPagerAdapter(
             isHide = false
             if (textToSpeech.isSpeaking) {
                 textToSpeech.stop()
-                isActive = false
             }
+            isActive = false
+
             notifyItemChanged(counter)
             holder.baseButtons.visibility = View.VISIBLE
             holder.group.visibility = View.GONE
@@ -191,11 +197,6 @@ class VerticalViewPagerAdapter(
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun updatePosition(position: Int) {
-        counter = position
-        notifyItemChanged(counter)
-    }
 
 
     private fun playSong(model: Item, holder: PagerViewHolder) {
@@ -309,5 +310,19 @@ class VerticalViewPagerAdapter(
                 super.onRangeStart(utteranceId, start, end, frame)
             }
         })
+    }
+
+
+
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updatePosition(position: Int) {
+        counter = position
+        notifyItemChanged(counter)
+    }
+
+
+    fun submitData(itemMainArray: ArrayList<Item>) {
+        list = itemMainArray
     }
 }

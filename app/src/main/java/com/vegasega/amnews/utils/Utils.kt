@@ -49,6 +49,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.navigation.NavController
+import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
@@ -1614,4 +1615,33 @@ fun ViewPager2.setCurrentItem(
     animator.interpolator = interpolator
     animator.duration = duration
     animator.start()
+}
+
+
+
+var ViewPager2.isReversedDirection: Boolean
+    get() = scaleX == -1f
+    set(value) {
+        if (value) {
+            scaleX = -1f  //  mirror viewpager
+
+            val listener = object : RecyclerView.OnChildAttachStateChangeListener {
+                override fun onChildViewDetachedFromWindow(view: View) = Unit
+
+                override fun onChildViewAttachedToWindow(view: View) {
+                    view.scaleX = -1f  //  mirror the page back when it was attached
+                }
+            }
+
+            val recyclerView = getChildAt(0) as RecyclerView
+            recyclerView.addOnChildAttachStateChangeListener(listener)
+        }
+    }
+
+
+
+fun ViewPager2.getRecyclerView(): RecyclerView {
+    val recyclerViewField = ViewPager2::class.java.getDeclaredField("mRecyclerView")
+    recyclerViewField.isAccessible = true
+    return recyclerViewField.get(this) as RecyclerView
 }

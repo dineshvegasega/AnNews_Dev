@@ -8,7 +8,7 @@
     android:background="@color/_ffffff"
  >
 
-    <com.vegasega.amnews.utils.VerticalViewPager
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/introViewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -16,9 +16,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:focusable="false">
 
-    </com.vegasega.amnews.utils.VerticalViewPager>
+    </androidx.viewpager2.widget.ViewPager2>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

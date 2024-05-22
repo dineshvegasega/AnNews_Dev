@@ -85,9 +85,7 @@ class SearchVM @Inject constructor() : ViewModel() {
         ) {
             binding.apply {
                 root.setOnClickListener {
-                    var bundle : Bundle = Bundle()
                     root.findNavController().navigate(R.id.action_search_to_home, Bundle().apply {
-//                        putInt("pos", position)
                         putParcelable("key", dataClass)
                     })
                 }

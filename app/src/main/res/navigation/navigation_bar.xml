@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_bar"
-    app:startDestination="@id/main_home"
+    app:startDestination="@id/home"
     >
 
     <fragment
         android:name="com.vegasega.amnews.ui.main.home.Home"
-        android:label="MainHome"
-        android:id="@+id/main_home"
+        android:label="Home"
+        android:id="@+id/home"
         tools:layout="@layout/home">
 
         <action
@@ -22,8 +22,8 @@
 
     <fragment
         android:name="com.vegasega.amnews.ui.main.home.CenterHome"
-        android:label="Home"
-        android:id="@+id/home"
+        android:label="CenterHome"
+        android:id="@+id/center_home"
         tools:layout="@layout/center_home">
 
     </fragment>
@@ -41,6 +41,16 @@
             app:popUpTo="@id/home"
             app:popUpToInclusive="true"
             />
+    </fragment>
+
+
+
+    <fragment
+        android:name="com.vegasega.amnews.ui.main.test.Test"
+        android:label="Test"
+        android:id="@+id/test"
+        tools:layout="@layout/test">
+
     </fragment>
 
 </navigation>

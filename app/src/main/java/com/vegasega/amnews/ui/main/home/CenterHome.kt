@@ -11,34 +11,49 @@ import android.view.View.OVER_SCROLL_NEVER
 import android.view.ViewGroup
 import android.view.animation.TranslateAnimation
 import androidx.annotation.RequiresApi
+import androidx.core.view.ViewCompat
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.vegasega.amnews.R
 import com.vegasega.amnews.databinding.CenterHomeBinding
 import com.vegasega.amnews.models.Item
 import com.vegasega.amnews.ui.VerticlePagerAdapter
 import com.vegasega.amnews.ui.interfaces.OnItemClickListener
+import com.vegasega.amnews.utils.getRecyclerView
 import com.vegasega.amnews.utils.parcelable
+import com.vegasega.amnews.utils.setCurrentItem
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.math.abs
 
 
 @AndroidEntryPoint
 class CenterHome : Fragment(), OnItemClickListener {
     var isUp: Boolean = false
     private val viewModel: HomeVM by viewModels()
-    private var _binding: CenterHomeBinding? = null
-    private val binding get() = _binding!!
+
 
     lateinit var textToSpeech: TextToSpeech
 
-    lateinit var adapter: VerticlePagerAdapter
 
-
-    companion object{
+    companion object {
         @JvmStatic
         var isOpen: Boolean = false
+
+        @SuppressLint("StaticFieldLeak")
+        private var _binding: CenterHomeBinding? = null
+
+        val binding get() = _binding!!
+
+        @JvmStatic
+        lateinit var adapter: VerticalViewPagerAdapter
+//
+//        @JvmStatic
+//        lateinit var adapter : QuickRegistrationAdapter
+
     }
 
     override fun onCreateView(
@@ -57,6 +72,8 @@ class CenterHome : Fragment(), OnItemClickListener {
 
         binding.apply {
 
+//            viewVertical = introViewPager
+
             layoutTopic.setOnClickListener {
                 Home.callBackListener!!.onCallBack(0)
             }
@@ -64,32 +81,39 @@ class CenterHome : Fragment(), OnItemClickListener {
             layoutArticle.setOnClickListener {
                 Home.callBackListener!!.onCallBack(2)
             }
-
         }
 
 
         textToSpeech = TextToSpeech(
             requireContext(), { status ->
                 if (status != TextToSpeech.ERROR) {
-                    Log.i("XXX", "Google tts initialized")
-                    if (arguments != null){
-                        val consentIntent = arguments?.parcelable<Item>("key")
+                    Log.e("XXX", "Google tts initialized")
+
+                    adapter = VerticalViewPagerAdapter(this, textToSpeech)
+
+//                    Home.consentIntent
+//                    Log.e("TAG", "consentIntent "+Home.consentIntent)
+
+                    if (Home.consentIntent != null) {
                         viewModel.itemMain.clear()
-                        consentIntent?.let {
+                        Log.e("TAG", "consentIntent "+Home.consentIntent.toString())
+                        Home.consentIntent?.let {
                             viewModel.itemMain.add(it)
                         }
+                        adapter.submitData(viewModel.itemMain)
+                    } else {
+                        Log.e("TAG", "consentIntentNULL ")
+                        adapter.submitData(viewModel.itemMain)
                     }
 
-                    adapter = VerticlePagerAdapter(requireContext(), viewModel.itemMain, textToSpeech)
                     createVerticalView()
                 } else {
-                    Log.i("XXX", "Internal Google engine init error.")
+                    Log.e("XXX", "Internal Google engine init error.")
                 }
             }, "com.google.android.tts"
         )
 
     }
-
 
 
     fun View.isUserInteractionEnabled(enabled: Boolean) {
@@ -160,7 +184,6 @@ class CenterHome : Fragment(), OnItemClickListener {
     }
 
 
-
     fun slideDown2(view: View) {
         val animate = TranslateAnimation(
             0f,  // fromXDelta
@@ -172,7 +195,6 @@ class CenterHome : Fragment(), OnItemClickListener {
         animate.fillAfter = true
         view.startAnimation(animate)
     }
-
 
 
     //    var topListCounter = 0
@@ -191,7 +213,6 @@ class CenterHome : Fragment(), OnItemClickListener {
     }
 
 
-
     override fun onClickItem(position: Int) {
         binding.apply {
             introViewPager.setCurrentItem(position, true)
@@ -204,9 +225,7 @@ class CenterHome : Fragment(), OnItemClickListener {
     }
 
 
-
-
-    @SuppressLint("NotifyDataSetChanged")
+    @SuppressLint("NotifyDataSetChanged", "ClickableViewAccessibility")
     private fun createVerticalView() {
         binding.apply {
             recyclerView.setHasFixedSize(true)
@@ -214,208 +233,238 @@ class CenterHome : Fragment(), OnItemClickListener {
             viewModel.dashboardAdapter.submitList(viewModel.itemMenusArray)
             viewModel.dashboardAdapter.notifyDataSetChanged()
 
-
-            introViewPager.adapter = adapter
-//
-//            introViewPager.orientation = ViewPager2.ORIENTATION_VERTICAL
 //            introViewPager.adapter = adapter
+
+//            var arraylist = ArrayList<String>()
+//            //adding String elements in the list
+//            arraylist.add("Geeks")
+//            arraylist.add("Geeks")
+//            introViewPager.adapter  = adapter
+
+
+           // introViewPager.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
+
+
 //            with(introViewPager) {
 //                clipToPadding = true
 //                clipChildren = true
-//                offscreenPageLimit = 2
+//                offscreenPageLimit = 0
 //            }
-//            introViewPager.setPageTransformer(SwipeTransformer())
-//            introViewPager.setOverScrollMode(OVER_SCROLL_NEVER);
+
+
+
+
+//            introViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+//                override fun onPageScrollStateChanged(state: Int) {
+//                    Log.e("TAG", "addOnPageChangeListener " + state)
+//                }
 //
-//            introViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
 //                override fun onPageScrolled(
 //                    position: Int,
 //                    positionOffset: Float,
 //                    positionOffsetPixels: Int
 //                ) {
-//                    super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-////                    Log.e("TAG", "positionA" + position)
+////                    Log.e("TAG", "onPageScrolled " + position)
 //                }
 //
 //                override fun onPageSelected(position: Int) {
-//                    super.onPageSelected(position)
+//                    introViewPager.setCurrentItem(position)
 //                    adapter.updatePosition(position)
-//                }
-//
-//                override fun onPageScrollStateChanged(state: Int) {
-//                    super.onPageScrollStateChanged(state)
+//                    introViewPager.invalidate()
+////                    adapter.notifyDataSetChanged()
+////                    introViewPager.invalidate()
+//                    Log.e("TAG", "onPageSelected " + position)
+////                    viewPagerHandler()
 //                }
 //            })
+
+
+            introViewPager.orientation = ViewPager2.ORIENTATION_VERTICAL
+//            introViewPager.getRecyclerView().setOnTouchListener { view, motionEvent ->
+//                false
+//            }
+            introViewPager.adapter = adapter
+//            with(introViewPager) {
+//                clipToPadding = true
+//                clipChildren = true
+////                offscreenPageLimit = 2
+//
+//            }
+
+            introViewPager.setPageTransformer(SwipeTransformer())
+//            introViewPager.isUserInputEnabled = false
+            introViewPager.overScrollMode = OVER_SCROLL_NEVER
+//            PagerSnapHelper().attachToRecyclerView(introViewPager.getRecyclerView())
+
+
+            //val recyclerView = introViewPager.getChildAt(0)
+
+//            introViewPager.getRecyclerView().setChildDrawingOrderCallback  { childCount, i ->
+//
+//                when (i) {
+//                    0 -> 3
+//                    1 -> 4
+//                    2 -> 3
+//                    3 -> 2
+//                    4 -> 1
+////                    5 -> 0
+//                    else -> throw IllegalStateException("Expected 3 items")
+//                }
+//            }
+
+            introViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageScrolled(
+                    position: Int,
+                    positionOffset: Float,
+                    positionOffsetPixels: Int
+                ) {
+                    super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+//                    Log.e("TAG", "positionA" + position)
+                }
+
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    adapter.updatePosition(position)
+                    introViewPager.setCurrentItem(position)
+                }
+
+                override fun onPageScrollStateChanged(state: Int) {
+                    super.onPageScrollStateChanged(state)
+                }
+            })
+
+
         }
 
     }
 
+    fun viewPagerHandler(view: View, position: Int): View {
+        //ALL LOGIC BUTTONS ACTIONS ETC.
+        view.invalidate()
+        return view
+    }
+
+
     inner class SwipeTransformer : ViewPager2.PageTransformer {
-//        private val screenHeight = resources.displayMetrics.heightPixels
-//        private val pageMarginPy = resources.getDimensionPixelOffset(R.dimen.pageMargin)
-//        private val offsetPy = resources.getDimensionPixelOffset(R.dimen.offset)
-//        private val pageHeight = screenHeight - pageMarginPy - offsetPy
-//
-//        private val MIN_SCALE = 0.75f
-//        private val MIN_ALPHA = 0.75f
+        private val screenHeight = resources.displayMetrics.heightPixels
+        private val pageMarginPy = resources.getDimensionPixelOffset(R.dimen.pageMargin)
+        private val offsetPy = resources.getDimensionPixelOffset(R.dimen.offset)
+        private val pageHeight = screenHeight - pageMarginPy - offsetPy
 
-        private val MIN_SCALE = 0.75f
+        private val MIN_SCALE = 0.5f
+        private val MIN_ALPHA = 0.5f
 
 
-//        val MIN_SCALE = 0.75f
-
-//        override fun transformPage(page: View, position: Float) {
-//            val scaleFactor = MIN_SCALE + (1 - MIN_SCALE) * (1 - Math.abs(position))
-//            page.apply {
-//                if (position < -1) { // [-Infinity,-1)
-//                    scaleX = scaleFactor
-//                    scaleY = scaleFactor
-//                    alpha = 0f
-//                } else if (position <= 0) { // [-1,0]
-//                    translationY = pageHeight * -position
-//
-//                    scaleX = scaleFactor
-//                    scaleY = scaleFactor
-//                    alpha =
-//                        (MIN_ALPHA + (((scaleFactor - MIN_SCALE) / (1 - MIN_SCALE)) * (1 - MIN_ALPHA)))
-//                } else if (position <= 1) { // (0,1]
-//                    alpha = 1f
-//                    scaleX = 1f
-//                    scaleY = scaleFactor
-//
-//                    val viewPager = page.parent.parent as ViewPager2
-//                    val offset = position * -(2 * offsetPy + pageMarginPy)
-//
-//                    if (viewPager.orientation == ViewPager2.ORIENTATION_VERTICAL) {
-//                        page.translationY = offset
-//                    } else {
-//                        page.translationX = offset
-//                    }
-//
-//                } else { // (1,+Infinity]
-//                    alpha = 0f
-//                    scaleX = MIN_SCALE + (1 - MIN_SCALE) * (1 - Math.abs(position))
-//                    scaleY = 1f
-//                }
-//            }
-//
-//
-////
-////            page.apply {
-////                if (position < -1){
-////                    page.setAlpha(0f);
-////                }
-////                else if (position <= 0){
-////                    page.setAlpha(1f)
-////                    page.translationX = page.width * -position
-////                    val yPosition = position * page.height
-////                    page.translationY = yPosition
-////                    page.setScaleX(1f)
-////                    page.setScaleY(1f)
-////                }
-////                else if (position <= 1){
-////                    page.setTranslationX(page.getWidth() * -position);
-////                    val scaleFactor = MIN_SCALE + (1 - MIN_SCALE) * (1 - Math.abs(position))
-////                    page.setScaleX(scaleFactor);
-////                    page.setScaleY(scaleFactor);
-////                }
-////                else {
-////                    page.setAlpha(0f);
-////                }
-////
-////            }
-//
-//        }
-
-
+//        val MIN_SCALE = 0.90f
 
         override fun transformPage(page: View, position: Float) {
-//            val scaleFactor = MIN_SCALE + (1 - MIN_SCALE) * (1 - Math.abs(position))
+            val scaleFactor = MIN_SCALE + (1 - MIN_SCALE) * (1 - Math.abs(position))
             page.apply {
-                if (position < -1) {
+                if (position < -1) { // [-Infinity,-1)
+                    scaleX = scaleFactor
+                    scaleY = scaleFactor
                     alpha = 0f
-                } else if (position <= 0) {
-//                    translationY = pageHeight * -position
-//
-//                    scaleX = scaleFactor
-//                    scaleY = scaleFactor
-//                    alpha =
-//                        (MIN_ALPHA + (((scaleFactor - MIN_SCALE) / (1 - MIN_SCALE)) * (1 - MIN_ALPHA)))
-                    alpha = 1f
-                    page.setTranslationX(page.getWidth() * -position);
-                    val yPosition = position * page!!.height
-                    page!!.translationY = yPosition
-                    page!!.setScaleX(1f)
-                    page!!.setScaleY(1f)
-                } else if (position <= 1) {
-//                    alpha = 1f
-//                    scaleX = 1f
-//                    scaleY = scaleFactor
-//
-//                    val viewPager = page.parent.parent as ViewPager2
-//                    val offset = position * -(2 * offsetPy + pageMarginPy)
-//
-//                    if (viewPager.orientation == ViewPager2.ORIENTATION_VERTICAL) {
-//                        page.translationY = offset
-//                    } else {
-//                        page.translationX = offset
-//                    }
+                } else if (position <= 0) { // [-1,0]
+                    translationY = pageHeight * -position
 
+                    scaleX = scaleFactor
+                    scaleY = scaleFactor
+                    alpha =
+                        (MIN_ALPHA + (((scaleFactor - MIN_SCALE) / (1 - MIN_SCALE)) * (1 - MIN_ALPHA)))
+                } else if (position <= 1) { // (0,1]
                     alpha = 1f
-                    page!!.translationX = page!!.width * -position
+                    scaleX = 1f
+                    scaleY = scaleFactor
 
-                    val scaleFactor = (MIN_SCALE
-                            + (1 - MIN_SCALE) * (1 - Math.abs(position)))
-                    page!!.scaleX = scaleFactor
-                    page!!.scaleY = scaleFactor
-                } else {
+                    val viewPager = page.parent.parent as ViewPager2
+                    val offset = position * -(2 * offsetPy + pageMarginPy)
+
+                    if (viewPager.orientation == ViewPager2.ORIENTATION_VERTICAL) {
+                        page.translationY = offset
+                    } else {
+                        page.translationX = offset
+                    }
+
+                } else { // (1,+Infinity]
                     alpha = 0f
-
-//                    alpha = 0f
-//                    scaleX = MIN_SCALE + (1 - MIN_SCALE) * (1 - Math.abs(position))
-//                    scaleY = 1f
+                    scaleX = MIN_SCALE + (1 - MIN_SCALE) * (1 - Math.abs(position))
+                    scaleY = 1f
                 }
             }
 
+        }
 
+
+
+
+
+    }
+
+
+
+//    class SliderTransformer(private val offscreenPageLimit: Int) : ViewPager2.PageTransformer {
+//
+//        companion object {
+//
+//            private const val DEFAULT_TRANSLATION_X = .0f
+//            private const val DEFAULT_TRANSLATION_FACTOR = 1.2f
+//
+//            private const val SCALE_FACTOR = .14f
+//            private const val DEFAULT_SCALE = 1f
+//
+//            private const val ALPHA_FACTOR = .3f
+//            private const val DEFAULT_ALPHA = 1f
+//
+//        }
+//
+//        override fun transformPage(page: View, position: Float) {
 //
 //            page.apply {
-//                if (position < -1){
-//                    page.setAlpha(0f);
-//                }
-//                else if (position <= 0){
-//                    page.setAlpha(1f)
-//                    page.translationX = page.width * -position
-//                    val yPosition = position * page.height
-//                    page.translationY = yPosition
-//                    page.setScaleX(1f)
-//                    page.setScaleY(1f)
-//                }
-//                else if (position <= 1){
-//                    page.setTranslationX(page.getWidth() * -position);
-//                    val scaleFactor = MIN_SCALE + (1 - MIN_SCALE) * (1 - Math.abs(position))
-//                    page.setScaleX(scaleFactor);
-//                    page.setScaleY(scaleFactor);
-//                }
-//                else {
-//                    page.setAlpha(0f);
-//                }
 //
+//                ViewCompat.setElevation(page, -abs(position))
+//
+//                val scaleFactor = -SCALE_FACTOR * position + DEFAULT_SCALE
+//                val alphaFactor = -ALPHA_FACTOR * position + DEFAULT_ALPHA
+//
+//                when {
+//                    position <= 0f -> {
+//                        translationX = DEFAULT_TRANSLATION_X
+//                        scaleX = DEFAULT_SCALE
+//                        scaleY = DEFAULT_SCALE
+//                        alpha = DEFAULT_ALPHA + position
+//                    }
+//                    position <= offscreenPageLimit - 1 -> {
+////                        scaleX = scaleFactor
+////                        scaleY = scaleFactor
+////                        translationX = -(width / DEFAULT_TRANSLATION_FACTOR) * position
+////                        alpha = alphaFactor
+//                    }
+//                    else -> {
+//                        translationX = DEFAULT_TRANSLATION_X
+//                        scaleX = DEFAULT_SCALE
+//                        scaleY = DEFAULT_SCALE
+//                        alpha = DEFAULT_ALPHA
+//                    }
+//                }
 //            }
-
-        }
-    }
-
-    //mock-up data
-    private fun getCardViewList(): ArrayList<Int> {
-        return arrayListOf<Int>(
-            R.drawable.m1,
-            R.drawable.m1,
-            R.drawable.m1,
-            R.drawable.m1
-        )
-    }
+//        }
+//    }
 
 }
+
+
+//mock-up data
+private fun getCardViewList(): ArrayList<Int> {
+    return arrayListOf<Int>(
+        R.drawable.m1,
+        R.drawable.m1,
+        R.drawable.m1,
+        R.drawable.m1
+    )
+}
+
+
+
+
 
 

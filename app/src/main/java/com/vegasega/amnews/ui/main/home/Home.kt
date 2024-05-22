@@ -3,6 +3,7 @@ package com.vegasega.amnews.ui.main.home
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.streetsaarthi.nasvi.screens.interfaces.CallBackListener
 import com.vegasega.amnews.databinding.HomeBinding
+import com.vegasega.amnews.models.Item
+import com.vegasega.amnews.utils.parcelable
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,6 +25,9 @@ class Home : Fragment(), CallBackListener {
 
     companion object {
         var callBackListener: CallBackListener? = null
+
+        var consentIntent : Item ?= null
+
     }
 
     override fun onCreateView(
@@ -44,10 +50,15 @@ class Home : Fragment(), CallBackListener {
             introViewPager.adapter = adapter
             adapter.notifyDataSetChanged()
             introViewPager.setCurrentItem(adapter.itemCount-2, false)
-
+            introViewPager.isUserInputEnabled = false
 //            introViewPager.setOnClickListener {
 //                Log.e("TAG", "introViewPager")
 //            }
+
+//            val consentIntent = arguments?.parcelable<Item>("key")
+//            Log.e("TAG", "consentIntent222 "+consentIntent.toString())
+
+            consentIntent = arguments?.parcelable<Item>("key")
 
         }
     }

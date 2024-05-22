@@ -88,8 +88,8 @@ dependencies {
     implementation ("androidx.databinding:databinding-ktx:8.4.0")
     implementation ("androidx.databinding:databinding-runtime:8.4.0")
 
-    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.8.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
 
 
     implementation("com.intuit.sdp:sdp-android:1.1.0")
@@ -141,8 +141,8 @@ dependencies {
 //    implementation ("com.github.stfalcon-studio:StfalconImageViewer:v1.0.1")
     implementation ("com.google.android.gms:play-services-auth-api-phone:18.0.2")
 
-    implementation ("androidx.paging:paging-common-ktx:3.2.1")
-    implementation ("androidx.paging:paging-runtime-ktx:3.2.1")
+    implementation ("androidx.paging:paging-common-ktx:3.3.0")
+    implementation ("androidx.paging:paging-runtime-ktx:3.3.0")
 //    implementation ("com.google.android.play:review-ktx:2.0.1")
     implementation ("org.jsoup:jsoup:1.17.2")
     implementation ("com.github.vipulasri:timelineview:1.1.5")
@@ -150,4 +150,6 @@ dependencies {
 //    implementation ("com.daimajia.swipelayout:library:1.2.0")
 
 //    implementation ("com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.0")
+
+//    implementation ("com.github.qiujayen:sticky-layoutmanager:1.0.1")
 }

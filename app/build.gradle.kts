@@ -152,4 +152,5 @@ dependencies {
 //    implementation ("com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.0")
 
 //    implementation ("com.github.qiujayen:sticky-layoutmanager:1.0.1")
+
 }

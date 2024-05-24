@@ -40,10 +40,10 @@ class HomeVM @Inject constructor() : ViewModel() {
         itemMain?.add(Item("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते हैं।",R.drawable.m1, false,
 //        itemMain?.add(Item("then only text is centered",R.drawable.m1,
         arrayListOf(
-                ItemList("I can easily put icon"),
-                ItemList("but if I set gravity to center") ,
-                ItemList("then only text is centered"),
-                ItemList("but no icon"),
+                ItemList("ਨਾਸ਼ਤੇ 'ਚ ਸ਼ਾਮਲ ਕਰੋ ਇਹ 5 ਚੀਜ਼ਾਂ, ਦਿਨ ਭਰ ਤਰੋ-ਤਾਜ਼ਾ ਰਹੋਗੇ, ਮਿਲੇਗੀ ਭਰਪੂਰ ਤਾਕਤ"),
+                ItemList("നിങ്ങളുടെ അരുമമൃഗങ്ങൾക്കും മാട്രിമോണി വെബ്സൈറ്റിലൂടെ 'സദ്ഗുണ സമ്പന്നനായ' ഇണയെ കണ്ടെത്താം") ,
+                ItemList("тогда центрируется только текст"),
+                ItemList("तब खाली पाठ के केंद्रित कइल जाला"),
                 ItemList(" my drawableLeft icon"),
             )))
         itemMain?.add(Item("B",R.drawable.m1, false,

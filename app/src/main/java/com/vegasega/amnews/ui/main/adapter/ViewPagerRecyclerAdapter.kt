@@ -40,7 +40,7 @@ class ViewPagerRecyclerAdapter(private val listener: OnItemClickListener,
 //        if (layoutInflater == null) {
             layoutInflater = LayoutInflater.from(parent.context)
 //        }
-        val v = layoutInflater!!.inflate(R.layout.card_item_view, parent, false)
+        val v = layoutInflater!!.inflate(R.layout.card_item_view, null, false)
         return TextScrollViewHolder(v)
 
 //        val dialogBinding = CardItemViewBinding.inflate(parent.context.getSystemService(
@@ -75,7 +75,7 @@ class ViewPagerRecyclerAdapter(private val listener: OnItemClickListener,
                 group.visibility = View.VISIBLE
             }
 
-
+            Log.e("TAG", "isHide " + isHide)
             if (isHide){
                 baseButtons.visibility = View.GONE
                 group.visibility = View.VISIBLE
@@ -171,7 +171,7 @@ class ViewPagerRecyclerAdapter(private val listener: OnItemClickListener,
     @SuppressLint("NotifyDataSetChanged")
     fun updatePosition(position: Int) {
         counter = position
-        notifyDataSetChanged()
+       // notifyDataSetChanged()
     }
 
 

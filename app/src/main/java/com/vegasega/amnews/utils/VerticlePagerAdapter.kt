@@ -46,81 +46,24 @@ class VerticlePagerAdapter(
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
 //        val itemView = mLayoutInflater.inflate(R.layout.card_item_view, container, false)
-        val bindingChild = CardItemViewBinding.inflate(LayoutInflater.from(MainActivity.context.get()), container, false)
+        val bindingChild = CardItemViewBinding.inflate(LayoutInflater.from(MainActivity.context.get()), null, false)
 
         Log.e("TAG", "positionXX "+counter)
         bindingChild.apply {
-//            root.singleClick {
-//                Log.e("TAG", "mainLayout")
-//                listener.onClickMain()
-//            }
-//
-            val model = list[position]
-            textTitle0.text = "" + model.name
-            textTitle1.text = "" + model.itemList[0].name
-            textTitle2.text = "" + model.itemList[1].name
-            textTitle3.text = "" + model.itemList[2].name
-            textTitle4.text = "" + model.itemList[3].name
-            textTitle5.text = "" + model.itemList[4].name
 
-            imageLogo.setImageResource(model.image)
 
-            timeline1.initLine(1)
-            timeline2.initLine(0)
-            timeline3.initLine(0)
-            timeline4.initLine(0)
-            timeline5.initLine(2)
-
-            if (position == counter) {
-//                Log.e("TAG", "QQQQQQQ " + position)
-                counterChild = 0
-                if (isActive == true){
-                    //playSong(model, bindingChild)
-                }
-            } else {
-//                Log.e("TAG", "WWWWWWW " + position)
-                if (textToSpeech.isSpeaking) {
-                    textToSpeech.stop()
-                    ivPlayPause.setImageResource(R.drawable.play)
-                }
-            }
-//
-//
-//
-//            ivPlayback.setOnClickListener {
-//                if(counter != 0){
-//                    listener.onClickItem(counter - 1)
-////                    Log.e("TAG", "ivPlayback "+counter)
-//                }
+//            if (position == 0 && counter == 1) {
+//                updatePosition(2);
+//                notifyDataSetChanged();
 //            }
-//
-//            ivPlaynext.setOnClickListener {
-//                if(counter != list.size - 1){
-//                    listener.onClickItem(counter + 1)
-////                    Log.e("TAG", "ivPlaynext "+counter)
-//                }
+//            if (position == 1 && counter == 2) {
+//                updatePosition(3);
+//                notifyDataSetChanged();
 //            }
-//
-//
-//            ivPlayPause.setOnClickListener {
-//                if (textToSpeech.isSpeaking) {
-//                    textToSpeech.stop()
-//                    isActive = false
-//                    ivPlayPause.setImageResource(R.drawable.play)
-//                } else {
-//                    isActive = true
-//                    playSong(model, bindingChild)
-//                    ivPlayPause.setImageResource(R.drawable.pause)
-//                }
-//            }
-//
 
             ivCross.setOnClickListener {
                 isHide = false
-                if (textToSpeech.isSpeaking) {
-                    textToSpeech.stop()
-                    isActive = false
-                }
+                isActive = false
 
                 notifyDataSetChanged()
                 //binding.introViewPager.adapter?.instantiateItem(binding.introViewPager, binding.introViewPager.currentItem + 1)
@@ -151,24 +94,8 @@ class VerticlePagerAdapter(
                 group.visibility = View.GONE
             }
 
-//
-//            ivUp.setOnClickListener {
-//                isActive = false
-//                listener.onClickItemUp(0)
-//            }
-//
-//            ivSearch.setOnClickListener {
-//                it.findNavController().navigate(R.id.action_mainHome_to_search)
-//            }
-//
+
         }
-
-
-
-
-
-
-
 
 
         container.addView(bindingChild.root)

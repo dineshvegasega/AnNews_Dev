@@ -193,7 +193,7 @@ class VerticalViewPagerAdapter(
         }
 
         holder.ivSearch.setOnClickListener {
-            it.findNavController().navigate(R.id.action_mainHome_to_search)
+            it.findNavController().navigate(R.id.action_home_to_search)
         }
     }
 

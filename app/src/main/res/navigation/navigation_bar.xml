@@ -13,7 +13,7 @@
         tools:layout="@layout/home">
 
         <action
-            android:id="@+id/action_mainHome_to_search"
+            android:id="@+id/action_home_to_search"
             app:destination="@id/search"
             app:launchSingleTop="true"
             />

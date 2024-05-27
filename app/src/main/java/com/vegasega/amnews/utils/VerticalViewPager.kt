@@ -5,8 +5,13 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.viewpager.widget.ViewPager
+import com.vegasega.amnews.ui.mainActivity.MainActivity
 import kotlin.math.abs
+
 
 /**
  * Created by jrizvan on 12/13/16.
@@ -89,7 +94,7 @@ class VerticalViewPager : ViewPager {
 
     override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
         val intercepted = super.onInterceptTouchEvent(swapXY(ev))
-        swapXY(ev) // return touch coordinates to original reference frame for any child views
+        swapXY(ev)
         return intercepted
     }
 
@@ -97,4 +102,5 @@ class VerticalViewPager : ViewPager {
     override fun onTouchEvent(ev: MotionEvent): Boolean {
         return super.onTouchEvent(swapXY(ev))
     }
+
 }

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
+import android.speech.tts.Voice
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -23,15 +24,13 @@ import com.vegasega.amnews.databinding.CenterHome2Binding
 import com.vegasega.amnews.ui.interfaces.OnItemClickListener
 import com.vegasega.amnews.ui.interfaces.RefreshFragment
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.HashMap
+import java.util.Locale
 
 
 @AndroidEntryPoint
 class CenterHome2 : Fragment(), OnItemClickListener, CallBackListener {
     var isUp: Boolean = false
     private val viewModel: HomeVM by viewModels()
-
-
 
 
     companion object {
@@ -183,7 +182,7 @@ class CenterHome2 : Fragment(), OnItemClickListener, CallBackListener {
                 }
             }, "com.google.android.tts"
         )
-
+        textToSpeech.setSpeechRate(0.7f)
     }
 
 

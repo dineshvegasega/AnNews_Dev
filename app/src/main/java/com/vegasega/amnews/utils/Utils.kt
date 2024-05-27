@@ -14,6 +14,7 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.pm.Signature
 import android.content.res.Configuration
+import android.content.res.Resources
 import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -1626,3 +1627,9 @@ fun ViewPager2.getRecyclerView(): RecyclerView {
 }
 
 
+fun dpToPx(dp: Float): Int {
+    return Math.round(
+        dp * (Resources.getSystem().getDisplayMetrics().xdpi / DisplayMetrics.DENSITY_DEFAULT)
+    )
+        .toInt()
+}

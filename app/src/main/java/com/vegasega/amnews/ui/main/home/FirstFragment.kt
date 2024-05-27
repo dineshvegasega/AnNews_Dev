@@ -27,6 +27,7 @@ import com.vegasega.amnews.ui.main.home.CenterHome2.Companion.isPageChanged
 import com.vegasega.amnews.ui.main.home.CenterHome2.Companion.textToSpeech
 import com.vegasega.amnews.ui.mainActivity.MainActivity
 import com.vegasega.amnews.utils.mainThread
+import com.vegasega.amnews.utils.singleClick
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 
@@ -178,11 +179,17 @@ class FirstFragment(item: Item) : Fragment(), RefreshFragment {
     }
 
 
+    @SuppressLint("ClickableViewAccessibility")
     fun onHideShow() {
         Log.e("TAG", "onHideShow")
         binding.apply {
 
-            root.setOnClickListener {
+//            root.setOnTouchListener { view, motionEvent ->
+//                CenterHome2.callBackListener?.onCallBackHideShow()
+//                false
+//            }
+
+            layoutRoot.singleClick {
                 Log.e("TAG", "mainLayout")
 //                listener.onClickMain()
                 CenterHome2.callBackListener?.onCallBackHideShow()

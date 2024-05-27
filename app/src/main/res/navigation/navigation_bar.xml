@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_bar"
-    app:startDestination="@id/home"
+    app:startDestination="@id/topics"
     >
 
     <fragment
@@ -52,5 +52,16 @@
         tools:layout="@layout/test">
 
     </fragment>
+
+
+
+    <fragment
+        android:name="com.vegasega.amnews.ui.onboarding.topics.Topics"
+        android:label="Topics"
+        android:id="@+id/topics"
+        tools:layout="@layout/topics">
+
+    </fragment>
+
 
 </navigation>

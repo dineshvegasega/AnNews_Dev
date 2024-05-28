@@ -10,8 +10,10 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
+import androidx.room.Room
 import com.vegasega.amnews.R
 import com.vegasega.amnews.databinding.MainActivityBinding
+import com.vegasega.amnews.datastore.db.AppDatabase
 import com.vegasega.amnews.networking.ConnectivityManager
 import com.vegasega.amnews.utils.getDensityName
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,6 +46,10 @@ class MainActivity : AppCompatActivity() {
 
         @JvmStatic
         var networkFailed: Boolean = false
+
+        @JvmStatic
+        var db : AppDatabase?= null
+
     }
 
 
@@ -73,6 +79,10 @@ class MainActivity : AppCompatActivity() {
         activity = WeakReference(this)
         mainActivity = WeakReference(this)
 
+        db = Room.databaseBuilder(
+            applicationContext,
+            AppDatabase::class.java, "music-name"
+        ).build()
 
         observeConnectivityManager()
         recordAUDIOPermissionLauncher.launch(android.Manifest.permission.RECORD_AUDIO)

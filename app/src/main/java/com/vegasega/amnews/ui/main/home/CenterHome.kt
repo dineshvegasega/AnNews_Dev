@@ -20,6 +20,9 @@ import androidx.viewpager2.widget.ViewPager2
 import com.vegasega.amnews.R
 import com.vegasega.amnews.databinding.CenterHomeBinding
 import com.vegasega.amnews.ui.interfaces.OnItemClickListener
+import com.vegasega.amnews.utils.DepthPageTransformer
+import com.vegasega.amnews.utils.DepthTransformation
+import com.vegasega.amnews.utils.RotationTransformer
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -105,7 +108,7 @@ class CenterHome : Fragment(), OnItemClickListener {
                 }
             }, "com.google.android.tts"
         )
-
+        textToSpeech.setSpeechRate(0.7f)
     }
 
 
@@ -272,7 +275,7 @@ class CenterHome : Fragment(), OnItemClickListener {
 //            })
 
 
-            introViewPager.orientation = ViewPager2.ORIENTATION_VERTICAL
+//            introViewPager.orientation = ViewPager2.ORIENTATION_VERTICAL
 //            introViewPager.getRecyclerView().setReverseLayout(boolean)
 //            introViewPager.getRecyclerView()
 //            binding.introViewPager.addItemDecoration(ReverseItemDecoration())
@@ -312,7 +315,7 @@ class CenterHome : Fragment(), OnItemClickListener {
 //            })
 
 
-            introViewPager.setPageTransformer(SwipeTransformer())
+            introViewPager.setPageTransformer(DepthPageTransformer())
 //            introViewPager.isUserInputEnabled = false
             introViewPager.overScrollMode = OVER_SCROLL_NEVER
 //            PagerSnapHelper().attachToRecyclerView(introViewPager.getRecyclerView())

@@ -2,7 +2,9 @@ package com.vegasega.amnews
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.room.Room
 import com.vegasega.amnews.datastore.DataStoreUtil
+import com.vegasega.amnews.datastore.db.AppDatabase
 import dagger.hilt.android.HiltAndroidApp
 
 
@@ -16,5 +18,6 @@ class App : Application() {
         super.onCreate()
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         DataStoreUtil.initDataStore(applicationContext)
+
     }
 }

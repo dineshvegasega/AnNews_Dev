@@ -24,6 +24,7 @@ data class ItemMenu (
         var name: String = "",
         var image: Int = 0,
         var isSelected: Boolean = false,
+        var isAd: Boolean = false,
         var itemList: ArrayList<ItemList> = ArrayList()
     ) : Parcelable
 

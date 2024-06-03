@@ -1,8 +1,7 @@
 package com.vegasega.amnews.ui.main.home
 
 import android.annotation.SuppressLint
-import android.media.AudioManager
-import android.os.Bundle
+import android.media.MediaPlayer
 import android.os.Handler
 import android.os.Looper
 import android.speech.tts.TextToSpeech
@@ -11,7 +10,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.SeekBar
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
@@ -19,7 +17,6 @@ import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Group
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.github.vipulasri.timelineview.TimelineView
 import com.vegasega.amnews.R
@@ -28,10 +25,9 @@ import com.vegasega.amnews.ui.interfaces.OnItemClickListener
 import com.vegasega.amnews.ui.mainActivity.MainActivity
 import com.vegasega.amnews.utils.mainThread
 import com.vegasega.amnews.utils.singleClick
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import java.io.IOException
+
 
 class VerticalViewPagerAdapter(
     private val listener: OnItemClickListener,
@@ -46,13 +42,20 @@ class VerticalViewPagerAdapter(
 
     var list: ArrayList<Item> = ArrayList()
 
-    override fun getItemCount(): Int = list.size
+    var mp: MediaPlayer
 
+    init {
+        mp = MediaPlayer.create(MainActivity.context.get(), R.raw.sound_1)
+    }
+
+    override fun getItemCount(): Int = list.size
 
 
     inner class PagerViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder
         (LayoutInflater.from(parent.context).inflate(R.layout.card_item_view, parent, false)) {
         val mainLayout = itemView.findViewById<CardView>(R.id.mainLayout)
+
+
 
         val textTitle0 = itemView.findViewById<AppCompatTextView>(R.id.textTitle0)
         val textTitle1 = itemView.findViewById<AppCompatTextView>(R.id.textTitle1)
@@ -90,7 +93,7 @@ class VerticalViewPagerAdapter(
 
 
 
-    @SuppressLint("NotifyDataSetChanged")
+    @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
     override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
         holder.itemView.singleClick {
             Log.e("TAG", "mainLayout")
@@ -104,6 +107,8 @@ class VerticalViewPagerAdapter(
         holder.textTitle3.text = "" + model.itemList[2].name
         holder.textTitle4.text = "" + model.itemList[3].name
         holder.textTitle5.text = "" + model.itemList[4].name
+
+//        "http://167.71.225.20:8081/uploads/1710232591.png".glideImage(holder.itemView.context, holder.imageLogo)
 
         holder.imageLogo.setImageResource(model.image)
 
@@ -211,8 +216,6 @@ class VerticalViewPagerAdapter(
             holder.seekbar.progress = 0
             holder.textPlay.text = "H"
             textToSpeech.speak(model.name, TextToSpeech.QUEUE_FLUSH, null, model.name)
-            val bundle = Bundle()
-            bundle.putInt(TextToSpeech.Engine.KEY_PARAM_STREAM, AudioManager.STREAM_MUSIC)
             textToSpeech.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
                 override fun onDone(utteranceId: String) {
                     if (model.name == utteranceId) {
@@ -241,13 +244,13 @@ class VerticalViewPagerAdapter(
     }
 
 
+    @SuppressLint("SetTextI18n")
     private fun playSongChild(itemMain: Item, holder: PagerViewHolder) {
         if (textToSpeech.isSpeaking) {
             textToSpeech.stop()
         }
 
-        val bundle = Bundle()
-        bundle.putInt(TextToSpeech.Engine.KEY_PARAM_STREAM,3)
+
         holder.textPlay.text = "0"+(counterChild+1)
         holder.seekbar.max = 5
         holder.seekbar.progress = counterChild+1
@@ -257,8 +260,8 @@ class VerticalViewPagerAdapter(
 //                        Log.e("MainActivity", "TTS onDone " + utteranceId);
                 if (itemMain.itemList[counterChild].name == utteranceId) {
                     if (counterChild != itemMain.itemList.size - 1) {
-                            counterChild ++
-                            playSongChild(itemMain, holder)
+                        counterChild ++
+                        playSongChild(itemMain, holder)
 //                        MainActivity.activity.get()?.runOnUiThread {
 //                            ivPlayPause.setImageResource(R.drawable.play)
 //                        }
@@ -286,7 +289,13 @@ class VerticalViewPagerAdapter(
                             counterChild = 0
                             holder.ivPlayPause.setImageResource(R.drawable.play)
                             mainThread {
-                                delay(500)
+                                try {
+//                                    mp.prepare()
+                                    mp.start()
+                                } catch (_: IOException) {
+                                }
+                                Log.e("MainActivity", "counterChilddelay " + counterChild);
+                                delay(1000)
                                 listener.onClickItem(counter + 1)
                             }
                         }
@@ -318,7 +327,11 @@ class VerticalViewPagerAdapter(
     @SuppressLint("NotifyDataSetChanged")
     fun updatePosition(position: Int) {
         counter = position
-        notifyItemChanged(counter)
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            notifyItemChanged(counter)
+//        }, 200)
+
+
     }
 
 

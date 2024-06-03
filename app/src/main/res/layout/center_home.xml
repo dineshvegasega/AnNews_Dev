@@ -17,12 +17,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="horizontal"
-        android:clipChildren="false"
-        android:clipToPadding="false"
         android:background="@color/_ffffff"
         android:focusable="false">
 
     </androidx.viewpager2.widget.ViewPager2>
+
+
+ton>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

@@ -61,7 +61,7 @@ class Home : Fragment(), CallBackListener {
             consentIntent = arguments?.parcelable<Item>("key")
 
 
-            var arr1 = ArrayList<String>()
+            val arr1 = ArrayList<String>()
             arr1.add("A")
             arr1.add("B")
             arr1.add("C")
@@ -71,15 +71,15 @@ class Home : Fragment(), CallBackListener {
             arr1.add("G")
             arr1.add("H")
 
-            var arr2 = ArrayList<String>()
+            val arr2 = ArrayList<String>()
             arr2.add("1")
             arr2.add("2")
             arr2.add("3")
             arr2.add("4")
 
-            var arr3 = ArrayList<String>()
+            val arr3 = ArrayList<String>()
 
-            var length = (arr1.size + arr2.size) - 1
+            val length = (arr1.size + arr2.size) - 1
 
 
             var counter = -1

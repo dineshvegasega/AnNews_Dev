@@ -3,62 +3,87 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_bar"
-    app:startDestination="@id/home"
-    >
+    app:startDestination="@id/home">
 
     <fragment
+        android:id="@+id/splash"
+        android:name="com.vegasega.amnews.ui.onboarding.splash.Splash"
+        android:label="Splash"
+        tools:layout="@layout/splash">
+
+        <action
+            android:id="@+id/action_splash_to_login"
+            app:destination="@id/home"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/splash"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_splash_to_home"
+            app:destination="@id/home"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/home"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/center"
+        android:name="com.vegasega.amnews.ui.main.OnBoardingDesignOne"
+        android:label="Center"
+        tools:layout="@layout/center_home">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/home"
         android:name="com.vegasega.amnews.ui.main.home.Home"
         android:label="Home"
-        android:id="@+id/home"
         tools:layout="@layout/home">
 
         <action
             android:id="@+id/action_home_to_search"
             app:destination="@id/search"
-            app:launchSingleTop="true"
-            />
+            app:launchSingleTop="true" />
 
     </fragment>
 
     <fragment
+        android:id="@+id/center_home"
         android:name="com.vegasega.amnews.ui.main.home.CenterHome"
         android:label="CenterHome"
-        android:id="@+id/center_home"
         tools:layout="@layout/center_home">
 
     </fragment>
 
 
     <fragment
+        android:id="@+id/search"
         android:name="com.vegasega.amnews.ui.main.search.Search"
         android:label="Search"
-        android:id="@+id/search"
         tools:layout="@layout/search">
         <action
             android:id="@+id/action_search_to_home"
             app:destination="@id/home"
             app:launchSingleTop="true"
             app:popUpTo="@id/home"
-            app:popUpToInclusive="true"
-            />
+            app:popUpToInclusive="true" />
     </fragment>
 
 
-
     <fragment
+        android:id="@+id/test"
         android:name="com.vegasega.amnews.ui.main.test.Test"
         android:label="Test"
-        android:id="@+id/test"
         tools:layout="@layout/test">
 
     </fragment>
 
 
-
     <fragment
+        android:id="@+id/topics"
         android:name="com.vegasega.amnews.ui.onboarding.topics.Topics"
         android:label="Topics"
-        android:id="@+id/topics"
         tools:layout="@layout/topics">
 
     </fragment>

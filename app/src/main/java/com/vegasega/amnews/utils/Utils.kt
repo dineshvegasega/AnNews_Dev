@@ -38,6 +38,7 @@ import android.widget.*
 import androidx.annotation.DimenRes
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.graphics.drawable.DrawableCompat
@@ -45,6 +46,10 @@ import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.messaging.FirebaseMessaging
 import com.vegasega.amnews.R
@@ -393,41 +398,41 @@ fun ViewPager2.updatePagerHeightForChild(view: View) {
 
 
 
-//val myOptionsGlide: RequestOptions = RequestOptions()
-//    .placeholder(R.drawable.main_logo_land)
-//    .diskCacheStrategy(DiskCacheStrategy.ALL)
-//    .dontAnimate()
-//    //  .apply( RequestOptions().centerCrop().circleCrop().placeholder(R.drawable.no_image_2))
-//    .skipMemoryCache(false)
-//
-//val myOptionsGlideUser: RequestOptions = RequestOptions()
-//    .placeholder(R.drawable.user_icon)
-//    .diskCacheStrategy(DiskCacheStrategy.ALL)
-//    .dontAnimate()
-//    //  .apply( RequestOptions().centerCrop().circleCrop().placeholder(R.drawable.no_image_2))
-//    .skipMemoryCache(false)
+val myOptionsGlide: RequestOptions = RequestOptions()
+    .placeholder(R.drawable.main_logo)
+    .diskCacheStrategy(DiskCacheStrategy.ALL)
+    .dontAnimate()
+    //  .apply( RequestOptions().centerCrop().circleCrop().placeholder(R.drawable.no_image_2))
+    .skipMemoryCache(false)
 
-//fun String.glideImage(context: Context, ivMap: ShapeableImageView) {
-//    Glide.with(context)
-//        .load(this)
-//        .apply(myOptionsGlide)
-//        .into(ivMap)
-//}
-//
-//
-//val myOptionsGlidePortrait: RequestOptions = RequestOptions()
-//    .placeholder(R.drawable.main_logo)
-//    .diskCacheStrategy(DiskCacheStrategy.ALL)
-//    .dontAnimate()
-//    //  .apply( RequestOptions().centerCrop().circleCrop().placeholder(R.drawable.no_image_2))
-//    .skipMemoryCache(false)
-//
-//fun String.glideImagePortrait(context: Context, ivMap: ShapeableImageView) {
-//    Glide.with(context)
-//        .load(this)
-//        .apply(myOptionsGlidePortrait)
-//        .into(ivMap)
-//}
+val myOptionsGlideUser: RequestOptions = RequestOptions()
+    .placeholder(R.drawable.user_icon)
+    .diskCacheStrategy(DiskCacheStrategy.ALL)
+    .dontAnimate()
+    //  .apply( RequestOptions().centerCrop().circleCrop().placeholder(R.drawable.no_image_2))
+    .skipMemoryCache(false)
+
+fun String.glideImage(context: Context, ivMap: AppCompatImageView) {
+    Glide.with(context)
+        .load(this)
+        .apply(myOptionsGlide)
+        .into(ivMap)
+}
+
+
+val myOptionsGlidePortrait: RequestOptions = RequestOptions()
+    .placeholder(R.drawable.main_logo)
+    .diskCacheStrategy(DiskCacheStrategy.ALL)
+    .dontAnimate()
+    //  .apply( RequestOptions().centerCrop().circleCrop().placeholder(R.drawable.no_image_2))
+    .skipMemoryCache(false)
+
+fun String.glideImagePortrait(context: Context, ivMap: ShapeableImageView) {
+    Glide.with(context)
+        .load(this)
+        .apply(myOptionsGlidePortrait)
+        .into(ivMap)
+}
 
 
 fun View.singleClick(throttleTime: Long = 600L, action: () -> Unit) {
@@ -1633,3 +1638,17 @@ fun dpToPx(dp: Float): Int {
     )
         .toInt()
 }
+
+
+fun ViewPager2.reduceDragSensitivity() {
+    val recyclerViewField = ViewPager2::class.java.getDeclaredField("mRecyclerView")
+    recyclerViewField.isAccessible = true
+    val recyclerView = recyclerViewField.get(this) as RecyclerView
+
+    val touchSlopField = RecyclerView::class.java.getDeclaredField("mTouchSlop")
+    touchSlopField.isAccessible = true
+    val touchSlop = touchSlopField.get(recyclerView) as Int
+    touchSlopField.set(recyclerView, touchSlop*8)       // "8" was obtained experimentally
+}
+
+

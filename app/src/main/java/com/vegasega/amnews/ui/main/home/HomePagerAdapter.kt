@@ -3,6 +3,7 @@ package com.vegasega.amnews.ui.main.home
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.vegasega.amnews.ui.main.OnBoardingDesignOne
 
 class HomePagerAdapter (fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity, ) {

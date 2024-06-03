@@ -37,16 +37,19 @@ class HomeVM @Inject constructor() : ViewModel() {
         itemMenusArray.add(ItemMenu("Featured", R.drawable.icon_featured, false))
         itemMenusArray.add(ItemMenu("Saved", R.drawable.icon_saved, false))
 
-        itemMain?.add(Item("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते हैं।",R.drawable.m1, false,
-//        itemMain?.add(Item("then only text is centered",R.drawable.m1,
-        arrayListOf(
-                ItemList("ਨਾਸ਼ਤੇ 'ਚ ਸ਼ਾਮਲ ਕਰੋ ਇਹ 5 ਚੀਜ਼ਾਂ, ਦਿਨ ਭਰ ਤਰੋ-ਤਾਜ਼ਾ ਰਹੋਗੇ, ਮਿਲੇਗੀ ਭਰਪੂਰ ਤਾਕਤ"),
+        itemMain?.add(Item("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते हैं।",R.drawable.m1,
+            false,
+            false,
+            arrayListOf(
+                ItemList("हा माझा डोंग आहे"),
                 ItemList("നിങ്ങളുടെ അരുമമൃഗങ്ങൾക്കും മാട്രിമോണി വെബ്സൈറ്റിലൂടെ 'സദ്ഗുണ സമ്പന്നനായ' ഇണയെ കണ്ടെത്താം") ,
                 ItemList("тогда центрируется только текст"),
                 ItemList("तब खाली पाठ के केंद्रित कइल जाला"),
-                ItemList(" my drawableLeft icon"),
+                ItemList("my drawableLeft icon"),
             )))
-        itemMain?.add(Item("B",R.drawable.m1, false,
+        itemMain?.add(Item("B",R.drawable.m1,
+            false,
+            false,
             arrayListOf(
                 ItemList("1"),
                 ItemList("2") ,
@@ -54,7 +57,9 @@ class HomeVM @Inject constructor() : ViewModel() {
                 ItemList("4"),
                 ItemList("5"),
             )))
-        itemMain?.add(Item("C",R.drawable.m1, false,
+        itemMain?.add(Item("C",R.drawable.m1,
+            false,
+            false,
             arrayListOf(
                 ItemList("1C"),
                 ItemList("2C") ,
@@ -62,7 +67,9 @@ class HomeVM @Inject constructor() : ViewModel() {
                 ItemList("4C"),
                 ItemList("5C"),
             )))
-        itemMain?.add(Item("D",R.drawable.m1, false,
+        itemMain?.add(Item("D",R.drawable.m1,
+            false,
+            false,
             arrayListOf(
                 ItemList("put icon"),
                 ItemList("set gravity") ,
@@ -70,7 +77,9 @@ class HomeVM @Inject constructor() : ViewModel() {
                 ItemList("no icon"),
                 ItemList("icon"),
             )))
-        itemMain?.add(Item("E",R.drawable.m1, false,
+        itemMain?.add(Item("E",R.drawable.m1,
+            false,
+            false,
             arrayListOf(
                 ItemList("I can icon"),
                 ItemList("but gravity to center") ,
@@ -78,7 +87,9 @@ class HomeVM @Inject constructor() : ViewModel() {
                 ItemList("but icon"),
                 ItemList("my icon"),
             )))
-        itemMain?.add(Item("F",R.drawable.m1, false,
+        itemMain?.add(Item("F",R.drawable.m1,
+            false,
+            false,
             arrayListOf(
                 ItemList("I put icon"),
                 ItemList("I set gravity center") ,

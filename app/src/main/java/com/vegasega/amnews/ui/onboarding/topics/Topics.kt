@@ -10,16 +10,11 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.vegasega.amnews.R
 import com.vegasega.amnews.databinding.TopicsBinding
-import com.vegasega.amnews.datastore.db.MusicModel
-import com.vegasega.amnews.ui.mainActivity.MainActivity.Companion.db
 import com.vegasega.amnews.utils.SpacesItemDecoration
 import com.vegasega.amnews.utils.dpToPx
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -66,6 +61,7 @@ class Topics : Fragment(){
             recyclerView.addItemDecoration(SpacesItemDecoration(spacingInPixels, 2))
 
 
+
             val arr1 = ArrayList<String>()
             arr1.add("A")
             arr1.add("B")
@@ -89,74 +85,66 @@ class Topics : Fragment(){
             arr2.add("2")
             arr2.add("3")
             arr2.add("4")
-            arr2.add("5")
-            arr2.add("6")
-            arr2.add("7")
-            arr2.add("8")
-            arr2.add("9")
-            arr2.add("10")
-            arr2.add("11")
-            arr2.add("12")
-            arr2.add("13")
-            arr2.add("14")
-            arr2.add("15")
-            arr2.add("16")
+//            arr2.add("5")
+//            arr2.add("6")
+//            arr2.add("7")
+//            arr2.add("8")
+//            arr2.add("9")
+//            arr2.add("10")
+//            arr2.add("11")
+//            arr2.add("12")
+//            arr2.add("13")
+//            arr2.add("14")
+//            arr2.add("15")
+//            arr2.add("16")
 
-            val arr3 = ArrayList<String>()
-
-            val addNum = 4
-//            val mainLength = arr1.size / addNum
-//            Log.e("TAG", "mainLength "+mainLength)
-
-//5 4
-//4 6
-//3 8
-
-//5 % 1
-//  4 % 0
-// 3 % 1
-
-//5/3
-//4/ 4
-//3/5
-
-            //2 - 15 16
-            //3 - 8 8
-            //4 - 5 6
-            //5 - 3 4
-            //6 - - 4
-
-            val length = ((arr1.size-1) + 6)
-
-
-            var counter = -1
-            var counter2 = 0
-            for (i in 0 .. length){
-                if (i % addNum == 0){
-                    if(counter == 0){
-                        Log.e("TAG", "AAAAAAAAAA "+counter)
-                        arr3.add(arr2[counter])
+            var counter3 = 0
+            for (i in 0 .. (arr1.size - 1)){
+                if(arr1.size != arr2.size){
+                    if(counter3 == arr2.size -1){
+                        arr2.add(arr2[counter3])
+                        counter3 = 0
                     } else {
-                        if(counter != -1){
-                            Log.e("TAG", "BBBBBBBBBB "+counter)
-                            arr3.add(arr2[counter])
-                        }
+                        arr2.add(arr2[counter3])
+                        counter3++
                     }
-                    counter = counter + 1
-                } else {
-                    Log.e("TAG", "CCCCCCCC "+counter2)
-                    arr3.add(arr1[counter2])
-                    counter2 = counter2 + 1
                 }
             }
-//            arr3.add(arr2[counter])
-//            Log.e("TAG", "DDDDDDDD "+counter)
 
-            arr3.forEach {
-                Log.e("TAG", "ZZZZZZZZZZZZ "+it)
+            val arr3 = ArrayList<String>()
+            val dd = 3
+            val a1 = arr1.size / dd
+            val a2 = arr1.size % dd
+
+            try{
+                var counter = -1
+                var counter2 = 0
+                for (i in 0 .. (arr1.size + 1) + a1 + a2 ){
+                    if (i % dd == 0){
+                        if(counter == 0){
+                            // println("AAAAAAAAAA "+arr2[counter])
+                            arr3.add(arr2[counter])
+                        } else {
+                            if(counter != -1){
+                                // println("BBBBBBBBBB "+arr2[counter])
+                                arr3.add(arr2[counter])
+                            }
+                        }
+                        counter = counter + 1
+                    } else {
+                        //println(" arr22222 "+arr1[counter2])
+                        arr3.add(arr1[counter2])
+                        counter2 = counter2 + 1
+                    }
+                }
+            }catch(_: Exception){
+
             }
 
 
+            for (i in 0 .. arr3.size - 1){
+                println( "all "+arr3[i])
+            }
 
 
 
@@ -174,30 +162,9 @@ class Topics : Fragment(){
 
 
 
-//            Log.e("TAG", "arr1 "+(arr1.size))
-//
-//            val arr3 = arr1.size / 2
-//
-//            var num = arr1.size - 1
-//            var reversed = 0
-//
-//            while (reversed != num) {
-////                val digit = num % 10
-////                reversed = reversed * 10 + digit
-////                num /= 10
-//                if(reversed % 3 == 0){
-//                    println("Reversed Number1: $reversed")
-//                } else {
-//                    println("Reversed Number2: $reversed")
-//                }
-//
-//                reversed++
-//            }
 
 
-//            while (arr1.size != -1){
-//                Log.e("TAG", "arr3 "+arr1)
-//            }
+
 
 
         }

@@ -4,26 +4,24 @@ import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
+import android.speech.tts.Voice
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OVER_SCROLL_NEVER
 import android.view.ViewGroup
 import android.view.animation.TranslateAnimation
 import androidx.annotation.RequiresApi
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.ViewPager.OnPageChangeListener
+import androidx.recyclerview.widget.SimpleItemAnimator
 import androidx.viewpager2.widget.ViewPager2
 import com.vegasega.amnews.R
 import com.vegasega.amnews.databinding.CenterHomeBinding
 import com.vegasega.amnews.ui.interfaces.OnItemClickListener
-import com.vegasega.amnews.utils.DepthPageTransformer
-import com.vegasega.amnews.utils.DepthTransformation
-import com.vegasega.amnews.utils.RotationTransformer
+import com.vegasega.amnews.utils.getRecyclerView
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Locale
 
 
 @AndroidEntryPoint
@@ -33,7 +31,6 @@ class CenterHome : Fragment(), OnItemClickListener {
 
 
     lateinit var textToSpeech: TextToSpeech
-
 
     companion object {
         @JvmStatic
@@ -101,13 +98,17 @@ class CenterHome : Fragment(), OnItemClickListener {
                         Log.e("TAG", "consentIntentNULL ")
                         adapter.submitData(viewModel.itemMain)
                     }
-
+                    binding.introViewPager.offscreenPageLimit = viewModel.itemMain.size
                     createVerticalView()
                 } else {
                     Log.e("XXX", "Internal Google engine init error.")
                 }
             }, "com.google.android.tts"
         )
+        val a: HashSet<String> = HashSet<String>()
+        a.add("male")
+        val v = Voice("en-us-x-sfg#male_1-local", Locale("en", "US"), 400, 200, true, a)
+        textToSpeech.setVoice(v)
         textToSpeech.setSpeechRate(0.7f)
     }
 
@@ -200,9 +201,11 @@ class CenterHome : Fragment(), OnItemClickListener {
             if (isUp) {
                 slideDown(baseShare);
                 slideDown2(recyclerView);
+                introViewPager.isUserInputEnabled = true
             } else {
                 slideUp(baseShare);
                 slideUp2(recyclerView);
+                introViewPager.isUserInputEnabled = false
             }
             isUp = !isUp;
         }
@@ -229,6 +232,11 @@ class CenterHome : Fragment(), OnItemClickListener {
             viewModel.dashboardAdapter.submitList(viewModel.itemMenusArray)
             viewModel.dashboardAdapter.notifyDataSetChanged()
 
+
+            (introViewPager.getRecyclerView().getItemAnimator() as SimpleItemAnimator).supportsChangeAnimations =
+                false
+
+
 //            introViewPager.adapter = adapter
 
 //            var arraylist = ArrayList<String>()
@@ -238,13 +246,13 @@ class CenterHome : Fragment(), OnItemClickListener {
 //            introViewPager.adapter  = adapter
 
 
-           // introViewPager.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
+            // introViewPager.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
 
 
 //            with(introViewPager) {
 //                clipToPadding = true
 //                clipChildren = true
-//                offscreenPageLimit = 0
+//                offscreenPageLimit = viewModel.itemMain.size
 //            }
 
 
@@ -315,9 +323,9 @@ class CenterHome : Fragment(), OnItemClickListener {
 //            })
 
 
-            introViewPager.setPageTransformer(DepthPageTransformer())
+//            introViewPager.setPageTransformer(DepthPageTransformer())
 //            introViewPager.isUserInputEnabled = false
-            introViewPager.overScrollMode = OVER_SCROLL_NEVER
+//            introViewPager.overScrollMode = OVER_SCROLL_NEVER
 //            PagerSnapHelper().attachToRecyclerView(introViewPager.getRecyclerView())
 
 
@@ -336,6 +344,7 @@ class CenterHome : Fragment(), OnItemClickListener {
 //                }
 //            }
 
+            var pageChangeValue = -0
             introViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageScrolled(
                     position: Int,
@@ -343,17 +352,26 @@ class CenterHome : Fragment(), OnItemClickListener {
                     positionOffsetPixels: Int
                 ) {
                     super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-//                    Log.e("TAG", "positionA" + position)
+                    if(pageChangeValue != position){
+                        Log.e("TAG", "positionA" + position)
+//                        adapter.updatePosition(position)
+//                        adapter.notifyItemChanged(position)
+                    }
+                    pageChangeValue = position
                 }
 
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
                     adapter.updatePosition(position)
-                    introViewPager.setCurrentItem(position, true)
+//                    introViewPager.setCurrentItem(position, true)
                 }
 
                 override fun onPageScrollStateChanged(state: Int) {
                     super.onPageScrollStateChanged(state)
+                    Log.e("TAG", "state" + state)
+                    if(state == 0){
+                        adapter.notifyItemChanged(adapter.counter)
+                    }
                 }
             })
 
@@ -487,9 +505,3 @@ private fun getCardViewList(): ArrayList<Int> {
         R.drawable.m1
     )
 }
-
-
-
-
-
-

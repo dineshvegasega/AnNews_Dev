@@ -30,6 +30,7 @@ class SearchVM @Inject constructor() : ViewModel() {
         itemMain?.add(
             Item(
                 "I", R.drawable.m1,false,false,
+                false,
                 arrayListOf(
                     ItemList("I can easily put icon"),
                     ItemList("but if I set gravity to center"),
@@ -42,6 +43,7 @@ class SearchVM @Inject constructor() : ViewModel() {
         itemMain?.add(
             Item(
                 "J", R.drawable.m1,false,false,
+                false,
                 arrayListOf(
                     ItemList("1"),
                     ItemList("2"),
@@ -54,6 +56,7 @@ class SearchVM @Inject constructor() : ViewModel() {
         itemMain?.add(
             Item(
                 "K", R.drawable.m1,false,false,
+                false,
                 arrayListOf(
                     ItemList("1C"),
                     ItemList("2C"),
@@ -74,7 +77,7 @@ class SearchVM @Inject constructor() : ViewModel() {
         ) = ItemSearchBinding.inflate(inflater, parent, false)
 
         override fun updatePosition(position: Int) {
-            
+
         }
 
         @SuppressLint("SuspiciousIndentation")

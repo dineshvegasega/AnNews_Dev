@@ -52,10 +52,10 @@ class VerticalViewPagerAdapter(
 
 
     inner class PagerViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder
-        (LayoutInflater.from(parent.context).inflate(R.layout.card_item_view, parent, false)) {
+        (LayoutInflater.from(parent.context).inflate(R.layout.card2, parent, false)) {
         val mainLayout = itemView.findViewById<CardView>(R.id.mainLayout)
-
-
+        val layoutAll = itemView.findViewById<ConstraintLayout>(R.id.layoutAll)
+        val imageFull = itemView.findViewById<AppCompatImageView>(R.id.imageFull)
 
         val textTitle0 = itemView.findViewById<AppCompatTextView>(R.id.textTitle0)
         val textTitle1 = itemView.findViewById<AppCompatTextView>(R.id.textTitle1)
@@ -92,7 +92,6 @@ class VerticalViewPagerAdapter(
         PagerViewHolder(parent)
 
 
-
     @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
     override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
         holder.itemView.singleClick {
@@ -110,20 +109,66 @@ class VerticalViewPagerAdapter(
 
 //        "http://167.71.225.20:8081/uploads/1710232591.png".glideImage(holder.itemView.context, holder.imageLogo)
 
-        holder.imageLogo.setImageResource(model.image)
 
-        holder.timeline1.initLine(1)
+
+        if (model.isAdd == false) {
+//            holder.imageLogo.setImageResource(model.image)
+            holder.imageLogo.setImageResource(model.image)
+        } else {
+            if (model.isAddBig == false){
+//                holder.imageLogo.setImageResource(model.image)
+//                holder.layoutTopics.visibility = View.VISIBLE
+                holder.imageLogo.setImageResource(model.image)
+                holder.layoutAll.visibility = View.VISIBLE
+                holder.imageFull.visibility = View.GONE
+            } else {
+//                holder.imageLogo.setImageResource(model.image)
+//                holder.layoutTopics.visibility = View.GONE
+                holder.imageFull.setImageResource(model.image)
+                holder.layoutAll.visibility = View.GONE
+                holder.imageFull.visibility = View.VISIBLE
+            }
+        }
+
+//        holder.timeline1.initLine(1)
+        holder.timeline1.initLine(0)
         holder.timeline2.initLine(0)
         holder.timeline3.initLine(0)
         holder.timeline4.initLine(0)
-        holder.timeline5.initLine(2)
+        holder.timeline5.initLine(0)
+//        holder.timeline5.initLine(2)
+
+
 
 
         if (position == counter) {
             Log.e("TAG", "QQQQQQQ " + position)
             counterChild = 0
-            if (isActive == true){
-                playSong(model, holder)
+            if (isActive == true) {
+
+                if (model.isAdd == false) {
+                    playSong(model, holder)
+                } else {
+                    if (model.isAddBig == false){
+                        playSong(model, holder)
+                    } else {
+                        MainActivity.activity.get()?.runOnUiThread {
+                            counterChild = 0
+                            holder.ivPlayPause.setImageResource(R.drawable.play)
+                            mainThread {
+                                Log.e("MainActivity", "counterChilddelay " + counterChild);
+                                delay(3000)
+                                try {
+                                    mp.start()
+                                } catch (_: IOException) {
+                                }
+                                delay(500)
+                                listener.onClickItem(counter + 1)
+                            }
+                        }
+                    }
+                }
+
             }
         } else {
             Log.e("TAG", "WWWWWWW " + position)
@@ -135,16 +180,16 @@ class VerticalViewPagerAdapter(
 
 
         holder.ivPlayback.setOnClickListener {
-            if(counter != 0){
+            if (counter != 0) {
                 listener.onClickItem(counter - 1)
-                Log.e("TAG", "ivPlayback "+counter)
+                Log.e("TAG", "ivPlayback " + counter)
             }
         }
 
         holder.ivPlaynext.setOnClickListener {
-            if(counter != list.size - 1){
+            if (counter != list.size - 1) {
                 listener.onClickItem(counter + 1)
-                Log.e("TAG", "ivPlaynext "+counter)
+                Log.e("TAG", "ivPlaynext " + counter)
             }
         }
 
@@ -183,7 +228,7 @@ class VerticalViewPagerAdapter(
         }
 
 
-        if (isHide){
+        if (isHide) {
             holder.baseButtons.visibility = View.GONE
             holder.group.visibility = View.VISIBLE
         } else {
@@ -201,7 +246,6 @@ class VerticalViewPagerAdapter(
             it.findNavController().navigate(R.id.action_home_to_search)
         }
     }
-
 
 
     private fun playSong(model: Item, holder: PagerViewHolder) {
@@ -251,16 +295,21 @@ class VerticalViewPagerAdapter(
         }
 
 
-        holder.textPlay.text = "0"+(counterChild+1)
+        holder.textPlay.text = "0" + (counterChild + 1)
         holder.seekbar.max = 5
-        holder.seekbar.progress = counterChild+1
-        textToSpeech.speak(itemMain.itemList[counterChild].name, TextToSpeech.QUEUE_FLUSH, null, itemMain.itemList[counterChild].name)
+        holder.seekbar.progress = counterChild + 1
+        textToSpeech.speak(
+            itemMain.itemList[counterChild].name,
+            TextToSpeech.QUEUE_FLUSH,
+            null,
+            itemMain.itemList[counterChild].name
+        )
         textToSpeech.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
             override fun onDone(utteranceId: String) {
 //                        Log.e("MainActivity", "TTS onDone " + utteranceId);
                 if (itemMain.itemList[counterChild].name == utteranceId) {
                     if (counterChild != itemMain.itemList.size - 1) {
-                        counterChild ++
+                        counterChild++
                         playSongChild(itemMain, holder)
 //                        MainActivity.activity.get()?.runOnUiThread {
 //                            ivPlayPause.setImageResource(R.drawable.play)
@@ -290,12 +339,11 @@ class VerticalViewPagerAdapter(
                             holder.ivPlayPause.setImageResource(R.drawable.play)
                             mainThread {
                                 try {
-//                                    mp.prepare()
                                     mp.start()
                                 } catch (_: IOException) {
                                 }
                                 Log.e("MainActivity", "counterChilddelay " + counterChild);
-                                delay(1000)
+                                delay(500)
                                 listener.onClickItem(counter + 1)
                             }
                         }
@@ -320,8 +368,6 @@ class VerticalViewPagerAdapter(
             }
         })
     }
-
-
 
 
     @SuppressLint("NotifyDataSetChanged")

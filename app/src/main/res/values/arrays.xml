@@ -66,6 +66,56 @@
     </array>
 
 
+    <array name="autosize_4_5_11">
+        <item>@dimen/_1sdp</item>
+        <item>@dimen/_2sdp</item>
+        <item>@dimen/_3sdp</item>
+        <item>@dimen/_4sdp</item>
+        <item>@dimen/_5sdp</item>
+        <item>@dimen/_6sdp</item>
+        <item>@dimen/_7sdp</item>
+        <item>@dimen/_8sdp</item>
+        <item>@dimen/_9sdp</item>
+        <item>@dimen/_10sdp</item>
+        <item>@dimen/_11sdp</item>
+        <item>@dimen/_12sdp</item>
+    </array>
+
+    <array name="autosize_11_12">
+
+        <item>@dimen/_12sdp</item>
+        <item>@dimen/_13sdp</item>
+    </array>
+
+
+    <array name="autosize_14_17">
+        <item>@dimen/_14sdp</item>
+        <item>@dimen/_15sdp</item>
+        <item>@dimen/_16sdp</item>
+    </array>
+
+
+    <array name="autosize_4_5_15">
+        <item>@dimen/_1sdp</item>
+        <item>@dimen/_2sdp</item>
+        <item>@dimen/_3sdp</item>
+        <item>@dimen/_4sdp</item>
+        <item>@dimen/_5sdp</item>
+        <item>@dimen/_6sdp</item>
+        <item>@dimen/_7sdp</item>
+        <item>@dimen/_8sdp</item>
+        <item>@dimen/_9sdp</item>
+        <item>@dimen/_10sdp</item>
+        <item>@dimen/_11sdp</item>
+        <item>@dimen/_12sdp</item>
+        <item>@dimen/_13sdp</item>
+        <item>@dimen/_14sdp</item>
+        <item>@dimen/_15sdp</item>
+    </array>
+
+
+
+
     <array name="autosize_4_5_35">
         <item>@dimen/_1sdp</item>
         <item>@dimen/_2sdp</item>

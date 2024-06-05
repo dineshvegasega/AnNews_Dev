@@ -92,7 +92,7 @@ class OnBoardingDesignOne : Fragment() , OnItemClickListener {
 
 //        createVerticalView()
 
-        adapter = OnboardingAdapter(viewModel.itemMain);
+//        adapter = OnboardingAdapter(viewModel.itemMain);
 //        val onboardingViewPager: ViewPager2 = view.findViewById<ViewPager2>(R.id.introViewPager)
         binding.introViewPager.adapter = adapter
         binding.introViewPager.offscreenPageLimit = 6

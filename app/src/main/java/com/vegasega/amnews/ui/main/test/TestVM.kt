@@ -32,72 +32,79 @@ class TestVM @Inject constructor() : ViewModel() {
             Item("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते हैं।",
                 R.drawable.m1, true,
                 false,
-            arrayListOf(
-                ItemList("I can easily put icon"),
-                ItemList("but if I set gravity to center") ,
-                ItemList("then only text is centered"),
-                ItemList("but no icon"),
-                ItemList(" my drawableLeft icon"),
-            ))
+                false,
+                arrayListOf(
+                    ItemList("I can easily put icon"),
+                    ItemList("but if I set gravity to center") ,
+                    ItemList("then only text is centered"),
+                    ItemList("but no icon"),
+                    ItemList(" my drawableLeft icon"),
+                ))
         )
         itemMain?.add(
             Item("B", R.drawable.m1, false,
                 false,
-            arrayListOf(
-                ItemList("1"),
-                ItemList("2") ,
-                ItemList("3"),
-                ItemList("4"),
-                ItemList("5"),
-            ))
+                false,
+                arrayListOf(
+                    ItemList("1"),
+                    ItemList("2") ,
+                    ItemList("3"),
+                    ItemList("4"),
+                    ItemList("5"),
+                ))
         )
         itemMain?.add(
             Item("C", R.drawable.m1, false,
                 false,
-            arrayListOf(
-                ItemList("1C"),
-                ItemList("2C") ,
-                ItemList("3C"),
-                ItemList("4C"),
-                ItemList("5C"),
-            ))
+                false,
+                arrayListOf(
+                    ItemList("1C"),
+                    ItemList("2C") ,
+                    ItemList("3C"),
+                    ItemList("4C"),
+                    ItemList("5C"),
+                ))
         )
         itemMain?.add(
             Item("D", R.drawable.m1, false,
                 false,
-            arrayListOf(
-                ItemList("put icon"),
-                ItemList("set gravity") ,
-                ItemList("only text"),
-                ItemList("no icon"),
-                ItemList("icon"),
-            ))
+                false,
+                arrayListOf(
+                    ItemList("put icon"),
+                    ItemList("set gravity") ,
+                    ItemList("only text"),
+                    ItemList("no icon"),
+                    ItemList("icon"),
+                ))
         )
         itemMain?.add(
             Item("E", R.drawable.m1, false,
                 false,
-            arrayListOf(
-                ItemList("I can icon"),
-                ItemList("but gravity to center") ,
-                ItemList("then centered"),
-                ItemList("but icon"),
-                ItemList("my icon"),
-            ))
+                false,
+                arrayListOf(
+                    ItemList("I can icon"),
+                    ItemList("but gravity to center") ,
+                    ItemList("then centered"),
+                    ItemList("but icon"),
+                    ItemList("my icon"),
+                ))
         )
         itemMain?.add(
             Item("F", R.drawable.m1, false,
                 false,
-            arrayListOf(
-                ItemList("I put icon"),
-                ItemList("I set gravity center") ,
-                ItemList("then centered"),
-                ItemList("icon icon"),
-                ItemList("my icon"),
-            ))
+                false,
+                arrayListOf(
+                    ItemList("I put icon"),
+                    ItemList("I set gravity center") ,
+                    ItemList("then centered"),
+                    ItemList("icon icon"),
+                    ItemList("my icon"),
+                ))
         )
 
         itemMain?.add(
             Item("G", R.drawable.m1, false,
+                false,
                 false,
                 arrayListOf(
                     ItemList("I put icon"),
@@ -111,6 +118,7 @@ class TestVM @Inject constructor() : ViewModel() {
 
         itemMain?.add(
             Item("H", R.drawable.m1, false,
+                false,
                 false,
                 arrayListOf(
                     ItemList("I put icon"),
@@ -145,7 +153,7 @@ class TestVM @Inject constructor() : ViewModel() {
 
 //                binding.layout.setBackgroundTintList(binding.root.context.getResources().getColorStateList(R.color.your_xml_name));
 //                binding.layout.setSupportButtonTintList(ContextCompat.getColorStateList(Activity.this, R.color.colorPrimary));
-               // binding.layout.background.setTint(ContextCompat.getColor(binding.root.context,  if (dataClass.isSelected) R.color._E70932 else R.color._C4C4C4))
+                // binding.layout.background.setTint(ContextCompat.getColor(binding.root.context,  if (dataClass.isSelected) R.color._E70932 else R.color._C4C4C4))
                 binding.layout.setBackgroundResource(if (dataClass.isSelected) R.drawable.right_corner_selected else R.drawable.right_corner)
 
 //                binding.layout.backgroundTintList(

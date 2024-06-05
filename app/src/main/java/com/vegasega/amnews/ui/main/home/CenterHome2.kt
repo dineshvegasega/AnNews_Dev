@@ -119,7 +119,7 @@ class CenterHome2 : Fragment(), OnItemClickListener, CallBackListener {
 //                    mFragmentTags.put(1, FirstFragment())
 //                    mFragmentTags.put(2, FirstFragment())
                     adapter = NewPagerAdapter(childFragmentManager)
-                    viewModel.itemMain.forEach {
+                    viewModel.itemMainTopics.forEach {
                         adapter.addFragments(FirstFragment(it))
                     }
 

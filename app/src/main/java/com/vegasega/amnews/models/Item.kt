@@ -20,16 +20,17 @@ data class ItemMenu (
 
 
 @Parcelize
-    data class Item (
-        var name: String = "",
-        var image: Int = 0,
-        var isSelected: Boolean = false,
-        var isAd: Boolean = false,
-        var itemList: ArrayList<ItemList> = ArrayList()
-    ) : Parcelable
+data class Item (
+    var name: String = "",
+    var image: Int = 0,
+    var isSelected: Boolean = false,
+    var isAdd: Boolean = false,
+    var isAddBig: Boolean = false,
+    var itemList: ArrayList<ItemList> = ArrayList()
+) : Parcelable
 
 
 @Parcelize
-    data class ItemList (
-        var name: String = ""
-    ) : Parcelable
+data class ItemList (
+    var name: String = ""
+) : Parcelable

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
-import android.speech.tts.Voice
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +20,6 @@ import com.vegasega.amnews.databinding.CenterHomeBinding
 import com.vegasega.amnews.ui.interfaces.OnItemClickListener
 import com.vegasega.amnews.utils.getRecyclerView
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.Locale
 
 
 @AndroidEntryPoint
@@ -77,6 +75,57 @@ class CenterHome : Fragment(), OnItemClickListener {
         }
 
 
+        var counter3 = 0
+        for (i in 0 .. (viewModel.itemMainTopics.size - 1)){
+            if(viewModel.itemMainTopics.size != viewModel.itemMainAds.size){
+                if(counter3 == viewModel.itemMainAds.size -1){
+                    viewModel.itemMainAds.add(viewModel.itemMainAds[counter3])
+                    counter3 = 0
+                } else {
+                    viewModel.itemMainAds.add(viewModel.itemMainAds[counter3])
+                    counter3++
+                }
+            }
+        }
+
+        val arr3 = ArrayList<String>()
+        val dd = 3
+        val a1 = viewModel.itemMainTopics.size / dd
+        val a2 = viewModel.itemMainTopics.size % dd
+
+        try{
+            var counter = -1
+            var counter2 = 0
+            for (i in 0 .. (viewModel.itemMainTopics.size + 1) + a1 + a2 ){
+                if (i % dd == 0){
+                    if(counter == 0){
+                        // println("AAAAAAAAAA "+arr2[counter])
+                        viewModel.itemMainFinal.add(viewModel.itemMainAds[counter])
+                    } else {
+                        if(counter != -1){
+                            // println("BBBBBBBBBB "+arr2[counter])
+                            viewModel.itemMainFinal.add(viewModel.itemMainAds[counter])
+                        }
+                    }
+                    counter = counter + 1
+                } else {
+                    //println(" arr22222 "+arr1[counter2])
+                    viewModel.itemMainFinal.add(viewModel.itemMainTopics[counter2])
+                    counter2 = counter2 + 1
+                }
+            }
+        }catch(_: Exception){
+
+        }
+
+//
+//        mainThread {
+////            viewModel.show()
+////            binding.loadingProgressBar.visibility = View.GONE
+//        }
+
+//        binding.loadingProgressBar.visibility = View.VISIBLE
+
         textToSpeech = TextToSpeech(
             requireContext(), { status ->
                 if (status != TextToSpeech.ERROR) {
@@ -88,110 +137,32 @@ class CenterHome : Fragment(), OnItemClickListener {
 //                    Log.e("TAG", "consentIntent "+Home.consentIntent)
 
                     if (Home.consentIntent != null) {
-                        viewModel.itemMain.clear()
+                        viewModel.itemMainFinal.clear()
                         Log.e("TAG", "consentIntent "+Home.consentIntent.toString())
                         Home.consentIntent?.let {
-                            viewModel.itemMain.add(it)
+                            viewModel.itemMainFinal.add(it)
                         }
-                        adapter.submitData(viewModel.itemMain)
+                        adapter.submitData(viewModel.itemMainFinal)
                     } else {
                         Log.e("TAG", "consentIntentNULL ")
-                        adapter.submitData(viewModel.itemMain)
+                        adapter.submitData(viewModel.itemMainFinal)
                     }
-                    binding.introViewPager.offscreenPageLimit = viewModel.itemMain.size
+
+//                    binding.introViewPager.offscreenPageLimit = viewModel.itemMainFinal.size
                     createVerticalView()
                 } else {
                     Log.e("XXX", "Internal Google engine init error.")
                 }
             }, "com.google.android.tts"
         )
-        val a: HashSet<String> = HashSet<String>()
-        a.add("male")
-        val v = Voice("en-us-x-sfg#male_1-local", Locale("en", "US"), 400, 200, true, a)
-        textToSpeech.setVoice(v)
+//        val a: HashSet<String> = HashSet<String>()
+//        a.add("male")
+//        val v = Voice("en-us-x-sfg#male_1-local", Locale("en", "US"), 400, 200, true, a)
+//        textToSpeech.setVoice(v)
         textToSpeech.setSpeechRate(0.7f)
     }
 
 
-    fun View.isUserInteractionEnabled(enabled: Boolean) {
-        isEnabled = enabled
-        if (this is ViewGroup && this.childCount > 0) {
-            this.children.forEach {
-                it.isUserInteractionEnabled(enabled)
-            }
-        }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        binding.apply {
-            if (textToSpeech.isSpeaking) {
-                textToSpeech.stop()
-            }
-        }
-    }
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        textToSpeech.shutdown()
-    }
-
-
-    fun slideUp(view: View) {
-        view.visibility = View.VISIBLE
-        val animate = TranslateAnimation(
-            0f,  // fromXDelta
-            0f,  // toXDelta
-            view.height.toFloat(),  // fromYDelta
-            0f
-        ) // toYDelta
-        animate.duration = 400
-        animate.fillAfter = true
-        view.startAnimation(animate)
-        binding.layoutTopic.setClickable(true)
-        binding.layoutArticle.setClickable(true)
-    }
-
-    fun slideDown(view: View) {
-        val animate = TranslateAnimation(
-            0f,
-            0f,
-            0f,
-            view.height.toFloat()
-        ) // toYDelta
-        animate.duration = 400
-        animate.fillAfter = true
-        view.startAnimation(animate)
-        binding.layoutTopic.setClickable(false)
-        binding.layoutArticle.setClickable(false)
-    }
-
-    fun slideUp2(view: View) {
-        view.visibility = View.VISIBLE
-        val animate = TranslateAnimation(
-            0f,
-            0f,
-            -view.height.toFloat(),
-            0f
-        ) // toYDelta
-        animate.duration = 400
-        animate.fillAfter = true
-        view.startAnimation(animate)
-    }
-
-
-    fun slideDown2(view: View) {
-        val animate = TranslateAnimation(
-            0f,  // fromXDelta
-            0f,  // toXDelta
-            0f,  // fromYDelta
-            -view.height.toFloat()
-        ) // toYDelta
-        animate.duration = 400
-        animate.fillAfter = true
-        view.startAnimation(animate)
-    }
 
 
     //    var topListCounter = 0
@@ -219,8 +190,32 @@ class CenterHome : Fragment(), OnItemClickListener {
     }
 
     override fun onClickItemUp(position: Int) {
-        adapter.updatePosition(position)
+        Log.e("TAG", "onClickItemUp11")
+//        viewModel.show()
+//        binding.introViewPager.offscreenPageLimit = viewModel.itemMainFinal.size
+//        binding.introViewPager.offscreenPageLimit = 1
+
+
+//        requireActivity().runOnUiThread {
+////            viewModel.show()
+//            binding.loadingProgressBar.visibility = View.VISIBLE
+//        }
+
+//        defaultThread {
+//            binding.loadingProgressBar.visibility = View.VISIBLE
+//        }
+
         binding.introViewPager.adapter = adapter
+        adapter.updatePosition(position)
+        Log.e("TAG", "onClickItemUp22")
+//
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            viewModel.hide()
+//        }, 200)
+
+//        binding.introViewPager.offscreenPageLimit = viewModel.itemMainFinal.size
+
+
     }
 
 
@@ -290,7 +285,12 @@ class CenterHome : Fragment(), OnItemClickListener {
 //            introViewPager.getRecyclerView().setOnTouchListener { view, motionEvent ->
 //                false
 //            }
+
+            binding.introViewPager.offscreenPageLimit = viewModel.itemMainFinal.size
             introViewPager.adapter = adapter
+
+//            viewModel.hide()
+
 //            with(introViewPager) {
 //                clipToPadding = true
 //                clipChildren = true
@@ -356,6 +356,7 @@ class CenterHome : Fragment(), OnItemClickListener {
                         Log.e("TAG", "positionA" + position)
 //                        adapter.updatePosition(position)
 //                        adapter.notifyItemChanged(position)
+                        binding.loadingProgressBar.visibility = View.GONE
                     }
                     pageChangeValue = position
                 }
@@ -372,10 +373,11 @@ class CenterHome : Fragment(), OnItemClickListener {
                     if(state == 0){
                         adapter.notifyItemChanged(adapter.counter)
                     }
+//                    viewModel.hide()
                 }
             })
 
-
+            binding.loadingProgressBar.visibility = View.GONE
         }
 
     }
@@ -493,7 +495,95 @@ class CenterHome : Fragment(), OnItemClickListener {
 //        }
 //    }
 
+
+
+
+
+
+    fun View.isUserInteractionEnabled(enabled: Boolean) {
+        isEnabled = enabled
+        if (this is ViewGroup && this.childCount > 0) {
+            this.children.forEach {
+                it.isUserInteractionEnabled(enabled)
+            }
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.apply {
+            if (textToSpeech.isSpeaking) {
+                textToSpeech.stop()
+            }
+        }
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        textToSpeech.shutdown()
+    }
+
+
+    fun slideUp(view: View) {
+        view.visibility = View.VISIBLE
+        val animate = TranslateAnimation(
+            0f,  // fromXDelta
+            0f,  // toXDelta
+            view.height.toFloat(),  // fromYDelta
+            0f
+        ) // toYDelta
+        animate.duration = 400
+        animate.fillAfter = true
+        view.startAnimation(animate)
+        binding.layoutTopic.setClickable(true)
+        binding.layoutArticle.setClickable(true)
+    }
+
+    fun slideDown(view: View) {
+        val animate = TranslateAnimation(
+            0f,
+            0f,
+            0f,
+            view.height.toFloat()
+        ) // toYDelta
+        animate.duration = 400
+        animate.fillAfter = true
+        view.startAnimation(animate)
+        binding.layoutTopic.setClickable(false)
+        binding.layoutArticle.setClickable(false)
+    }
+
+    fun slideUp2(view: View) {
+        view.visibility = View.VISIBLE
+        val animate = TranslateAnimation(
+            0f,
+            0f,
+            -view.height.toFloat(),
+            0f
+        ) // toYDelta
+        animate.duration = 400
+        animate.fillAfter = true
+        view.startAnimation(animate)
+    }
+
+
+    fun slideDown2(view: View) {
+        val animate = TranslateAnimation(
+            0f,  // fromXDelta
+            0f,  // toXDelta
+            0f,  // fromYDelta
+            -view.height.toFloat()
+        ) // toYDelta
+        animate.duration = 400
+        animate.fillAfter = true
+        view.startAnimation(animate)
+    }
+
 }
+
+
+
 
 
 //mock-up data

@@ -1,19 +1,26 @@
 package com.vegasega.amnews.ui.main.home
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.vegasega.amnews.R
 import com.vegasega.amnews.databinding.CardItemViewBinding
 import com.vegasega.amnews.databinding.ItemHomeHorizontalMenusBinding
+import com.vegasega.amnews.databinding.LoaderBinding
 import com.vegasega.amnews.genericAdapter.GenericAdapter
 import com.vegasega.amnews.models.Item
 import com.vegasega.amnews.models.ItemList
 import com.vegasega.amnews.models.ItemMenu
+import com.vegasega.amnews.ui.mainActivity.MainActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import java.security.AccessController.getContext
 import javax.inject.Inject
 
@@ -26,9 +33,42 @@ class HomeVM @Inject constructor() : ViewModel() {
 
 //    var itemSongs = MutableLiveData<Int>()
 
+    var alertDialog: AlertDialog? = null
+    init {
+        val alert = AlertDialog.Builder(MainActivity.activity.get())
+        val binding =
+            LoaderBinding.inflate(LayoutInflater.from(MainActivity.activity.get()), null, false)
+        alert.setView(binding.root)
+        alert.setCancelable(false)
+        alertDialog = alert.create()
+        alertDialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
+
+    fun show() {
+        viewModelScope.launch {
+            if (alertDialog != null) {
+                alertDialog?.dismiss()
+                alertDialog?.show()
+            }
+        }
+    }
+
+    fun hide() {
+        viewModelScope.launch {
+            if (alertDialog != null) {
+                alertDialog?.dismiss()
+            }
+        }
+    }
+
+
     var itemMenusArray : ArrayList<ItemMenu> = ArrayList()
 
-    var itemMain : ArrayList<Item> = ArrayList()
+    var itemMainTopics : ArrayList<Item> = ArrayList()
+
+    var itemMainAds : ArrayList<Item> = ArrayList()
+
+    var itemMainFinal : ArrayList<Item> = ArrayList()
 
     init {
         itemMenusArray.add(ItemMenu("Latest", R.drawable.icon_star, false))
@@ -37,27 +77,30 @@ class HomeVM @Inject constructor() : ViewModel() {
         itemMenusArray.add(ItemMenu("Featured", R.drawable.icon_featured, false))
         itemMenusArray.add(ItemMenu("Saved", R.drawable.icon_saved, false))
 
-        itemMain?.add(Item("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते हैं।",R.drawable.m1,
+        itemMainTopics?.add(Item("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any",R.drawable.m1,
             false,
-            false,
-            arrayListOf(
-                ItemList("हा माझा डोंग आहे"),
-                ItemList("നിങ്ങളുടെ അരുമമൃഗങ്ങൾക്കും മാട്രിമോണി വെബ്സൈറ്റിലൂടെ 'സദ്ഗുണ സമ്പന്നനായ' ഇണയെ കണ്ടെത്താം") ,
-                ItemList("тогда центрируется только текст"),
-                ItemList("तब खाली पाठ के केंद्रित कइल जाला"),
-                ItemList("my drawableLeft icon"),
-            )))
-        itemMain?.add(Item("B",R.drawable.m1,
             false,
             false,
             arrayListOf(
-                ItemList("1"),
-                ItemList("2") ,
-                ItemList("3"),
-                ItemList("4"),
-                ItemList("5"),
+                ItemList("A while back I needed to count the amount of letters that a piece of text in an"),
+                ItemList("A while back I neede") ,
+                ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
+                ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
+                ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
             )))
-        itemMain?.add(Item("C",R.drawable.m1,
+        itemMainTopics?.add(Item("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं",R.drawable.m1,
+            false,
+            false,
+            false,
+            arrayListOf(
+                ItemList("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और"),
+                ItemList("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था,") ,
+                ItemList("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"),
+                ItemList("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"),
+                ItemList("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"),
+            )))
+        itemMainTopics?.add(Item("C",R.drawable.m1,
+            false,
             false,
             false,
             arrayListOf(
@@ -67,7 +110,8 @@ class HomeVM @Inject constructor() : ViewModel() {
                 ItemList("4C"),
                 ItemList("5C"),
             )))
-        itemMain?.add(Item("D",R.drawable.m1,
+        itemMainTopics?.add(Item("D",R.drawable.m1,
+            false,
             false,
             false,
             arrayListOf(
@@ -77,7 +121,8 @@ class HomeVM @Inject constructor() : ViewModel() {
                 ItemList("no icon"),
                 ItemList("icon"),
             )))
-        itemMain?.add(Item("E",R.drawable.m1,
+        itemMainTopics?.add(Item("E",R.drawable.m1,
+            false,
             false,
             false,
             arrayListOf(
@@ -87,7 +132,8 @@ class HomeVM @Inject constructor() : ViewModel() {
                 ItemList("but icon"),
                 ItemList("my icon"),
             )))
-        itemMain?.add(Item("F",R.drawable.m1,
+        itemMainTopics?.add(Item("F",R.drawable.m1,
+            false,
             false,
             false,
             arrayListOf(
@@ -98,6 +144,98 @@ class HomeVM @Inject constructor() : ViewModel() {
                 ItemList("my icon"),
             )))
 
+
+        itemMainTopics?.add(Item("M",R.drawable.m1,
+            false,
+            false,
+            false,
+            arrayListOf(
+                ItemList("M1"),
+                ItemList("M2") ,
+                ItemList("M3"),
+                ItemList("M4"),
+                ItemList("M5"),
+            )))
+
+        itemMainTopics?.add(Item("N",R.drawable.m1,
+            false,
+            false,
+            false,
+            arrayListOf(
+                ItemList("N1"),
+                ItemList("N2") ,
+                ItemList("N3"),
+                ItemList("N4"),
+                ItemList("N5"),
+            )))
+
+
+        itemMainTopics?.add(Item("O",R.drawable.m1,
+            false,
+            false,
+            false,
+            arrayListOf(
+                ItemList("O1"),
+                ItemList("O2") ,
+                ItemList("O3"),
+                ItemList("O4"),
+                ItemList("O5"),
+            )))
+
+
+        itemMainTopics?.add(Item("P",R.drawable.m1,
+            false,
+            false,
+            false,
+            arrayListOf(
+                ItemList("P1"),
+                ItemList("P2") ,
+                ItemList("P3"),
+                ItemList("P4"),
+                ItemList("P5"),
+            )))
+
+
+
+
+
+        itemMainAds?.add(Item("Add A",R.drawable.add1,
+            false,
+            true,
+            false,
+            arrayListOf(
+                ItemList("AA11"),
+                ItemList("AA22") ,
+                ItemList("AA33"),
+                ItemList("AA44"),
+                ItemList("AA55"),
+            )))
+
+
+        itemMainAds?.add(Item("Add B",R.drawable.add2,
+            false,
+            true,
+            true,
+            arrayListOf(
+                ItemList("BB11"),
+                ItemList("BB22") ,
+                ItemList("BB33"),
+                ItemList("BB44"),
+                ItemList("BB55"),
+            )))
+
+
+        itemMainAds?.add(Item("Add C",R.drawable.add1,
+            false,
+            true,
+            false,
+            arrayListOf(
+                ItemList("CC11"),
+                ItemList("CC22") ,
+                ItemList("CC33"),
+                ItemList("CC44"),
+                ItemList("CC55"),
+            )))
     }
 
 
@@ -139,7 +277,7 @@ class HomeVM @Inject constructor() : ViewModel() {
                     )
                 )
 
-              //  binding.ivIcon.setBackgroundResource(if (dataClass.isSelected == true) R.drawable.fade_golden_fill else R.drawable.gray_fill_round)
+                //  binding.ivIcon.setBackgroundResource(if (dataClass.isSelected == true) R.drawable.fade_golden_fill else R.drawable.gray_fill_round)
                 root.setOnClickListener {
                     val list = currentList
                     list.forEach {
@@ -227,7 +365,7 @@ class HomeVM @Inject constructor() : ViewModel() {
         @SuppressLint("NotifyDataSetChanged")
         override fun updatePosition(position: Int) {
             positionInt = position
-           // Log.e("TAG", "BBBBBBB "+positionInt)
+            // Log.e("TAG", "BBBBBBB "+positionInt)
 
 
         }

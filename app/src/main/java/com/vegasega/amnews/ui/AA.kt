@@ -11,9 +11,11 @@ import android.speech.tts.Voice
 import android.util.Log
 import android.view.WindowManager
 import android.view.WindowMetrics
+import android.widget.Button
 import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.constraintlayout.widget.ConstraintLayout
 //import com.daimajia.swipe.SwipeLayout
 import com.vegasega.amnews.R
@@ -23,7 +25,7 @@ import java.util.Locale
 
 class AA : AppCompatActivity() {
 
-//    lateinit var btn_new_activity : Button
+    lateinit var btn_new_activity : AppCompatButton
 
 
     lateinit var textToSpeech: TextToSpeech
@@ -32,9 +34,9 @@ class AA : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.a)
+        setContentView(R.layout.aa)
 
-
+        val button: AppCompatButton = findViewById(R.id.button)
 
 
 //        val swipe: SwipeLayout = findViewById(R.id.swipe)
@@ -116,8 +118,8 @@ class AA : AppCompatActivity() {
 
         // btn_new_activity = findViewById(R.id.button) as Button
 
-//        val ss = "समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते हैं।"
-        val ss = "I can easily put icon"
+        val ss = "समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते हैं।"
+//        val ss = "I can easily put icon"
 
 
         textToSpeech = TextToSpeech(this, TextToSpeech.OnInitListener {
@@ -128,67 +130,36 @@ class AA : AppCompatActivity() {
 //                    Log.e("TAG", "AAAAAAAA "+tmpVoice.name)
 //                }
 
+                val locale = Locale("hi","IN")
+                textToSpeech.setLanguage(locale)
+
             } else {
                 Log.e("TAG", "BBBBBBBB ")
             }
         }, "com.google.android.tts")
 
+
+//        var zz = HashSet<String>()
+//        zz.add("male")
+////        zz.add("en-in-x-end-network")
+////        zz.add("hi-in-x-hie-local")
 //
-//        textToSpeech = TextToSpeech(this, {status ->
-//                Log.e("XXX", "Google tts initialized "+status)
-//            }, "com.google.android.tts")
-////
-//        textToSpeech = TextToSpeech(this) {status ->
-//            if (status == TextToSpeech.SUCCESS){
-//                Log.e("TextToSpeech", "Initialization Success")
-//            }else{
-//                Log.e("TextToSpeech", "Initialization Failed")
-//            }
-//        }
+////        textToSpeech.voice = Voice("en-us-x-sfg#male_2-local", Locale("en","US"), 400, 200, true, zz)
+//
+//        textToSpeech.setLanguage(Locale.forLanguageTag("en"));
+//        textToSpeech.voice = Voice("en-gb-x-fis-network", Locale("en", "UK"), 400, 200, true, zz)
+//        textToSpeech.setLanguage(Locale("hin", "IND", "variant"))
 
-        var zz = HashSet<String>()
-        zz.add("male")
-//        zz.add("en-in-x-end-network")
-//        zz.add("hi-in-x-hie-local")
-
-//        textToSpeech.voice = Voice("en-us-x-sfg#male_2-local", Locale("en","US"), 400, 200, true, zz)
-
-        textToSpeech.setLanguage(Locale.forLanguageTag("en"));
-        textToSpeech.voice = Voice("en-gb-x-fis-network", Locale("en", "UK"), 400, 200, true, zz)
+        button.setOnClickListener {
+            textToSpeech.speak(
+                ss,
+                TextToSpeech.QUEUE_FLUSH,
+                null,
+                ss
+            )
+        }
 
 
-//
-//        btn_new_activity.setOnClickListener {
-//            if (textToSpeech.isSpeaking) {
-//                textToSpeech.stop()
-//            }
-//
-//            val bundle = Bundle()
-//            bundle.putInt(TextToSpeech.Engine.KEY_PARAM_STREAM, AudioManager.STREAM_MUSIC)
-//            textToSpeech.speak(ss, TextToSpeech.QUEUE_FLUSH, null, ss)
-//            textToSpeech.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
-//                override fun onDone(utteranceId: String) {
-//                    Log.e("MainActivity", "TTS onDone " + utteranceId);
-//
-//                }
-//
-//                @Deprecated("Deprecated in Java")
-//                override fun onError(utteranceId: String) {
-//                }
-//
-//                override fun onStart(utteranceId: String) {
-//                }
-//
-//                override fun onRangeStart(
-//                    utteranceId: String?,
-//                    start: Int,
-//                    end: Int,
-//                    frame: Int
-//                ) {
-//                    super.onRangeStart(utteranceId, start, end, frame)
-//                }
-//            })
-//        }
 
 
 

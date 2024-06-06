@@ -26,6 +26,7 @@ data class Item (
     var isSelected: Boolean = false,
     var isAdd: Boolean = false,
     var isAddBig: Boolean = false,
+    var lang: String = "en",
     var itemList: ArrayList<ItemList> = ArrayList()
 ) : Parcelable
 

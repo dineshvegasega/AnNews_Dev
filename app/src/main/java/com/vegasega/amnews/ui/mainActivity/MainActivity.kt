@@ -15,7 +15,9 @@ import com.vegasega.amnews.R
 import com.vegasega.amnews.databinding.MainActivityBinding
 import com.vegasega.amnews.datastore.db.AppDatabase
 import com.vegasega.amnews.networking.ConnectivityManager
+import com.vegasega.amnews.utils.determineScreenDensityCode
 import com.vegasega.amnews.utils.getDensityName
+import com.vegasega.amnews.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.ref.WeakReference
 
@@ -88,7 +90,11 @@ class MainActivity : AppCompatActivity() {
         recordAUDIOPermissionLauncher.launch(android.Manifest.permission.RECORD_AUDIO)
 
 
+        val sss = determineScreenDensityCode()
+        Log.e("TAG", "sss " + sss)
 
+        val ddd = getDensityName()
+        Log.e("TAG", "ddd " + ddd)
 
     }
 
@@ -112,6 +118,7 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         val fontScale = resources.configuration.fontScale
         scale10 = when (fontScale) {
+            0.7f -> 14
             0.8f -> 13
             0.9f -> 12
             1.0f -> 11
@@ -135,6 +142,8 @@ class MainActivity : AppCompatActivity() {
             "ldpi" -> 11.5f
             else -> 12f
         }
+
+        showSnackBar("Font Scale: $fontSize")
     }
 
 }

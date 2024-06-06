@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.SeekBar
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Group
@@ -23,10 +24,13 @@ import com.vegasega.amnews.R
 import com.vegasega.amnews.models.Item
 import com.vegasega.amnews.ui.interfaces.OnItemClickListener
 import com.vegasega.amnews.ui.mainActivity.MainActivity
+import com.vegasega.amnews.ui.mainActivity.MainActivity.Companion.fontSize
+import com.vegasega.amnews.ui.mainActivity.MainActivity.Companion.scale10
 import com.vegasega.amnews.utils.mainThread
 import com.vegasega.amnews.utils.singleClick
 import kotlinx.coroutines.delay
 import java.io.IOException
+import java.util.Locale
 
 
 class VerticalViewPagerAdapter(
@@ -52,9 +56,9 @@ class VerticalViewPagerAdapter(
 
 
     inner class PagerViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder
-        (LayoutInflater.from(parent.context).inflate(R.layout.card2, parent, false)) {
+        (LayoutInflater.from(parent.context).inflate(R.layout.lay3, parent, false)) {
         val mainLayout = itemView.findViewById<CardView>(R.id.mainLayout)
-        val layoutAll = itemView.findViewById<ConstraintLayout>(R.id.layoutAll)
+        val layoutAll = itemView.findViewById<LinearLayoutCompat>(R.id.layoutAll)
         val imageFull = itemView.findViewById<AppCompatImageView>(R.id.imageFull)
 
         val textTitle0 = itemView.findViewById<AppCompatTextView>(R.id.textTitle0)
@@ -107,6 +111,9 @@ class VerticalViewPagerAdapter(
         holder.textTitle4.text = "" + model.itemList[3].name
         holder.textTitle5.text = "" + model.itemList[4].name
 
+//        holder.textTitle1.textSize = fontSize.toFloat()
+
+
 //        "http://167.71.225.20:8081/uploads/1710232591.png".glideImage(holder.itemView.context, holder.imageLogo)
 
 
@@ -130,13 +137,13 @@ class VerticalViewPagerAdapter(
             }
         }
 
-//        holder.timeline1.initLine(1)
-        holder.timeline1.initLine(0)
+        holder.timeline1.initLine(1)
+//        holder.timeline1.initLine(0)
         holder.timeline2.initLine(0)
         holder.timeline3.initLine(0)
         holder.timeline4.initLine(0)
-        holder.timeline5.initLine(0)
-//        holder.timeline5.initLine(2)
+//        holder.timeline5.initLine(0)
+        holder.timeline5.initLine(2)
 
 
 
@@ -158,10 +165,10 @@ class VerticalViewPagerAdapter(
                             mainThread {
                                 Log.e("MainActivity", "counterChilddelay " + counterChild);
                                 delay(3000)
-                                try {
-                                    mp.start()
-                                } catch (_: IOException) {
-                                }
+//                                try {
+//                                    mp.start()
+//                                } catch (_: IOException) {
+//                                }
                                 delay(500)
                                 listener.onClickItem(counter + 1)
                             }
@@ -259,6 +266,10 @@ class VerticalViewPagerAdapter(
             holder.seekbar.max = 5
             holder.seekbar.progress = 0
             holder.textPlay.text = "H"
+//            when (model.lang){
+//                "en" -> textToSpeech.setLanguage(Locale("en","US"))
+//                "hi" -> textToSpeech.setLanguage(Locale("hi","IN"))
+//            }
             textToSpeech.speak(model.name, TextToSpeech.QUEUE_FLUSH, null, model.name)
             textToSpeech.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
                 override fun onDone(utteranceId: String) {
@@ -298,6 +309,11 @@ class VerticalViewPagerAdapter(
         holder.textPlay.text = "0" + (counterChild + 1)
         holder.seekbar.max = 5
         holder.seekbar.progress = counterChild + 1
+
+//        when (itemMain.lang){
+//            "en" -> textToSpeech.setLanguage(Locale("en","US"))
+//            "hi" -> textToSpeech.setLanguage(Locale("hi","IN"))
+//        }
         textToSpeech.speak(
             itemMain.itemList[counterChild].name,
             TextToSpeech.QUEUE_FLUSH,
@@ -338,10 +354,10 @@ class VerticalViewPagerAdapter(
                             counterChild = 0
                             holder.ivPlayPause.setImageResource(R.drawable.play)
                             mainThread {
-                                try {
-                                    mp.start()
-                                } catch (_: IOException) {
-                                }
+//                                try {
+//                                    mp.start()
+//                                } catch (_: IOException) {
+//                                }
                                 Log.e("MainActivity", "counterChilddelay " + counterChild);
                                 delay(500)
                                 listener.onClickItem(counter + 1)

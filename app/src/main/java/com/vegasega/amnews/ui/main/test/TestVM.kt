@@ -33,6 +33,7 @@ class TestVM @Inject constructor() : ViewModel() {
                 R.drawable.m1, true,
                 false,
                 false,
+                "en",
                 arrayListOf(
                     ItemList("I can easily put icon"),
                     ItemList("but if I set gravity to center") ,
@@ -45,6 +46,7 @@ class TestVM @Inject constructor() : ViewModel() {
             Item("B", R.drawable.m1, false,
                 false,
                 false,
+                "en",
                 arrayListOf(
                     ItemList("1"),
                     ItemList("2") ,
@@ -57,6 +59,7 @@ class TestVM @Inject constructor() : ViewModel() {
             Item("C", R.drawable.m1, false,
                 false,
                 false,
+                "en",
                 arrayListOf(
                     ItemList("1C"),
                     ItemList("2C") ,
@@ -69,6 +72,7 @@ class TestVM @Inject constructor() : ViewModel() {
             Item("D", R.drawable.m1, false,
                 false,
                 false,
+                "en",
                 arrayListOf(
                     ItemList("put icon"),
                     ItemList("set gravity") ,
@@ -81,6 +85,7 @@ class TestVM @Inject constructor() : ViewModel() {
             Item("E", R.drawable.m1, false,
                 false,
                 false,
+                "en",
                 arrayListOf(
                     ItemList("I can icon"),
                     ItemList("but gravity to center") ,
@@ -93,6 +98,7 @@ class TestVM @Inject constructor() : ViewModel() {
             Item("F", R.drawable.m1, false,
                 false,
                 false,
+                "en",
                 arrayListOf(
                     ItemList("I put icon"),
                     ItemList("I set gravity center") ,
@@ -106,6 +112,7 @@ class TestVM @Inject constructor() : ViewModel() {
             Item("G", R.drawable.m1, false,
                 false,
                 false,
+                "en",
                 arrayListOf(
                     ItemList("I put icon"),
                     ItemList("I set gravity center") ,
@@ -120,6 +127,7 @@ class TestVM @Inject constructor() : ViewModel() {
             Item("H", R.drawable.m1, false,
                 false,
                 false,
+                "en",
                 arrayListOf(
                     ItemList("I put icon"),
                     ItemList("I set gravity center") ,

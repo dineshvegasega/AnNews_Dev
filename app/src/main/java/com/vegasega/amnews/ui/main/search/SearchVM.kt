@@ -31,6 +31,7 @@ class SearchVM @Inject constructor() : ViewModel() {
             Item(
                 "I", R.drawable.m1,false,false,
                 false,
+                "en",
                 arrayListOf(
                     ItemList("I can easily put icon"),
                     ItemList("but if I set gravity to center"),
@@ -44,6 +45,7 @@ class SearchVM @Inject constructor() : ViewModel() {
             Item(
                 "J", R.drawable.m1,false,false,
                 false,
+                "en",
                 arrayListOf(
                     ItemList("1"),
                     ItemList("2"),
@@ -57,6 +59,7 @@ class SearchVM @Inject constructor() : ViewModel() {
             Item(
                 "K", R.drawable.m1,false,false,
                 false,
+                "en",
                 arrayListOf(
                     ItemList("1C"),
                     ItemList("2C"),

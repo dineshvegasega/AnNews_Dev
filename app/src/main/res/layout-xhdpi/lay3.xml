@@ -25,14 +25,16 @@
             android:layout_height="match_parent"
             >
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layoutAll"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-
-
-
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/layoutAll"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/barrier"
+                android:orientation="vertical"
+                >
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imageLogo"
                     android:layout_width="match_parent"
@@ -42,9 +44,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:src="@drawable/m1"
                     android:scaleType="centerCrop"
-                    android:layout_weight="0.55"/>
-
-
+                />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/lay11"
@@ -74,35 +74,22 @@
                         android:autoSizePresetSizes="@array/autosize_14_17"
                         android:autoSizeStepGranularity="@dimen/_1sdp"
                         android:paddingVertical="@dimen/_2sdp"
-                        android:layout_marginVertical="@dimen/_10sdp"
+                        android:layout_marginVertical="@dimen/_8sdp"
                         />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            <View
-                android:id="@+id/view1"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_1sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lay11"
-                android:background="@color/_E8EBF4"
-                >
-            </View>
-
-
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view1"
-                app:layout_constraintBottom_toTopOf="@+id/barrier"
-                android:orientation="vertical"
-                >
-
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lay11"
+                    android:background="@color/_E8EBF4"
+                    >
+                </View>
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -117,7 +104,6 @@
                     >
 
 
-
                     <com.google.android.flexbox.FlexboxLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
@@ -128,20 +114,17 @@
                         android:paddingVertical="@dimen/_5sdp"
                         app:flexWrap="wrap"
                         app:alignItems="stretch"
-                        app:alignContent="space_around"
+                        app:alignContent="stretch"
                         >
-
-
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="@dimen/_2sdp"
                             >
 
                             <com.github.vipulasri.timelineview.TimelineView
                                 android:id="@+id/timeline1"
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="0dp"
                                 app:markerSize="@dimen/_8sdp"
                                 app:lineWidth="@dimen/_1sdp"
                                 android:layout_marginStart="@dimen/_15sdp"
@@ -151,7 +134,7 @@
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:endLineColor="@color/_C4C4C4"
-                                app:lineStyle="normal"
+                                app:lineStyle="dash"
 
                                 />
 
@@ -160,6 +143,7 @@
                                 android:id="@+id/textTitle1"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
                                 android:textColor="@color/_133248"
                                 android:gravity="center_vertical"
                                 android:layout_marginStart="@dimen/_30sdp"
@@ -170,11 +154,9 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 tools:ignore="MissingConstraints"
                                 app:fontFamily="@font/product_sans_regular"
-                                android:maxLines="3"
                                 android:text="समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और "
-                                android:autoSizeTextType="uniform"
-                                android:autoSizePresetSizes="@array/autosize_11_12"
-                                android:autoSizeStepGranularity="@dimen/_1sdp"
+                                android:maxLines="3"
+                                android:textSize="@dimen/_12sdp"
                                 android:paddingVertical="@dimen/_2sdp"
                                 />
 
@@ -184,13 +166,12 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="@dimen/_2sdp"
                             >
 
                             <com.github.vipulasri.timelineview.TimelineView
                                 android:id="@+id/timeline2"
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="0dp"
                                 app:markerSize="@dimen/_8sdp"
                                 app:lineWidth="@dimen/_1sdp"
                                 android:layout_marginStart="@dimen/_15sdp"
@@ -200,7 +181,7 @@
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:endLineColor="@color/_C4C4C4"
-                                app:lineStyle="normal"
+                                app:lineStyle="dash"
 
                                 />
 
@@ -208,6 +189,7 @@
                                 android:id="@+id/textTitle2"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
                                 android:textColor="@color/_133248"
                                 android:gravity="center_vertical"
                                 android:layout_marginStart="@dimen/_30sdp"
@@ -218,12 +200,9 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 tools:ignore="MissingConstraints"
                                 app:fontFamily="@font/product_sans_regular"
-                                android:maxLines="3"
                                 android:text="समाचार प्रस्तुतकर्ता, अर्थव्यवस्था,"
-                                android:autoSizeTextType="uniform"
-                                android:autoSizePresetSizes="@array/autosize_11_12"
-                                android:autoSizeStepGranularity="@dimen/_1sdp"
-
+                                android:maxLines="3"
+                                android:textSize="@dimen/_12sdp"
                                 android:paddingVertical="@dimen/_2sdp"
                                 />
 
@@ -233,13 +212,12 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="@dimen/_2sdp"
                             >
 
                             <com.github.vipulasri.timelineview.TimelineView
                                 android:id="@+id/timeline3"
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="0dp"
                                 app:markerSize="@dimen/_8sdp"
                                 app:lineWidth="@dimen/_1sdp"
                                 android:layout_marginStart="@dimen/_15sdp"
@@ -249,7 +227,7 @@
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:endLineColor="@color/_C4C4C4"
-                                app:lineStyle="normal"
+                                app:lineStyle="dash"
 
                                 />
 
@@ -268,12 +246,11 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 tools:ignore="MissingConstraints"
                                 app:fontFamily="@font/product_sans_regular"
+                                android:text="समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं
+समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं
+समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"
                                 android:maxLines="3"
-                                android:text="समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"
-                                android:autoSizeTextType="uniform"
-                                android:autoSizePresetSizes="@array/autosize_11_12"
-                                android:autoSizeStepGranularity="@dimen/_1sdp"
-
+                                android:textSize="@dimen/_12sdp"
                                 android:paddingVertical="@dimen/_2sdp"
                                 />
 
@@ -283,7 +260,6 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="@dimen/_2sdp"
                             >
 
 
@@ -291,7 +267,7 @@
                             <com.github.vipulasri.timelineview.TimelineView
                                 android:id="@+id/timeline4"
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="0dp"
                                 app:markerSize="@dimen/_8sdp"
                                 app:lineWidth="@dimen/_1sdp"
                                 android:layout_marginStart="@dimen/_15sdp"
@@ -301,7 +277,7 @@
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:endLineColor="@color/_C4C4C4"
-                                app:lineStyle="normal"
+                                app:lineStyle="dash"
 
                                 />
 
@@ -320,12 +296,9 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 tools:ignore="MissingConstraints"
                                 app:fontFamily="@font/product_sans_regular"
-                                android:maxLines="3"
                                 android:text="समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"
-                                android:autoSizeTextType="uniform"
-                                android:autoSizePresetSizes="@array/autosize_11_12"
-                                android:autoSizeStepGranularity="@dimen/_1sdp"
-
+                                android:maxLines="3"
+                                android:textSize="@dimen/_12sdp"
                                 android:paddingVertical="@dimen/_2sdp"
                                 />
 
@@ -335,13 +308,12 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="@dimen/_2sdp"
                             >
 
                             <com.github.vipulasri.timelineview.TimelineView
                                 android:id="@+id/timeline5"
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="0dp"
                                 app:markerSize="@dimen/_8sdp"
                                 app:lineWidth="@dimen/_1sdp"
                                 android:layout_marginStart="@dimen/_15sdp"
@@ -351,7 +323,7 @@
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:endLineColor="@color/_C4C4C4"
-                                app:lineStyle="normal"
+                                app:lineStyle="dash"
 
                                 />
 
@@ -370,18 +342,18 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 tools:ignore="MissingConstraints"
                                 app:fontFamily="@font/product_sans_regular"
+                                android:text="समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं
+समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"
                                 android:maxLines="3"
-                                android:text="समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"
-                                android:autoSizeTextType="uniform"
-                                android:autoSizePresetSizes="@array/autosize_11_12"
-                                android:autoSizeStepGranularity="@dimen/_1sdp"
-
+                                android:textSize="@dimen/_12sdp"
                                 android:paddingVertical="@dimen/_2sdp"
                                 />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
                     </com.google.android.flexbox.FlexboxLayout>
+
 
 
 
@@ -618,23 +590,18 @@
                 app:constraint_referenced_ids="baseButtonsPlay,seekbar"
                 android:visibility="gone"/>
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageFull"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/m1"
+                android:scaleType="centerCrop"
+                android:visibility="gone"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imageFull"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/m1"
-            android:scaleType="centerCrop"
-            android:visibility="gone"/>
 
     </com.google.android.material.card.MaterialCardView>
 

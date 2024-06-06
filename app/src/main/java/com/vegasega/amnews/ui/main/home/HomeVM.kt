@@ -81,39 +81,43 @@ class HomeVM @Inject constructor() : ViewModel() {
             false,
             false,
             false,
+            "en",
             arrayListOf(
-                ItemList("A while back I needed to count the amount of letters that a piece of text in an"),
-                ItemList("A while back I neede") ,
+                ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
+                ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
                 ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
                 ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
                 ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
             )))
-        itemMainTopics?.add(Item("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं",R.drawable.m1,
+        itemMainTopics?.add(Item("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते है",R.drawable.m1,
             false,
             false,
             false,
+            "hi",
             arrayListOf(
-                ItemList("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और"),
-                ItemList("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था,") ,
+                ItemList("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"),
+                ItemList("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"),
                 ItemList("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"),
                 ItemList("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"),
                 ItemList("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"),
             )))
-        itemMainTopics?.add(Item("C",R.drawable.m1,
+        itemMainTopics?.add(Item("कुछ समय पहिले हमरा ई गिने के जरूरत रहे कि ईमेल टेम्पलेट में एगो पाठ के टुकड़ा में कतना अक्षर होला (कवनो पास ना होखे खातिर",R.drawable.m1,
             false,
             false,
             false,
+            "bho",
             arrayListOf(
-                ItemList("1C"),
-                ItemList("2C") ,
-                ItemList("3C"),
-                ItemList("4C"),
-                ItemList("5C"),
+                ItemList("कुछ समय पहिले हमरा ई गिने के जरूरत रहे कि ईमेल टेम्पलेट में एगो पाठ के टुकड़ा में कतना अक्षर होला (कवनो पास ना होखे खातिर"),
+                ItemList("कुछ समय पहिले हमरा ई गिने के जरूरत रहे कि ईमेल टेम्पलेट में एगो पाठ के टुकड़ा में कतना अक्षर होला (कवनो पास ना होखे खातिर") ,
+                ItemList("कुछ समय पहिले हमरा ई गिने के जरूरत रहे कि ईमेल टेम्पलेट में एगो पाठ के टुकड़ा में कतना अक्षर होला (कवनो पास ना होखे खातिर"),
+                ItemList("कुछ समय पहिले हमरा ई गिने के जरूरत रहे कि ईमेल टेम्पलेट में एगो पाठ के टुकड़ा में कतना अक्षर होला (कवनो पास ना होखे खातिर"),
+                ItemList("कुछ समय पहिले हमरा ई गिने के जरूरत रहे कि ईमेल टेम्पलेट में एगो पाठ के टुकड़ा में कतना अक्षर होला (कवनो पास ना होखे खातिर"),
             )))
         itemMainTopics?.add(Item("D",R.drawable.m1,
             false,
             false,
             false,
+            "en",
             arrayListOf(
                 ItemList("put icon"),
                 ItemList("set gravity") ,
@@ -125,6 +129,7 @@ class HomeVM @Inject constructor() : ViewModel() {
             false,
             false,
             false,
+            "en",
             arrayListOf(
                 ItemList("I can icon"),
                 ItemList("but gravity to center") ,
@@ -136,6 +141,7 @@ class HomeVM @Inject constructor() : ViewModel() {
             false,
             false,
             false,
+            "en",
             arrayListOf(
                 ItemList("I put icon"),
                 ItemList("I set gravity center") ,
@@ -149,6 +155,7 @@ class HomeVM @Inject constructor() : ViewModel() {
             false,
             false,
             false,
+            "en",
             arrayListOf(
                 ItemList("M1"),
                 ItemList("M2") ,
@@ -161,6 +168,7 @@ class HomeVM @Inject constructor() : ViewModel() {
             false,
             false,
             false,
+            "en",
             arrayListOf(
                 ItemList("N1"),
                 ItemList("N2") ,
@@ -174,6 +182,7 @@ class HomeVM @Inject constructor() : ViewModel() {
             false,
             false,
             false,
+            "en",
             arrayListOf(
                 ItemList("O1"),
                 ItemList("O2") ,
@@ -187,6 +196,7 @@ class HomeVM @Inject constructor() : ViewModel() {
             false,
             false,
             false,
+            "en",
             arrayListOf(
                 ItemList("P1"),
                 ItemList("P2") ,
@@ -203,6 +213,7 @@ class HomeVM @Inject constructor() : ViewModel() {
             false,
             true,
             false,
+            "en",
             arrayListOf(
                 ItemList("AA11"),
                 ItemList("AA22") ,
@@ -216,6 +227,7 @@ class HomeVM @Inject constructor() : ViewModel() {
             false,
             true,
             true,
+            "en",
             arrayListOf(
                 ItemList("BB11"),
                 ItemList("BB22") ,
@@ -229,6 +241,7 @@ class HomeVM @Inject constructor() : ViewModel() {
             false,
             true,
             false,
+            "en",
             arrayListOf(
                 ItemList("CC11"),
                 ItemList("CC22") ,

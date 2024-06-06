@@ -83,15 +83,15 @@
 
     <array name="autosize_11_12">
 
-        <item>@dimen/_12sdp</item>
         <item>@dimen/_13sdp</item>
     </array>
 
 
     <array name="autosize_14_17">
+        <item>@dimen/_12sdp</item>
+        <item>@dimen/_13sdp</item>
         <item>@dimen/_14sdp</item>
         <item>@dimen/_15sdp</item>
-        <item>@dimen/_16sdp</item>
     </array>
 
 

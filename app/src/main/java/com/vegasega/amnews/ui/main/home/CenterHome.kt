@@ -1,9 +1,11 @@
 package com.vegasega.amnews.ui.main.home
 
 import android.annotation.SuppressLint
+import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
+import android.speech.tts.Voice
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,13 +15,20 @@ import androidx.annotation.RequiresApi
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.SimpleItemAnimator
 import androidx.viewpager2.widget.ViewPager2
 import com.vegasega.amnews.R
 import com.vegasega.amnews.databinding.CenterHomeBinding
 import com.vegasega.amnews.ui.interfaces.OnItemClickListener
+import com.vegasega.amnews.ui.mainActivity.MainActivity
 import com.vegasega.amnews.utils.getRecyclerView
+import com.vegasega.amnews.utils.mainThread
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import java.io.IOException
+import java.util.Locale
 
 
 @AndroidEntryPoint
@@ -47,6 +56,9 @@ class CenterHome : Fragment(), OnItemClickListener {
 
     }
 
+    lateinit var mp: MediaPlayer
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -60,6 +72,8 @@ class CenterHome : Fragment(), OnItemClickListener {
     @SuppressLint("NotifyDataSetChanged", "ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        mp = MediaPlayer.create(MainActivity.context.get(), R.raw.sound_1)
 
         binding.apply {
 
@@ -76,9 +90,9 @@ class CenterHome : Fragment(), OnItemClickListener {
 
 
         var counter3 = 0
-        for (i in 0 .. (viewModel.itemMainTopics.size - 1)){
-            if(viewModel.itemMainTopics.size != viewModel.itemMainAds.size){
-                if(counter3 == viewModel.itemMainAds.size -1){
+        for (i in 0..(viewModel.itemMainTopics.size - 1)) {
+            if (viewModel.itemMainTopics.size != viewModel.itemMainAds.size) {
+                if (counter3 == viewModel.itemMainAds.size - 1) {
                     viewModel.itemMainAds.add(viewModel.itemMainAds[counter3])
                     counter3 = 0
                 } else {
@@ -93,16 +107,16 @@ class CenterHome : Fragment(), OnItemClickListener {
         val a1 = viewModel.itemMainTopics.size / dd
         val a2 = viewModel.itemMainTopics.size % dd
 
-        try{
+        try {
             var counter = -1
             var counter2 = 0
-            for (i in 0 .. (viewModel.itemMainTopics.size + 1) + a1 + a2 ){
-                if (i % dd == 0){
-                    if(counter == 0){
+            for (i in 0..(viewModel.itemMainTopics.size + 1) + a1 + a2) {
+                if (i % dd == 0) {
+                    if (counter == 0) {
                         // println("AAAAAAAAAA "+arr2[counter])
                         viewModel.itemMainFinal.add(viewModel.itemMainAds[counter])
                     } else {
-                        if(counter != -1){
+                        if (counter != -1) {
                             // println("BBBBBBBBBB "+arr2[counter])
                             viewModel.itemMainFinal.add(viewModel.itemMainAds[counter])
                         }
@@ -114,7 +128,7 @@ class CenterHome : Fragment(), OnItemClickListener {
                     counter2 = counter2 + 1
                 }
             }
-        }catch(_: Exception){
+        } catch (_: Exception) {
 
         }
 
@@ -130,15 +144,18 @@ class CenterHome : Fragment(), OnItemClickListener {
             requireContext(), { status ->
                 if (status != TextToSpeech.ERROR) {
                     Log.e("XXX", "Google tts initialized")
+//                    textToSpeech.setLanguage(Locale("hi","IN"))
+//                    textToSpeech.setLanguage(Locale("en","US"))
+                    textToSpeech.setSpeechRate(0.7f)
+//                    val a: HashSet<String> = HashSet<String>()
+//                    a.add("male")
+//                    val v = Voice("en-us-x-sfg#male_1-local", Locale("en", "US"), 400, 200, true, a)
+//                    textToSpeech.setVoice(v)
 
                     adapter = VerticalViewPagerAdapter(this, textToSpeech)
-
-//                    Home.consentIntent
-//                    Log.e("TAG", "consentIntent "+Home.consentIntent)
-
                     if (Home.consentIntent != null) {
                         viewModel.itemMainFinal.clear()
-                        Log.e("TAG", "consentIntent "+Home.consentIntent.toString())
+                        Log.e("TAG", "consentIntent " + Home.consentIntent.toString())
                         Home.consentIntent?.let {
                             viewModel.itemMainFinal.add(it)
                         }
@@ -159,10 +176,11 @@ class CenterHome : Fragment(), OnItemClickListener {
 //        a.add("male")
 //        val v = Voice("en-us-x-sfg#male_1-local", Locale("en", "US"), 400, 200, true, a)
 //        textToSpeech.setVoice(v)
-        textToSpeech.setSpeechRate(0.7f)
+//        textToSpeech.setLanguage(Locale("hin", "IND", "variant"))
+//        val locale = Locale("hi","IN")
+//        textToSpeech.setLanguage(locale)
+//        textToSpeech.setSpeechRate(0.7f)
     }
-
-
 
 
     //    var topListCounter = 0
@@ -185,6 +203,13 @@ class CenterHome : Fragment(), OnItemClickListener {
 
     override fun onClickItem(position: Int) {
         binding.apply {
+            try {
+                mp.start()
+            } catch (_: IOException) {
+            }
+//            mainThread {
+//                delay(500)
+//            }
             introViewPager.setCurrentItem(position, true)
         }
     }
@@ -228,7 +253,8 @@ class CenterHome : Fragment(), OnItemClickListener {
             viewModel.dashboardAdapter.notifyDataSetChanged()
 
 
-            (introViewPager.getRecyclerView().getItemAnimator() as SimpleItemAnimator).supportsChangeAnimations =
+            (introViewPager.getRecyclerView()
+                .getItemAnimator() as SimpleItemAnimator).supportsChangeAnimations =
                 false
 
 
@@ -249,8 +275,6 @@ class CenterHome : Fragment(), OnItemClickListener {
 //                clipChildren = true
 //                offscreenPageLimit = viewModel.itemMain.size
 //            }
-
-
 
 
 //            introViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
@@ -352,11 +376,15 @@ class CenterHome : Fragment(), OnItemClickListener {
                     positionOffsetPixels: Int
                 ) {
                     super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-                    if(pageChangeValue != position){
+                    if (pageChangeValue != position) {
                         Log.e("TAG", "positionA" + position)
 //                        adapter.updatePosition(position)
 //                        adapter.notifyItemChanged(position)
                         binding.loadingProgressBar.visibility = View.GONE
+                    }
+                    try {
+                        mp.start()
+                    } catch (_: IOException) {
                     }
                     pageChangeValue = position
                 }
@@ -365,12 +393,18 @@ class CenterHome : Fragment(), OnItemClickListener {
                     super.onPageSelected(position)
                     adapter.updatePosition(position)
 //                    introViewPager.setCurrentItem(position, true)
+
+//                    lifecycleScope.launch {
+//                        delay(500)
+//                    }
+
                 }
 
                 override fun onPageScrollStateChanged(state: Int) {
                     super.onPageScrollStateChanged(state)
                     Log.e("TAG", "state" + state)
-                    if(state == 0){
+                    if (state == 0) {
+                        onClickItem(pageChangeValue)
                         adapter.notifyItemChanged(adapter.counter)
                     }
 //                    viewModel.hide()
@@ -440,11 +474,7 @@ class CenterHome : Fragment(), OnItemClickListener {
         }
 
 
-
-
-
     }
-
 
 
 //    class SliderTransformer(private val offscreenPageLimit: Int) : ViewPager2.PageTransformer {
@@ -494,10 +524,6 @@ class CenterHome : Fragment(), OnItemClickListener {
 //            }
 //        }
 //    }
-
-
-
-
 
 
     fun View.isUserInteractionEnabled(enabled: Boolean) {
@@ -581,9 +607,6 @@ class CenterHome : Fragment(), OnItemClickListener {
     }
 
 }
-
-
-
 
 
 //mock-up data

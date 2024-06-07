@@ -22,7 +22,14 @@
             android:id="@+id/action_splash_to_home"
             app:destination="@id/home"
             app:launchSingleTop="true"
-            app:popUpTo="@id/home"
+            app:popUpTo="@id/splash"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_splash_to_OnboardLanguage"
+            app:destination="@id/onboardLanguage"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/splash"
             app:popUpToInclusive="true" />
 
     </fragment>
@@ -86,6 +93,21 @@
         android:label="Topics"
         tools:layout="@layout/topics">
 
+    </fragment>
+
+    <fragment
+        android:id="@+id/walkThrough"
+        android:name="com.streetsaarthi.nasvi.screens.onboarding.walkThrough.WalkThrough"
+        android:label="WalkThrough"
+        tools:layout="@layout/walk_through">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/onboardLanguage"
+        android:name="com.vegasega.amnews.ui.onboarding.onboardLanguage.OnboardLanguage"
+        android:label="OnboardLanguage"
+        tools:layout="@layout/onboard_language">
     </fragment>
 
 

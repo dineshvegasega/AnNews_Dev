@@ -48,13 +48,13 @@ class Splash : Fragment() {
                 val fragmentInFrame = navHostFragment!!.getChildFragmentManager().getFragments().get(0)
                 if(loginUser == null){
 //                    if (fragmentInFrame !is Start){
-                        navHostFragment?.navController?.navigate(R.id.action_splash_to_login)
+                        navHostFragment?.navController?.navigate(R.id.action_splash_to_OnboardLanguage)
 //                        //MainActivity.mainActivity.get()!!.callBack()
 //                    }
                 }else{
 //                    if (fragmentInFrame !is Dashboard){
 //                        if(!MainActivity.isBackStack){
-                            navHostFragment?.navController?.navigate(R.id.action_splash_to_login)
+                            navHostFragment?.navController?.navigate(R.id.action_splash_to_home)
 //                        }
 //                        //MainActivity.mainActivity.get()!!.callBack()
 //                   }

@@ -49,8 +49,8 @@ class Home : Fragment(), CallBackListener {
             val adapter = HomePagerAdapter(requireActivity())
             introViewPager.adapter = adapter
             adapter.notifyDataSetChanged()
-            introViewPager.setCurrentItem(adapter.itemCount-2, false)
-            introViewPager.isUserInputEnabled = false
+//            introViewPager.setCurrentItem(adapter.itemCount-2, false)
+            introViewPager.isUserInputEnabled = true
 //            introViewPager.setOnClickListener {
 //                Log.e("TAG", "introViewPager")
 //            }

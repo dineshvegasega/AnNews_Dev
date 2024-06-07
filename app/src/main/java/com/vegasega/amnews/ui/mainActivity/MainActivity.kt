@@ -3,18 +3,26 @@ package com.vegasega.amnews.ui.mainActivity
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.room.Room
 import com.vegasega.amnews.R
 import com.vegasega.amnews.databinding.MainActivityBinding
 import com.vegasega.amnews.datastore.db.AppDatabase
 import com.vegasega.amnews.networking.ConnectivityManager
+import com.vegasega.amnews.networking.Home
+import com.vegasega.amnews.networking.OnboardLanguage
+import com.vegasega.amnews.networking.Screen
+import com.vegasega.amnews.utils.LocaleHelper
 import com.vegasega.amnews.utils.determineScreenDensityCode
 import com.vegasega.amnews.utils.getDensityName
 import com.vegasega.amnews.utils.showSnackBar
@@ -96,9 +104,55 @@ class MainActivity : AppCompatActivity() {
         val ddd = getDensityName()
         Log.e("TAG", "ddd " + ddd)
 
+
+
+        val bundle = intent?.extras
+        if (bundle != null) {
+            showData(bundle)
+        }
+
+    }
+
+    public override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        if (intent?.extras != null) {
+            showData(intent?.extras!!)
+        }
     }
 
 
+
+    private fun showData(bundle: Bundle) {
+        try {
+            val navOptions: NavOptions = NavOptions.Builder()
+                .setPopUpTo(R.id.navigation_bar, true)
+                .build()
+            if (intent!!.hasExtra(Screen)) {
+                val screen = intent.getStringExtra(Screen)
+//                Log.e("TAG", "screenAA " + screen)
+//                if (screen == Home) {
+//                  //  binding.topLayout.topToolbar.visibility = View.VISIBLE
+//                }
+                if (screen == OnboardLanguage) {
+                    navHostFragment?.navController?.navigate(R.id.walkThrough, null, navOptions)
+                } else if (screen == Home) {
+                    if (bundle?.getString("key") != null) {
+                       // callRedirect(bundle)
+                    } else {
+//                        Log.e("key", "showDataBB ")
+//                        Log.e("_id", "showDataBB ")
+                        navHostFragment?.navController?.navigate(R.id.home, null, navOptions)
+                    }
+                }
+            } else {
+//                Log.e("TAG", "screenBB ")
+                if (bundle?.getString("key") != null) {
+                    //callRedirect(bundle)
+                }
+            }
+        } catch (e: Exception) {
+        }
+    }
 
 
     private fun observeConnectivityManager() = try {
@@ -143,8 +197,25 @@ class MainActivity : AppCompatActivity() {
             else -> 12f
         }
 
-        showSnackBar("Font Scale: $fontSize")
+      //  showSnackBar("Font Scale: $fontSize")
     }
 
+
+
+
+    fun reloadActivity(language: String, screen: String) {
+        LocaleHelper.setLocale(this, language)
+        val refresh = Intent(Intent(this, MainActivity::class.java))
+        refresh.putExtra(Screen, screen)
+        refresh.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        finish()
+        finishAffinity()
+        startActivity(refresh)
+    }
+
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase, ""))
+    }
 }
 

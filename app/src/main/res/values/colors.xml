@@ -8,6 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
+    <color name="_ffffffff">#FFFFFFFF</color>
+    <color name="_00000000">#00ffffff</color>
     <color name="app_color">#FFFFFF</color>
     <color name="_ED2525">#ED2525</color>
     <color name="_ffffff">#FFFFFF</color>
@@ -31,6 +33,9 @@
     <color name="_E70932">#E70932</color>
     <color name="_0748A9">#0748A9</color>
     <color name="_B8C2C8">#B8C2C8</color>
+    <color name="_3DACC2">#3DACC2</color>
     <color name="_D0D6DA">#D0D6DA</color>
+    <color name="_FFD601">#FFD601</color>
+    <color name="_138808">#138808</color>
 
 </resources>

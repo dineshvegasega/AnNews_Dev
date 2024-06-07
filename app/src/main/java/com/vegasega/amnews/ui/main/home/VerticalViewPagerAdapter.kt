@@ -374,6 +374,7 @@ class VerticalViewPagerAdapter(
             override fun onStart(utteranceId: String) {
             }
 
+
             override fun onRangeStart(
                 utteranceId: String?,
                 start: Int,

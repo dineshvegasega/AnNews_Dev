@@ -5,7 +5,6 @@ import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
-import android.speech.tts.Voice
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +14,6 @@ import androidx.annotation.RequiresApi
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.SimpleItemAnimator
 import androidx.viewpager2.widget.ViewPager2
 import com.vegasega.amnews.R
@@ -23,19 +21,14 @@ import com.vegasega.amnews.databinding.CenterHomeBinding
 import com.vegasega.amnews.ui.interfaces.OnItemClickListener
 import com.vegasega.amnews.ui.mainActivity.MainActivity
 import com.vegasega.amnews.utils.getRecyclerView
-import com.vegasega.amnews.utils.mainThread
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import java.io.IOException
-import java.util.Locale
 
 
 @AndroidEntryPoint
 class CenterHome : Fragment(), OnItemClickListener {
     var isUp: Boolean = false
     private val viewModel: HomeVM by viewModels()
-
 
     lateinit var textToSpeech: TextToSpeech
 
@@ -86,7 +79,15 @@ class CenterHome : Fragment(), OnItemClickListener {
             layoutArticle.setOnClickListener {
                 Home.callBackListener!!.onCallBack(2)
             }
+
+
+            pullToRefresh.setOnRefreshListener {
+             //   refreshData() // your code
+                pullToRefresh.isRefreshing = false
+            }
+
         }
+
 
 
         var counter3 = 0
@@ -239,8 +240,6 @@ class CenterHome : Fragment(), OnItemClickListener {
 //        }, 200)
 
 //        binding.introViewPager.offscreenPageLimit = viewModel.itemMainFinal.size
-
-
     }
 
 
@@ -393,11 +392,9 @@ class CenterHome : Fragment(), OnItemClickListener {
                     super.onPageSelected(position)
                     adapter.updatePosition(position)
 //                    introViewPager.setCurrentItem(position, true)
-
 //                    lifecycleScope.launch {
 //                        delay(500)
 //                    }
-
                 }
 
                 override fun onPageScrollStateChanged(state: Int) {

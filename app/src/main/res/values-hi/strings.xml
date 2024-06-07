@@ -1,0 +1,33 @@
+<resources>
+    <string name='no_internet_connection'>कोई इंटरनेट कनेक्शन नहीं</string>
+    <string name='something_went_wrong'>कुछ गलत हो गया!</string>
+    <string name='title'>शीर्षक</string>
+    <string name='search'>खोजें</string>
+    <string name='Continue'>जारी रखें</string>
+    <string name='all_mauritius_news'>सभी मॉरीशस समाचार</string>
+    <string name='let_s_go'>चलो चलें</string>
+
+    <string name='title1'>आपका दैनिक डिजिटल पढ़ें</string>
+    <string name='title2'>वैयक्तिकृत फ़ीड </string>
+    <string name='title3'>खबरें चलती रहती हैं</string>
+
+    <string name = "desc1">क्रिस्प पांच बुलेट पॉइंट्स में स्मार्ट लघु कथाएँ</string>
+    <string name='desc2'>देशों से नवीनतम समाचार और amp; आपके द्वारा चुनी गई श्रेणियाँ</string>
+    <string name='desc3'>विश्वसनीय स्रोतों से प्राप्त विश्वसनीय कहानियाँ</string>
+    <string name='select_a_language'>एक भाषा चुनें</string>
+    <string name='please_tell_us_what_are_your_nlanguage_preferences'>कृपया हमें बताएं कि आपकी\nभाषा प्राथमिकताएं क्या हैं</string>
+
+
+    <string name='SelectLanguage'>भाषा चुनें</string>
+
+
+    <string name="french" translatable="false">Française</string>
+    <string name="english" translatable="false">English</string>
+    <string name="hindi" translatable="false">हिन्दी</string>
+
+    <string name="frenchVal" translatable="false">fr</string>
+    <string name="englishVal" translatable="false">en</string>
+    <string name="hindiVal" translatable="false">hi</string>
+
+    <string name='already_have_an_account'>पहले से ही एक खाता है</string>
+</resources>

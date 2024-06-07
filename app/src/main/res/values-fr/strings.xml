@@ -1,0 +1,32 @@
+<resources>
+    <string name="no_internet_connection">Aucune connexion Internet</string>
+    <string name="something_went_wrong">Quelque chose s\'est mal passé !</string>
+    <string name="title">Titre</string>
+    <string name="search">Rechercher</string>
+    <string name="Continue">Continuer</string>
+    <string name="all_mauritius_news">Toutes les actualités de Maurice</string>
+    <string name="let_s_go">Allons-y</string>
+
+    <string name="title1">Votre lecture numérique quotidienne</string>
+    <string name="title2">Flux personnalisé </string>
+    <string name="title3">Actualités en déplacement</string>
+
+    <string name="desc1">Histoires courtes intelligentes en cinq puces croustillantes</string>
+    <string name="desc2">Dernières nouvelles des pays et des pays Catégories que vous choisissez</string>
+    <string name="desc3">Diffuser des histoires crédibles à partir de sources fiables</string>
+    <string name="select_a_language">Sélectionnez une langue</string>
+    <string name="please_tell_us_what_are_your_nlanguage_preferences">Veuillez nous indiquer quelles sont vos\npréférences linguistiques</string>
+
+
+    <string name="SelectLanguage">Sélectionner la langue</string>
+
+    <string name="french" translatable="false">Française</string>
+    <string name="english" translatable="false">English</string>
+    <string name="hindi" translatable="false">हिन्दी</string>
+
+    <string name="frenchVal" translatable="false">fr</string>
+    <string name="englishVal" translatable="false">en</string>
+    <string name="hindiVal" translatable="false">hi</string>
+
+    <string name="already_have_an_account">Vous avez déjà un compte</string>
+</resources>

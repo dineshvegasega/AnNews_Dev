@@ -10,14 +10,14 @@ class HomePagerAdapter (fragmentActivity: FragmentActivity) :
 
     override fun createFragment(position: Int): Fragment {
         return when(position) {
-            0 -> LeftHome()
-            1 -> CenterHome()
-            2 -> RightHome()
+//            0 -> LeftHome()
+            0 -> CenterHome()
+            1 -> RightHome()
             else -> CenterHome()
         }
     }
 
     override fun getItemCount(): Int {
-        return 3
+        return 2
     }
 }

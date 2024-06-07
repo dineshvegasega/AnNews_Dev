@@ -174,8 +174,8 @@ const val TRANSLATE = "single?client=gtx&sl=en&dt=t"
 
 
 const val Screen = "screen"
-const val Start = "Start"
-const val Main = "Main"
+const val OnboardLanguage = "OnboardLanguage"
+const val Home = "Home"
 const val CompleteRegister = "CompleteRegister"
 const val LoginPassword = "LoginPassword"
 const val LoginOtp = "LoginOtp"

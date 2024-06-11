@@ -1652,3 +1652,38 @@ fun ViewPager2.reduceDragSensitivity() {
 }
 
 
+
+var runnable2: Runnable? = null
+fun ViewPager2.autoScroll(currentItem: Int) {
+    autoScrollStop()
+    var scrollPosition = 0
+    runnable2 = object : Runnable {
+        override fun run() {
+            val count = currentItem ?: 0
+            try {
+                setCurrentItem(scrollPosition++ % count, true)
+            }catch (e : Exception){}
+//            if (handler != null) {
+//                handler?.let {
+//                    //postDelayed(this, 3000)
+//                }
+//            }
+        }
+    }
+    if (handler != null) {
+        if (runnable2 != null) {
+            handler?.let {
+                post(runnable2 as Runnable)
+            }
+        }
+    }
+}
+
+
+fun ViewPager2.autoScrollStop() {
+    if (handler != null) {
+        if (runnable2 != null) {
+            runnable2?.let { handler?.removeCallbacks(it) }
+        }
+    }
+}

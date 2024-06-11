@@ -32,6 +32,33 @@
     <string name="hindiVal" translatable="false">hi</string>
 
     <string name="already_have_an_account">Already have an account</string>
+    <string name="login_here">Login Here</string>
+    <string name="create_account">Create Account</string>
+
+    <string name="choose_how_you_want_to_login_in_the_app">Choose how you want to login in the app</string>
+    <string name="choose_how_you_want_to_create_your_account">Choose how you want to create your account</string>
+
+    <string name="login_with_mobile_number"><![CDATA[Login with <b>Mobile Number</b>]]></string>
+    <string name="signup_with_mobile_number"><![CDATA[SignUp with <b>Mobile Number</b>]]></string>
+
+    <string name="login_with_google_account"><![CDATA[Login with <b>Google Account</b>]]></string>
+    <string name="signup_with_google_account"><![CDATA[SignUp with <b>Google Account</b>]]></string>
+
+    <string name="enter_as_guest_user">Enter as <b>Guest User</b></string>
+
+    <string name="first_time_user_signup_here"><![CDATA[First Time User? <b><font color="#3D52C0">SignUp Here</font></b>]]></string>
+    <string name="already_a_user_login_here"><![CDATA[Already a user? <b><font color="#3D52C0">Login Here</font></b>]]></string>
+    <string name="mobile_number">Mobile Number</string>
+
+    <string name="by_continuing">By continuing , you agree to our\n<font color="#3D52C0">Terms of Use</font> and <font color="#3D52C0">Privacy Policy</font></string>
+    <string name="enter_verification_code">Enter Verification Code</string>
+    <string name="we_will_automatically_detect_the_verification_code_here">We will automatically detect the verification code here</string>
+    <string name="verification_code">Verification Code</string>
+
+    <string name="didn_t_get_the_code_resend_code"><![CDATA[Didn’t get the code ? <b>resend code</b>]]></string>
+    <string name="didn_t_get_the_code_resend_code_color"><![CDATA[Didn’t get the code ? <b><font color="#3D52C0">resend code</font></b>]]></string>
+
+    <string name="_23_seconds_left"><![CDATA[<b>%s</b> seconds left]]></string>
 
 
 </resources>

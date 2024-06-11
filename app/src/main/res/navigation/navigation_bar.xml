@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_bar"
-    app:startDestination="@id/home">
+    app:startDestination="@id/splash">
 
     <fragment
         android:id="@+id/splash"
@@ -101,6 +101,13 @@
         android:label="WalkThrough"
         tools:layout="@layout/walk_through">
 
+        <action
+            android:id="@+id/action_walkThrough_to_account"
+            app:destination="@id/account"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/walkThrough"
+            app:popUpToInclusive="true" />
+
     </fragment>
 
     <fragment
@@ -108,7 +115,52 @@
         android:name="com.vegasega.amnews.ui.onboarding.onboardLanguage.OnboardLanguage"
         android:label="OnboardLanguage"
         tools:layout="@layout/onboard_language">
+
     </fragment>
+
+
+    <fragment
+        android:id="@+id/account"
+        android:name="com.vegasega.amnews.ui.onboarding.account.Account"
+        android:label="Account"
+        tools:layout="@layout/account">
+        <action
+            android:id="@+id/action_account_to_account"
+            app:destination="@id/account"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/account"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_account_to_loginSignup"
+            app:destination="@id/loginSignup"
+            app:launchSingleTop="true"
+             />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginSignup"
+        android:name="com.vegasega.amnews.ui.onboarding.loginSignup.LoginSignUp"
+        android:label="LoginSignUp"
+        tools:layout="@layout/login_signup">
+
+        <action
+            android:id="@+id/action_loginSignup_to_verificationCode"
+            app:destination="@id/verificationCode"
+            app:launchSingleTop="true"
+            />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/verificationCode"
+        android:name="com.vegasega.amnews.ui.onboarding.verificationCode.VerificationCode"
+        android:label="VerificationCode"
+        tools:layout="@layout/verification_code">
+    </fragment>
+
+
 
 
 </navigation>

@@ -78,7 +78,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="MissingConstraints"
-            app:fontFamily="@font/roboto_regular"
+            app:fontFamily="@font/product_sans_regular"
             android:text="@string/already_have_an_account"
             android:layout_marginBottom="@dimen/_25sdp"
             />

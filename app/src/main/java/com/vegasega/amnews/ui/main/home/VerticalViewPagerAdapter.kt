@@ -49,7 +49,7 @@ class VerticalViewPagerAdapter(
     var mp: MediaPlayer
 
     init {
-        mp = MediaPlayer.create(MainActivity.context.get(), R.raw.sound_1)
+        mp = MediaPlayer.create(MainActivity.context.get(), R.raw.sound_3)
     }
 
     override fun getItemCount(): Int = list.size
@@ -98,6 +98,15 @@ class VerticalViewPagerAdapter(
 
     @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
     override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
+
+        if (isHide) {
+            holder.baseButtons.visibility = View.GONE
+            holder.group.visibility = View.VISIBLE
+        } else {
+            holder.baseButtons.visibility = View.VISIBLE
+            holder.group.visibility = View.GONE
+        }
+
         holder.itemView.singleClick {
             Log.e("TAG", "mainLayout")
             listener.onClickMain()
@@ -117,12 +126,11 @@ class VerticalViewPagerAdapter(
 //        "http://167.71.225.20:8081/uploads/1710232591.png".glideImage(holder.itemView.context, holder.imageLogo)
 
 
-
         if (model.isAdd == false) {
 //            holder.imageLogo.setImageResource(model.image)
             holder.imageLogo.setImageResource(model.image)
         } else {
-            if (model.isAddBig == false){
+            if (model.isAddBig == false) {
 //                holder.imageLogo.setImageResource(model.image)
 //                holder.layoutTopics.visibility = View.VISIBLE
                 holder.imageLogo.setImageResource(model.image)
@@ -156,7 +164,7 @@ class VerticalViewPagerAdapter(
                 if (model.isAdd == false) {
                     playSong(model, holder)
                 } else {
-                    if (model.isAddBig == false){
+                    if (model.isAddBig == false) {
                         playSong(model, holder)
                     } else {
                         MainActivity.activity.get()?.runOnUiThread {
@@ -169,7 +177,7 @@ class VerticalViewPagerAdapter(
 //                                    mp.start()
 //                                } catch (_: IOException) {
 //                                }
-                                delay(500)
+//                                delay(500)
                                 listener.onClickItem(counter + 1)
                             }
                         }
@@ -235,13 +243,7 @@ class VerticalViewPagerAdapter(
         }
 
 
-        if (isHide) {
-            holder.baseButtons.visibility = View.GONE
-            holder.group.visibility = View.VISIBLE
-        } else {
-            holder.baseButtons.visibility = View.VISIBLE
-            holder.group.visibility = View.GONE
-        }
+
 
 
         holder.ivUp.setOnClickListener {
@@ -394,6 +396,26 @@ class VerticalViewPagerAdapter(
 //            notifyItemChanged(counter)
 //        }, 200)
 
+        Log.e("TAG", "updatePosition " + position)
+//        try {
+//            mp.start()
+//
+//            Thread.sleep(400)
+//            mp.stop()
+//
+////            Handler(Looper.getMainLooper()).postDelayed({
+////                    mp.stop()
+////                    mp.release()
+////            }, 300)
+////            mp.setOnCompletionListener {
+////                Log.e("TAG", "mp.setOnCompletionListener")
+////                if (mp.isPlaying) {
+////                    mp.stop()
+////                    mp.release()
+////                }
+////            }
+//        } catch (_: IOException) {
+//        }
 
     }
 

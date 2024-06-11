@@ -1,6 +1,8 @@
 package com.vegasega.amnews.ui.main.home
 
 import android.annotation.SuppressLint
+import android.media.AudioAttributes
+import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
@@ -8,6 +10,7 @@ import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OVER_SCROLL_NEVER
 import android.view.ViewGroup
 import android.view.animation.TranslateAnimation
 import androidx.annotation.RequiresApi
@@ -16,17 +19,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.SimpleItemAnimator
 import androidx.viewpager2.widget.ViewPager2
+import com.streetsaarthi.nasvi.screens.interfaces.CallBackListener
 import com.vegasega.amnews.R
 import com.vegasega.amnews.databinding.CenterHomeBinding
 import com.vegasega.amnews.ui.interfaces.OnItemClickListener
 import com.vegasega.amnews.ui.mainActivity.MainActivity
+import com.vegasega.amnews.utils.autoScroll
 import com.vegasega.amnews.utils.getRecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.IOException
 
 
 @AndroidEntryPoint
-class CenterHome : Fragment(), OnItemClickListener {
+class CenterHome : Fragment(), OnItemClickListener, CallBackListener {
     var isUp: Boolean = false
     private val viewModel: HomeVM by viewModels()
 
@@ -47,9 +52,12 @@ class CenterHome : Fragment(), OnItemClickListener {
 //        @JvmStatic
 //        lateinit var adapter : QuickRegistrationAdapter
 
+        var callBackListener: CallBackListener? = null
+
+        lateinit var mp: MediaPlayer
+
     }
 
-    lateinit var mp: MediaPlayer
 
 
     override fun onCreateView(
@@ -65,8 +73,14 @@ class CenterHome : Fragment(), OnItemClickListener {
     @SuppressLint("NotifyDataSetChanged", "ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        mp = MediaPlayer.create(MainActivity.context.get(), R.raw.sound_1)
+        callBackListener = this
+        mp = MediaPlayer.create(MainActivity.context.get(), R.raw.sound_2)
+//        mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
+//        mp.setAudioAttributes(
+//            AudioAttributes.Builder()
+//                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+//                .build()
+//        )
 
         binding.apply {
 
@@ -81,10 +95,7 @@ class CenterHome : Fragment(), OnItemClickListener {
             }
 
 
-            pullToRefresh.setOnRefreshListener {
-             //   refreshData() // your code
-                pullToRefresh.isRefreshing = false
-            }
+
 
         }
 
@@ -204,13 +215,19 @@ class CenterHome : Fragment(), OnItemClickListener {
 
     override fun onClickItem(position: Int) {
         binding.apply {
-            try {
-                mp.start()
-            } catch (_: IOException) {
-            }
+//            try {
+//                if (mp.isPlaying) {
+//                    mp.stop()
+//                    mp.prepare();
+//                }
+//
+//                mp.start()
+//            } catch (_: IOException) {
+//            }
 //            mainThread {
 //                delay(500)
 //            }
+//            Thread.sleep(500)
             introViewPager.setCurrentItem(position, true)
         }
     }
@@ -309,8 +326,37 @@ class CenterHome : Fragment(), OnItemClickListener {
 //                false
 //            }
 
-            binding.introViewPager.offscreenPageLimit = viewModel.itemMainFinal.size
+            introViewPager.offscreenPageLimit = 1
+            introViewPager.overScrollMode = OVER_SCROLL_NEVER
             introViewPager.adapter = adapter
+
+//            val animator: DefaultItemAnimator = object : DefaultItemAnimator() {
+//                override fun canReuseUpdatedViewHolder(viewHolder: RecyclerView.ViewHolder): Boolean {
+//                    return true
+//                }
+//            }
+//            introViewPager.getRecyclerView().setItemAnimator(animator)
+
+//            introViewPager.invalidate()
+
+//            introViewPager.setOnTouchListener(OnTouchListener { v, event ->
+//                pullToRefresh.setEnabled(false)
+//                when (event.action) {
+//                    MotionEvent.ACTION_UP -> pullToRefresh.setEnabled(true)
+//                }
+//                false
+//            })
+
+
+//            introViewPager.setOnTouchListener(OnTouchListener { v, event ->
+//                when (event.action) {
+//                    MotionEvent.ACTION_MOVE -> pullToRefresh.setEnabled(false)
+//                    MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> pullToRefresh.setEnabled(
+//                        true
+//                    )
+//                }
+//                false
+//            })
 
 //            viewModel.hide()
 
@@ -379,12 +425,16 @@ class CenterHome : Fragment(), OnItemClickListener {
                         Log.e("TAG", "positionA" + position)
 //                        adapter.updatePosition(position)
 //                        adapter.notifyItemChanged(position)
-                        binding.loadingProgressBar.visibility = View.GONE
+//                        onClickItem(pageChangeValue)
                     }
-                    try {
-                        mp.start()
-                    } catch (_: IOException) {
-                    }
+//                    try {
+//                        if (mp.isPlaying) {
+//                            mp.stop()
+//                            mp.prepare();
+//                        }
+//                        mp.start()
+//                    } catch (_: IOException) {
+//                    }
                     pageChangeValue = position
                 }
 
@@ -402,6 +452,15 @@ class CenterHome : Fragment(), OnItemClickListener {
                     Log.e("TAG", "state" + state)
                     if (state == 0) {
                         onClickItem(pageChangeValue)
+                        try {
+                            if (mp.isPlaying) {
+                                mp.stop()
+                                mp.prepare();
+                            }
+
+                            mp.start()
+                        } catch (_: IOException) {
+                        }
                         adapter.notifyItemChanged(adapter.counter)
                     }
 //                    viewModel.hide()
@@ -409,6 +468,7 @@ class CenterHome : Fragment(), OnItemClickListener {
             })
 
             binding.loadingProgressBar.visibility = View.GONE
+
         }
 
     }
@@ -602,6 +662,16 @@ class CenterHome : Fragment(), OnItemClickListener {
         animate.fillAfter = true
         view.startAnimation(animate)
     }
+
+    override fun onCallBack(pos: Int) {
+//        binding.introViewPager.adapter = adapter
+//        adapter.updatePosition(pos)
+        binding.introViewPager.autoScroll(binding.introViewPager.currentItem)
+    }
+
+    override fun onCallBackHideShow() {
+    }
+
 
 }
 

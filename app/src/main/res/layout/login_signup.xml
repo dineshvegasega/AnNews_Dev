@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/back_button"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:padding="@dimen/_8sdp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/list_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@+id/imageBack"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/introViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/textHeaderTxt2"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/_10sdp"
+            >
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textHeaderLoginTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_23sdp"
+                android:gravity="center"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                app:layout_constraintTop_toBottomOf="@+id/imageLogo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="MissingConstraints"
+                app:fontFamily="@font/product_sans_regular"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="@string/login_here"
+                />
+
+
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textDiscLoginTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/_4E6576"
+                android:textSize="@dimen/_12sdp"
+                android:gravity="center"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/textHeaderadfdsfTxt3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="MissingConstraints"
+                app:fontFamily="@font/product_sans_regular"
+                android:text="@string/choose_how_you_want_to_create_your_account"
+                />
+
+
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textMobileNumberTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/_133248"
+                android:textSize="@dimen/_12sdp"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/textHeaderadfdsfTxt3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="MissingConstraints"
+                app:fontFamily="@font/product_sans_regular"
+                android:text="@string/mobile_number"
+                />
+
+
+            <LinearLayout
+                android:id="@+id/linearEmail"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:orientation="horizontal"
+                android:background="@drawable/light_round_corner"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center_vertical"
+                >
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/ccp"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="match_parent"
+                    app:ccp_textSize="@dimen/_10sdp"
+                    app:ccp_defaultPhoneCode="91"
+                    app:ccpDialog_textColor="@color/_133248"
+                    app:ccp_showArrow="false"
+                    app:ccp_showFlag="false"
+                    app:ccp_showNameCode="false"
+                    android:gravity="center"
+
+                    />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="@dimen/_20sdp"
+                    tools:ignore="MissingConstraints"
+                    android:background="@color/_DCE0E4"
+                    />
+
+
+                <EditText
+                    android:id="@+id/editTextPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:fontFamily="@font/product_sans_regular"
+                    android:hint="1234567890"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:digits="0123456789"
+                    android:singleLine="true"
+                    android:maxLength="10"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/_999999"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:textSize="@dimen/_10sdp"
+                    android:textCursorDrawable="@drawable/color_cursor"
+
+                    />
+            </LinearLayout>
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textHeaderTxt2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/_404040"
+            android:textSize="@dimen/_11sdp"
+            android:gravity="center"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            app:layout_constraintBottom_toTopOf="@+id/btSignIn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints"
+            app:fontFamily="@font/roboto_regular"
+            android:text="@string/by_continuing"
+            android:layout_marginBottom="@dimen/_25sdp"
+            />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btSignIn"
+            style="@style/PrimaryButtonBlue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_8sdp"
+            android:text="@string/Continue"
+            android:backgroundTint="@color/_0748A9"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

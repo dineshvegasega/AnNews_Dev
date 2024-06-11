@@ -8,17 +8,7 @@
     android:background="@color/_ffffff"
  >
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/pullToRefresh"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="horizontal"
-        android:background="@color/_ffffff"
-        android:focusable="false">
+
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/introViewPager"
@@ -34,8 +24,6 @@
             android:focusable="false">
 
         </androidx.viewpager2.widget.ViewPager2>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 
 
 
@@ -202,6 +190,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:visibility="gone"
         />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

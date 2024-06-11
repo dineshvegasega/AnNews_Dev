@@ -25,12 +25,37 @@ public class AAA extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.home);
+        setContentView(R.layout.abc);
+
+
 
 //        Intent checkIntent = new Intent();
 //        checkIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
 //        startActivityForResult(checkIntent, MY_DATA_CHECK_CODE);
 
+//        horizontalScrollView.setOnTouchListener(new View.OnTouchListener() {
+//                                                    float rawX;
+//                                                    int mTouchSlop =  ViewConfiguration.get(getActivity()).getScaledTouchSlop();
+//
+//                                                    @Override
+//                                                    public boolean onTouch(View v, MotionEvent event) {
+//                                                        switch (event.getActionMasked()) {
+//                                                            case MotionEvent.ACTION_DOWN:
+//                                                                v.getParent().requestDisallowInterceptTouchEvent(true);
+//                                                                rawX = event.getRawX();
+//                                                                break;
+//                                                            case MotionEvent.ACTION_CANCEL:
+//                                                            case MotionEvent.ACTION_UP:
+//                                                                v.getParent().requestDisallowInterceptTouchEvent(false);
+//                                                                rawX = 0f;
+//                                                                break;
+//                                                            case MotionEvent.ACTION_MOVE:
+//                                                                if (Math.abs(rawX - event.getRawX()) > mTouchSlop)
+//                                                                    v.getParent().requestDisallowInterceptTouchEvent(true);
+//                                                                break;
+//                                                        }
+//                                                        return false;
+//                                                    }
 
     }
 

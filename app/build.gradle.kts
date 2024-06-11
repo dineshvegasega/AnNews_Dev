@@ -149,7 +149,8 @@ dependencies {
 
 //    implementation ("com.daimajia.swipelayout:library:1.2.0")
 
-//    implementation ("com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.0")
+//    implementation ("com.chauthai.swipereveallayout:swipe-reveal-layout:c04a9d7")
+//    implementation ("com.github.hydrated:SwipeRevealLayout:cedd8e7")
 
 //    implementation ("com.github.qiujayen:sticky-layoutmanager:1.0.1")
     implementation ("androidx.room:room-runtime:2.6.1")
@@ -159,5 +160,10 @@ dependencies {
     implementation ("androidx.room:room-ktx:2.6.1")
 //    kapt ("androidx.room:room-compiler:2.6.1")
     implementation ("androidx.work:work-runtime-ktx:2.9.0")
+    implementation ("com.hbb20:ccp:2.7.0")
+    implementation ("com.github.rajputmukesh748:MukeshOtpView:1.0.0")
+
+
+//    implementation ("com.reginald.swiperefresh:library:1.0.0")
 
 }

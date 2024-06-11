@@ -24,12 +24,12 @@ class App : Application() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         DataStoreUtil.initDataStore(applicationContext)
 
-    val myWork = PeriodicWorkRequestBuilder<DailyWorker>(
-        1, TimeUnit.HOURS)
-        .build()
-    WorkManager.getInstance(this).enqueueUniquePeriodicWork(
-        "my_work",
-    ExistingPeriodicWorkPolicy.KEEP,
-    myWork)
+//    val myWork = PeriodicWorkRequestBuilder<DailyWorker>(
+//        1, TimeUnit.HOURS)
+//        .build()
+//    WorkManager.getInstance(this).enqueueUniquePeriodicWork(
+//        "my_work",
+//    ExistingPeriodicWorkPolicy.KEEP,
+//    myWork)
     }
 }

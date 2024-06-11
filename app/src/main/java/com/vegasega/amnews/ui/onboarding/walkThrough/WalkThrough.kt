@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.google.android.material.tabs.TabLayoutMediator
 import com.vegasega.amnews.R
 import com.vegasega.amnews.databinding.WalkThroughBinding
+import com.vegasega.amnews.utils.singleClick
 
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -64,18 +66,33 @@ class WalkThrough : Fragment() {
                     super.onPageScrollStateChanged(state)
                 }
             })
-        }
 
 
-        binding.btSignIn.setOnClickListener {
+
+            textHeaderTxt2.singleClick {
+                findNavController().navigate(R.id.action_walkThrough_to_account, Bundle().apply {
+                    putString("key", "2")
+                })
+            }
+
+
+            btSignIn.setOnClickListener {
                 if (tabPosition == 0){
                     binding.introViewPager.setCurrentItem(1, false)
                 } else if (tabPosition == 1){
                     binding.introViewPager.setCurrentItem(2, false)
                 } else {
-                    //requireView().findNavController().navigate(R.id.action_walkThrough_to_onBoard)
+                    findNavController().navigate(R.id.action_walkThrough_to_account, Bundle().apply {
+                        putString("key", "1")
+                    })
                 }
+            }
         }
+
+
+
+
+
 
 
     }

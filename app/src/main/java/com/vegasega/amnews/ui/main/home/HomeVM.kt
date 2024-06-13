@@ -8,25 +8,35 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.gson.JsonElement
 import com.vegasega.amnews.R
 import com.vegasega.amnews.databinding.CardItemViewBinding
 import com.vegasega.amnews.databinding.ItemHomeHorizontalMenusBinding
 import com.vegasega.amnews.databinding.LoaderBinding
 import com.vegasega.amnews.genericAdapter.GenericAdapter
+import com.vegasega.amnews.models.BaseResponseDC
 import com.vegasega.amnews.models.Item
 import com.vegasega.amnews.models.ItemList
 import com.vegasega.amnews.models.ItemMenu
+import com.vegasega.amnews.networking.ApiInterface
+import com.vegasega.amnews.networking.CallHandler
+import com.vegasega.amnews.networking.Repository
+import com.vegasega.amnews.networking.getJsonRequestBody
 import com.vegasega.amnews.ui.mainActivity.MainActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import org.json.JSONObject
+import retrofit2.Response
 import java.security.AccessController.getContext
 import javax.inject.Inject
 
 
 @HiltViewModel
-class HomeVM @Inject constructor() : ViewModel() {
+class HomeVM @Inject constructor(private val repository: Repository) : ViewModel() {
 
 //    val adapter by lazy { VerticalViewPagerAdapter(this) }
 
@@ -77,11 +87,15 @@ class HomeVM @Inject constructor() : ViewModel() {
         itemMenusArray.add(ItemMenu("Featured", R.drawable.icon_featured, false))
         itemMenusArray.add(ItemMenu("Saved", R.drawable.icon_saved, false))
 
-        itemMainTopics?.add(Item("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any",R.drawable.m1,
+
+
+        itemMainTopics?.add(Item("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any",
+            R.drawable.m1,
             false,
             false,
             false,
             "en",
+            "",
             arrayListOf(
                 ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
                 ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
@@ -94,6 +108,7 @@ class HomeVM @Inject constructor() : ViewModel() {
             false,
             false,
             "hi",
+            "",
             arrayListOf(
                 ItemList("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"),
                 ItemList("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"),
@@ -106,6 +121,7 @@ class HomeVM @Inject constructor() : ViewModel() {
             false,
             false,
             "bho",
+            "",
             arrayListOf(
                 ItemList("कुछ समय पहिले हमरा ई गिने के जरूरत रहे कि ईमेल टेम्पलेट में एगो पाठ के टुकड़ा में कतना अक्षर होला (कवनो पास ना होखे खातिर"),
                 ItemList("कुछ समय पहिले हमरा ई गिने के जरूरत रहे कि ईमेल टेम्पलेट में एगो पाठ के टुकड़ा में कतना अक्षर होला (कवनो पास ना होखे खातिर") ,
@@ -118,6 +134,7 @@ class HomeVM @Inject constructor() : ViewModel() {
             false,
             false,
             "en",
+            "",
             arrayListOf(
                 ItemList("put icon"),
                 ItemList("set gravity") ,
@@ -130,6 +147,7 @@ class HomeVM @Inject constructor() : ViewModel() {
             false,
             false,
             "en",
+            "",
             arrayListOf(
                 ItemList("I can icon"),
                 ItemList("but gravity to center") ,
@@ -142,6 +160,7 @@ class HomeVM @Inject constructor() : ViewModel() {
             false,
             false,
             "en",
+            "",
             arrayListOf(
                 ItemList("I put icon"),
                 ItemList("I set gravity center") ,
@@ -156,6 +175,7 @@ class HomeVM @Inject constructor() : ViewModel() {
             false,
             false,
             "en",
+            "",
             arrayListOf(
                 ItemList("M1"),
                 ItemList("M2") ,
@@ -169,6 +189,7 @@ class HomeVM @Inject constructor() : ViewModel() {
             false,
             false,
             "en",
+            "",
             arrayListOf(
                 ItemList("N1"),
                 ItemList("N2") ,
@@ -183,6 +204,7 @@ class HomeVM @Inject constructor() : ViewModel() {
             false,
             false,
             "en",
+            "",
             arrayListOf(
                 ItemList("O1"),
                 ItemList("O2") ,
@@ -197,6 +219,7 @@ class HomeVM @Inject constructor() : ViewModel() {
             false,
             false,
             "en",
+            "",
             arrayListOf(
                 ItemList("P1"),
                 ItemList("P2") ,
@@ -214,6 +237,7 @@ class HomeVM @Inject constructor() : ViewModel() {
             true,
             false,
             "en",
+            "",
             arrayListOf(
                 ItemList("AA11"),
                 ItemList("AA22") ,
@@ -228,6 +252,7 @@ class HomeVM @Inject constructor() : ViewModel() {
             true,
             true,
             "en",
+            "",
             arrayListOf(
                 ItemList("BB11"),
                 ItemList("BB22") ,
@@ -242,6 +267,35 @@ class HomeVM @Inject constructor() : ViewModel() {
             true,
             false,
             "en",
+            "",
+            arrayListOf(
+                ItemList("CC11"),
+                ItemList("CC22") ,
+                ItemList("CC33"),
+                ItemList("CC44"),
+                ItemList("CC55"),
+            )))
+
+        itemMainAds?.add(Item("Add D",R.drawable.add1,
+            false,
+            true,
+            false,
+            "en",
+            "",
+            arrayListOf(
+                ItemList("CC11"),
+                ItemList("CC22") ,
+                ItemList("CC33"),
+                ItemList("CC44"),
+                ItemList("CC55"),
+            )))
+
+        itemMainAds?.add(Item("Add E",R.drawable.add1,
+            false,
+            true,
+            false,
+            "en",
+            "",
             arrayListOf(
                 ItemList("CC11"),
                 ItemList("CC22") ,
@@ -384,6 +438,62 @@ class HomeVM @Inject constructor() : ViewModel() {
         }
     }
 
+
+
+
+    private var itemLiveNoticeResult = MutableLiveData<BaseResponseDC<Any>>()
+    val itemLiveNotice : LiveData<BaseResponseDC<Any>> get() = itemLiveNoticeResult
+    fun liveNotice(jsonObject: JSONObject) = viewModelScope.launch {
+        repository.callApi(
+            callHandler = object : CallHandler<Response<BaseResponseDC<JsonElement>>> {
+                override suspend fun sendRequest(apiInterface: ApiInterface) =
+                    apiInterface.allNoticeList(requestBody = jsonObject.getJsonRequestBody())
+                override fun success(response: Response<BaseResponseDC<JsonElement>>) {
+                    if (response.isSuccessful){
+                        itemLiveNoticeResult.value = response.body() as BaseResponseDC<Any>
+                    }
+                }
+
+                override fun error(message: String) {
+                    super.error(message)
+//                    showSnackBar(message)
+                }
+
+                override fun loading() {
+                    super.loading()
+                }
+            }
+        )
+    }
+
+
+
+
+
+    private var itemLiveNoticeResultSecond = MutableLiveData<BaseResponseDC<Any>>()
+    val itemLiveNoticeSecond : LiveData<BaseResponseDC<Any>> get() = itemLiveNoticeResultSecond
+    fun liveNoticeSecond(jsonObject: JSONObject) = viewModelScope.launch {
+        repository.callApi(
+            callHandler = object : CallHandler<Response<BaseResponseDC<JsonElement>>> {
+                override suspend fun sendRequest(apiInterface: ApiInterface) =
+                    apiInterface.allNoticeList(requestBody = jsonObject.getJsonRequestBody())
+                override fun success(response: Response<BaseResponseDC<JsonElement>>) {
+                    if (response.isSuccessful){
+                        itemLiveNoticeResultSecond.value =  response.body() as BaseResponseDC<Any>
+                    }
+                }
+
+                override fun error(message: String) {
+                    super.error(message)
+//                    showSnackBar(message)
+                }
+
+                override fun loading() {
+                    super.loading()
+                }
+            }
+        )
+    }
 
 
 }

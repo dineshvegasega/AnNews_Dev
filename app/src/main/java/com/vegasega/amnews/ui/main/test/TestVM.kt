@@ -34,6 +34,7 @@ class TestVM @Inject constructor() : ViewModel() {
                 false,
                 false,
                 "en",
+                "",
                 arrayListOf(
                     ItemList("I can easily put icon"),
                     ItemList("but if I set gravity to center") ,
@@ -47,6 +48,7 @@ class TestVM @Inject constructor() : ViewModel() {
                 false,
                 false,
                 "en",
+                "",
                 arrayListOf(
                     ItemList("1"),
                     ItemList("2") ,
@@ -60,6 +62,7 @@ class TestVM @Inject constructor() : ViewModel() {
                 false,
                 false,
                 "en",
+                "",
                 arrayListOf(
                     ItemList("1C"),
                     ItemList("2C") ,
@@ -73,6 +76,7 @@ class TestVM @Inject constructor() : ViewModel() {
                 false,
                 false,
                 "en",
+                "",
                 arrayListOf(
                     ItemList("put icon"),
                     ItemList("set gravity") ,
@@ -86,6 +90,7 @@ class TestVM @Inject constructor() : ViewModel() {
                 false,
                 false,
                 "en",
+                "",
                 arrayListOf(
                     ItemList("I can icon"),
                     ItemList("but gravity to center") ,
@@ -99,6 +104,7 @@ class TestVM @Inject constructor() : ViewModel() {
                 false,
                 false,
                 "en",
+                "",
                 arrayListOf(
                     ItemList("I put icon"),
                     ItemList("I set gravity center") ,
@@ -113,6 +119,7 @@ class TestVM @Inject constructor() : ViewModel() {
                 false,
                 false,
                 "en",
+                "",
                 arrayListOf(
                     ItemList("I put icon"),
                     ItemList("I set gravity center") ,
@@ -128,6 +135,7 @@ class TestVM @Inject constructor() : ViewModel() {
                 false,
                 false,
                 "en",
+                "",
                 arrayListOf(
                     ItemList("I put icon"),
                     ItemList("I set gravity center") ,

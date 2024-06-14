@@ -36,6 +36,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.json.JSONObject
 import java.io.IOException
 import com.vegasega.amnews.models.Item
+import com.vegasega.amnews.models.ItemList
 import com.vegasega.amnews.utils.PaginationScrollListener
 import kotlinx.coroutines.delay
 
@@ -65,7 +66,7 @@ class CenterHome : Fragment(), OnItemClickListener, CallBackListener {
 
         var callBackListener: CallBackListener? = null
 
-        lateinit var mp: MediaPlayer
+//        lateinit var mp: MediaPlayer
 
     }
 
@@ -90,7 +91,19 @@ class CenterHome : Fragment(), OnItemClickListener, CallBackListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         callBackListener = this
-        mp = MediaPlayer.create(MainActivity.context.get(), R.raw.sound_2)
+//        mp = MediaPlayer.create(MainActivity.context.get(), R.raw.sound_2)
+//        mp.setAudioAttributes(
+//            AudioAttributes.Builder()
+//                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+//                .setUsage(AudioAttributes.USAGE_MEDIA)
+//                .build()
+//        )
+
+//        mp.setOnCompletionListener {
+//            mp.stop()
+//            mp.release()
+//        }
+
 //        mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
 //        mp.setAudioAttributes(
 //            AudioAttributes.Builder()
@@ -99,8 +112,6 @@ class CenterHome : Fragment(), OnItemClickListener, CallBackListener {
 //        )
 
         binding.apply {
-
-//            viewVertical = introViewPager
 
             layoutTopic.setOnClickListener {
                 Home.callBackListener!!.onCallBack(0)
@@ -258,7 +269,6 @@ class CenterHome : Fragment(), OnItemClickListener, CallBackListener {
 //            mainThread {
 //                delay(500)
 //            }
-//            Thread.sleep(500)
             introViewPager.setCurrentItem(position, true)
         }
     }
@@ -278,8 +288,8 @@ class CenterHome : Fragment(), OnItemClickListener, CallBackListener {
 //        defaultThread {
 //            binding.loadingProgressBar.visibility = View.VISIBLE
 //        }
-
-        binding.introViewPager.adapter = adapter
+        binding.introViewPager.autoScroll(binding.introViewPager.currentItem)
+//        binding.introViewPager.adapter = adapter
         adapter.updatePosition(position)
         Log.e("TAG", "onClickItemUp22")
 //
@@ -357,6 +367,10 @@ class CenterHome : Fragment(), OnItemClickListener, CallBackListener {
 //                false
 //            }
 
+
+
+            introViewPager.clipToPadding = false
+            introViewPager.clipChildren = false
             introViewPager.offscreenPageLimit = 1
             introViewPager.overScrollMode = OVER_SCROLL_NEVER
             introViewPager.adapter = adapter
@@ -482,19 +496,24 @@ class CenterHome : Fragment(), OnItemClickListener, CallBackListener {
                     super.onPageScrollStateChanged(state)
                     Log.e("TAG", "state" + state)
                     if (state == 0) {
-                        onClickItem(pageChangeValue)
                         try {
+                            val mp = MediaPlayer.create(MainActivity.context.get(), R.raw.sound_2)
                             if (mp.isPlaying) {
                                 mp.stop()
-                                mp.prepare();
+                                mp.reset()
+                                mp.release()
                             }
-
                             mp.start()
                         } catch (_: IOException) {
                         }
+
+//                        mp.setOnPreparedListener {
+//                            mp.start()
+//                        }
                         adapter.notifyItemChanged(adapter.counter)
+                        onClickItem(pageChangeValue)
+
                     }
-//                    viewModel.hide()
                 }
             })
 
@@ -766,21 +785,20 @@ class CenterHome : Fragment(), OnItemClickListener, CallBackListener {
             val typeToken = object : TypeToken<List<Item>>() {}.type
             val changeValue =
                 Gson().fromJson<List<Item>>(Gson().toJson(it.data), typeToken)
-
-
+            viewModel.itemMainAdsMain.clear()
             var counter3 = 0
             for (i in 0..(changeValue.size - 1)) {
                 if (changeValue.size != viewModel.itemMainAds.size) {
                     if (counter3 == viewModel.itemMainAds.size - 1) {
-                        viewModel.itemMainAds.add(viewModel.itemMainAds[counter3])
+                        viewModel.itemMainAdsMain.add(viewModel.itemMainAds[counter3])
                         counter3 = 0
                     } else {
-                        viewModel.itemMainAds.add(viewModel.itemMainAds[counter3])
+                        viewModel.itemMainAdsMain.add(viewModel.itemMainAds[counter3])
                         counter3++
                     }
                 }
             }
-
+            Log.e("TAG", "itemLiveNoticeSeconditemMainAds1 " + viewModel.itemMainAdsMain.size)
 
             var count1 = 0
 
@@ -790,7 +808,7 @@ class CenterHome : Fragment(), OnItemClickListener, CallBackListener {
             for (i in 0..(changeValue.size - 1) + 1) {
                 if (rand11 == i) {
 //                Log.e("TAG", "Add1 " + count2)
-                    itemMainFinal.add(viewModel.itemMainAds[count2])
+                    itemMainFinal.add(viewModel.itemMainAdsMain[count2])
                     rand22 = rand11 + 3
 //                Log.e("TAG", "rand22 " + rand22)
                     rand13 = (rand22..10).random()
@@ -806,7 +824,7 @@ class CenterHome : Fragment(), OnItemClickListener, CallBackListener {
 
                 if (rand13 == i && rand13 != 0) {
 //                Log.e("TAG", "Add2 " + count2)
-                    itemMainFinal.add(viewModel.itemMainAds[count2])
+                    itemMainFinal.add(viewModel.itemMainAdsMain[count2])
                     count2++
                 }
             }
@@ -831,20 +849,20 @@ class CenterHome : Fragment(), OnItemClickListener, CallBackListener {
             val typeToken = object : TypeToken<List<Item>>() {}.type
             val changeValue =
                 Gson().fromJson<List<Item>>(Gson().toJson(it.data), typeToken)
-
-
+            viewModel.itemMainAdsMain.clear()
             var counter3 = 0
-            for (i in 0..(changeValue.size - 1)) {
-                if (changeValue.size != viewModel.itemMainAds.size) {
+            for (i in 0..(itemMainFinal.size - 1)) {
+                if (itemMainFinal.size != viewModel.itemMainAds.size) {
                     if (counter3 == viewModel.itemMainAds.size - 1) {
-                        viewModel.itemMainAds.add(viewModel.itemMainAds[counter3])
+                        viewModel.itemMainAdsMain.add(viewModel.itemMainAds[counter3])
                         counter3 = 0
                     } else {
-                        viewModel.itemMainAds.add(viewModel.itemMainAds[counter3])
+                        viewModel.itemMainAdsMain.add(viewModel.itemMainAds[counter3])
                         counter3++
                     }
                 }
             }
+            Log.e("TAG", "itemLiveNoticeSeconditemMainAds2 " + viewModel.itemMainAdsMain.size)
 
 
             var count1 = 0
@@ -854,25 +872,32 @@ class CenterHome : Fragment(), OnItemClickListener, CallBackListener {
             var rand13 = 0
             for (i in 0..(changeValue.size - 1) + 1) {
                 if (rand11 == i) {
-//                Log.e("TAG", "Add1 " + count2)
-                    itemMainFinal.add(viewModel.itemMainAds[count2])
-                    rand22 = rand11 + 3
+                    Log.e("TAG", "Add1 " + count2)
+                    Log.e("TAG", "viewModel.itemMainAds1 " + viewModel.itemMainAdsMain.size)
+//                    if (!(viewModel.itemMainAds.size == count2)){
+                        itemMainFinal.add(viewModel.itemMainAdsMain[count2])
+                        rand22 = rand11 + 3
 //                Log.e("TAG", "rand22 " + rand22)
-                    rand13 = (rand22..10).random()
+                        rand13 = (rand22..10).random()
 //                Log.e("TAG", "rand13 " + rand13)
-                    count2++
+                        count2++
+//                    }
                 } else {
 //                Log.e("TAG", "itemMainTopics11 " + itemMainTopics[count1])
 //                    Log.e("TAG", "itemMainTopics11 " + count1)
-                    itemMainFinal.add(changeValue[count1])
-                    count1++
+                        itemMainFinal.add(changeValue[count1])
+                        count1++
+
                 }
 
 
                 if (rand13 == i && rand13 != 0) {
-//                Log.e("TAG", "Add2 " + count2)
-                    itemMainFinal.add(viewModel.itemMainAds[count2])
-                    count2++
+                    Log.e("TAG", "Add2 " + count2)
+                    Log.e("TAG", "viewModel.itemMainAds2 " + viewModel.itemMainAdsMain.size)
+//                    if (!(viewModel.itemMainAds.size == count2)){
+                        itemMainFinal.add(viewModel.itemMainAdsMain[count2])
+                        count2++
+//                    }
                 }
             }
 

@@ -77,6 +77,7 @@ class HomeVM @Inject constructor(private val repository: Repository) : ViewModel
     var itemMainTopics : ArrayList<Item> = ArrayList()
 
     var itemMainAds : ArrayList<Item> = ArrayList()
+    var itemMainAdsMain : ArrayList<Item> = ArrayList()
 
     var itemMainFinal : ArrayList<Item> = ArrayList()
 
@@ -88,146 +89,146 @@ class HomeVM @Inject constructor(private val repository: Repository) : ViewModel
         itemMenusArray.add(ItemMenu("Saved", R.drawable.icon_saved, false))
 
 
-
-        itemMainTopics?.add(Item("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any",
-            R.drawable.m1,
-            false,
-            false,
-            false,
-            "en",
-            "",
-            arrayListOf(
-                ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
-                ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
-                ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
-                ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
-                ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
-            )))
-        itemMainTopics?.add(Item("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते है",R.drawable.m1,
-            false,
-            false,
-            false,
-            "hi",
-            "",
-            arrayListOf(
-                ItemList("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"),
-                ItemList("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"),
-                ItemList("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"),
-                ItemList("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"),
-                ItemList("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"),
-            )))
-        itemMainTopics?.add(Item("कुछ समय पहिले हमरा ई गिने के जरूरत रहे कि ईमेल टेम्पलेट में एगो पाठ के टुकड़ा में कतना अक्षर होला (कवनो पास ना होखे खातिर",R.drawable.m1,
-            false,
-            false,
-            false,
-            "bho",
-            "",
-            arrayListOf(
-                ItemList("कुछ समय पहिले हमरा ई गिने के जरूरत रहे कि ईमेल टेम्पलेट में एगो पाठ के टुकड़ा में कतना अक्षर होला (कवनो पास ना होखे खातिर"),
-                ItemList("कुछ समय पहिले हमरा ई गिने के जरूरत रहे कि ईमेल टेम्पलेट में एगो पाठ के टुकड़ा में कतना अक्षर होला (कवनो पास ना होखे खातिर") ,
-                ItemList("कुछ समय पहिले हमरा ई गिने के जरूरत रहे कि ईमेल टेम्पलेट में एगो पाठ के टुकड़ा में कतना अक्षर होला (कवनो पास ना होखे खातिर"),
-                ItemList("कुछ समय पहिले हमरा ई गिने के जरूरत रहे कि ईमेल टेम्पलेट में एगो पाठ के टुकड़ा में कतना अक्षर होला (कवनो पास ना होखे खातिर"),
-                ItemList("कुछ समय पहिले हमरा ई गिने के जरूरत रहे कि ईमेल टेम्पलेट में एगो पाठ के टुकड़ा में कतना अक्षर होला (कवनो पास ना होखे खातिर"),
-            )))
-        itemMainTopics?.add(Item("D",R.drawable.m1,
-            false,
-            false,
-            false,
-            "en",
-            "",
-            arrayListOf(
-                ItemList("put icon"),
-                ItemList("set gravity") ,
-                ItemList("only text"),
-                ItemList("no icon"),
-                ItemList("icon"),
-            )))
-        itemMainTopics?.add(Item("E",R.drawable.m1,
-            false,
-            false,
-            false,
-            "en",
-            "",
-            arrayListOf(
-                ItemList("I can icon"),
-                ItemList("but gravity to center") ,
-                ItemList("then centered"),
-                ItemList("but icon"),
-                ItemList("my icon"),
-            )))
-        itemMainTopics?.add(Item("F",R.drawable.m1,
-            false,
-            false,
-            false,
-            "en",
-            "",
-            arrayListOf(
-                ItemList("I put icon"),
-                ItemList("I set gravity center") ,
-                ItemList("then centered"),
-                ItemList("icon icon"),
-                ItemList("my icon"),
-            )))
-
-
-        itemMainTopics?.add(Item("M",R.drawable.m1,
-            false,
-            false,
-            false,
-            "en",
-            "",
-            arrayListOf(
-                ItemList("M1"),
-                ItemList("M2") ,
-                ItemList("M3"),
-                ItemList("M4"),
-                ItemList("M5"),
-            )))
-
-        itemMainTopics?.add(Item("N",R.drawable.m1,
-            false,
-            false,
-            false,
-            "en",
-            "",
-            arrayListOf(
-                ItemList("N1"),
-                ItemList("N2") ,
-                ItemList("N3"),
-                ItemList("N4"),
-                ItemList("N5"),
-            )))
-
-
-        itemMainTopics?.add(Item("O",R.drawable.m1,
-            false,
-            false,
-            false,
-            "en",
-            "",
-            arrayListOf(
-                ItemList("O1"),
-                ItemList("O2") ,
-                ItemList("O3"),
-                ItemList("O4"),
-                ItemList("O5"),
-            )))
-
-
-        itemMainTopics?.add(Item("P",R.drawable.m1,
-            false,
-            false,
-            false,
-            "en",
-            "",
-            arrayListOf(
-                ItemList("P1"),
-                ItemList("P2") ,
-                ItemList("P3"),
-                ItemList("P4"),
-                ItemList("P5"),
-            )))
-
+//
+//        itemMainTopics?.add(Item("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any",
+//            R.drawable.m1,
+//            false,
+//            false,
+//            false,
+//            "en",
+//            "",
+//            arrayListOf(
+//                ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
+//                ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
+//                ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
+//                ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
+//                ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
+//            )))
+//        itemMainTopics?.add(Item("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते है",R.drawable.m1,
+//            false,
+//            false,
+//            false,
+//            "hi",
+//            "",
+//            arrayListOf(
+//                ItemList("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"),
+//                ItemList("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"),
+//                ItemList("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"),
+//                ItemList("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"),
+//                ItemList("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते करते हैं"),
+//            )))
+//        itemMainTopics?.add(Item("कुछ समय पहिले हमरा ई गिने के जरूरत रहे कि ईमेल टेम्पलेट में एगो पाठ के टुकड़ा में कतना अक्षर होला (कवनो पास ना होखे खातिर",R.drawable.m1,
+//            false,
+//            false,
+//            false,
+//            "bho",
+//            "",
+//            arrayListOf(
+//                ItemList("कुछ समय पहिले हमरा ई गिने के जरूरत रहे कि ईमेल टेम्पलेट में एगो पाठ के टुकड़ा में कतना अक्षर होला (कवनो पास ना होखे खातिर"),
+//                ItemList("कुछ समय पहिले हमरा ई गिने के जरूरत रहे कि ईमेल टेम्पलेट में एगो पाठ के टुकड़ा में कतना अक्षर होला (कवनो पास ना होखे खातिर") ,
+//                ItemList("कुछ समय पहिले हमरा ई गिने के जरूरत रहे कि ईमेल टेम्पलेट में एगो पाठ के टुकड़ा में कतना अक्षर होला (कवनो पास ना होखे खातिर"),
+//                ItemList("कुछ समय पहिले हमरा ई गिने के जरूरत रहे कि ईमेल टेम्पलेट में एगो पाठ के टुकड़ा में कतना अक्षर होला (कवनो पास ना होखे खातिर"),
+//                ItemList("कुछ समय पहिले हमरा ई गिने के जरूरत रहे कि ईमेल टेम्पलेट में एगो पाठ के टुकड़ा में कतना अक्षर होला (कवनो पास ना होखे खातिर"),
+//            )))
+//        itemMainTopics?.add(Item("D",R.drawable.m1,
+//            false,
+//            false,
+//            false,
+//            "en",
+//            "",
+//            arrayListOf(
+//                ItemList("put icon"),
+//                ItemList("set gravity") ,
+//                ItemList("only text"),
+//                ItemList("no icon"),
+//                ItemList("icon"),
+//            )))
+//        itemMainTopics?.add(Item("E",R.drawable.m1,
+//            false,
+//            false,
+//            false,
+//            "en",
+//            "",
+//            arrayListOf(
+//                ItemList("I can icon"),
+//                ItemList("but gravity to center") ,
+//                ItemList("then centered"),
+//                ItemList("but icon"),
+//                ItemList("my icon"),
+//            )))
+//        itemMainTopics?.add(Item("F",R.drawable.m1,
+//            false,
+//            false,
+//            false,
+//            "en",
+//            "",
+//            arrayListOf(
+//                ItemList("I put icon"),
+//                ItemList("I set gravity center") ,
+//                ItemList("then centered"),
+//                ItemList("icon icon"),
+//                ItemList("my icon"),
+//            )))
+//
+//
+//        itemMainTopics?.add(Item("M",R.drawable.m1,
+//            false,
+//            false,
+//            false,
+//            "en",
+//            "",
+//            arrayListOf(
+//                ItemList("M1"),
+//                ItemList("M2") ,
+//                ItemList("M3"),
+//                ItemList("M4"),
+//                ItemList("M5"),
+//            )))
+//
+//        itemMainTopics?.add(Item("N",R.drawable.m1,
+//            false,
+//            false,
+//            false,
+//            "en",
+//            "",
+//            arrayListOf(
+//                ItemList("N1"),
+//                ItemList("N2") ,
+//                ItemList("N3"),
+//                ItemList("N4"),
+//                ItemList("N5"),
+//            )))
+//
+//
+//        itemMainTopics?.add(Item("O",R.drawable.m1,
+//            false,
+//            false,
+//            false,
+//            "en",
+//            "",
+//            arrayListOf(
+//                ItemList("O1"),
+//                ItemList("O2") ,
+//                ItemList("O3"),
+//                ItemList("O4"),
+//                ItemList("O5"),
+//            )))
+//
+//
+//        itemMainTopics?.add(Item("P",R.drawable.m1,
+//            false,
+//            false,
+//            false,
+//            "en",
+//            "",
+//            arrayListOf(
+//                ItemList("P1"),
+//                ItemList("P2") ,
+//                ItemList("P3"),
+//                ItemList("P4"),
+//                ItemList("P5"),
+//            )))
+//
 
 
 
@@ -250,7 +251,7 @@ class HomeVM @Inject constructor(private val repository: Repository) : ViewModel
         itemMainAds?.add(Item("Add B",R.drawable.add2,
             false,
             true,
-            true,
+            false,
             "en",
             "",
             arrayListOf(

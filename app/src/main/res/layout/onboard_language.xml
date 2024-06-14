@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/_F1F3F9"
-    android:paddingVertical="@dimen/_30sdp">
+    android:paddingVertical="@dimen/_20sdp">
 
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -89,14 +89,14 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/linear1"
             android:layout_width="0dp"
-            android:layout_height="@dimen/_48sdp"
+            android:layout_height="@dimen/_45sdp"
             app:layout_constraintTop_toBottomOf="@+id/textTitle2"
             app:layout_constraintBottom_toTopOf="@+id/linear2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:background="@drawable/unselect_lang_radius"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             >
@@ -136,15 +136,14 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/linear2"
             android:layout_width="0dp"
-            android:layout_height="@dimen/_48sdp"
+            android:layout_height="@dimen/_45sdp"
             app:layout_constraintBottom_toTopOf="@+id/linear3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:background="@drawable/unselect_lang_radius"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
             >
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textRound2"
@@ -181,13 +180,14 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/linear3"
             android:layout_width="0dp"
-            android:layout_height="@dimen/_48sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="@dimen/_45sdp"
+            app:layout_constraintBottom_toTopOf="@+id/linear4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:background="@drawable/unselect_lang_radius"
             android:orientation="horizontal"
             android:gravity="center_vertical"
+            android:layout_marginBottom="@dimen/_8sdp"
             >
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textRound3"
@@ -219,6 +219,51 @@
                 android:layout_marginStart="@dimen/_15sdp"
                 />
         </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear4"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_45sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/unselect_lang_radius"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            >
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textRound4"
+                android:layout_width="@dimen/_27sdp"
+                android:layout_height="@dimen/_27sdp"
+                android:textColor="@color/white"
+                tools:ignore="MissingConstraints"
+                app:fontFamily="@font/product_sans_regular"
+                android:text="@string/bhojpuriVal"
+                android:textSize="@dimen/_12sdp"
+                android:background="@drawable/circle_shape"
+                android:backgroundTint="@color/_E70932"
+                android:gravity="center"
+                android:layout_marginStart="@dimen/_15sdp"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/_4E6576"
+                android:gravity="center_vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints"
+                app:fontFamily="@font/product_sans_regular"
+                android:text="@string/bhojpuri"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

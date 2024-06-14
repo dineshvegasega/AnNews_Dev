@@ -12,7 +12,7 @@
     <string name='title3'>खबरें चलती रहती हैं</string>
 
     <string name = "desc1">क्रिस्प पांच बुलेट पॉइंट्स में स्मार्ट लघु कथाएँ</string>
-    <string name='desc2'>देशों से नवीनतम समाचार और amp; आपके द्वारा चुनी गई श्रेणियाँ</string>
+    <string name='desc2'>देशों से नवीनतम समाचार और आपके द्वारा चुनी गई श्रेणियाँ</string>
     <string name='desc3'>विश्वसनीय स्रोतों से प्राप्त विश्वसनीय कहानियाँ</string>
     <string name='select_a_language'>एक भाषा चुनें</string>
     <string name='please_tell_us_what_are_your_nlanguage_preferences'>कृपया हमें बताएं कि आपकी\nभाषा प्राथमिकताएं क्या हैं</string>
@@ -24,10 +24,40 @@
     <string name="french" translatable="false">Française</string>
     <string name="english" translatable="false">English</string>
     <string name="hindi" translatable="false">हिन्दी</string>
+    <string name="bhojpuri" translatable="false">भोजपुरी</string>
 
     <string name="frenchVal" translatable="false">fr</string>
     <string name="englishVal" translatable="false">en</string>
     <string name="hindiVal" translatable="false">hi</string>
+    <string name="bhojpuriVal" translatable="false">bho</string>
+
 
     <string name='already_have_an_account'>पहले से ही एक खाता है</string>
+    <string name='login_here'>यहां लॉगिन करें</string>
+    <string name='create_account'>खाता बनाएं</string>
+
+    <string name = "choose_how_you_want_to_login_in_the_app">चुनें कि आप ऐप में कैसे लॉगिन करना चाहते हैं</string>
+    <string name = "choose_how_you_want_to_create_your_account">चुनें कि आप अपना खाता कैसे बनाना चाहते हैं</string>
+
+    <string name='login_with_mobile_number'><![CDATA[लॉग इन करें <b>मोबाइल नंबर</b>]]></string>
+    <string name='signup_with_mobile_number'><![CDATA[साइन अप करें <b>मोबाइल नंबर</b>]]></string>
+
+    <string name='login_with_google_account'><![CDATA[<b>गूगल खाते से लॉगिन करें</b>]]></string>
+    <string name='signup_with_google_account'><![CDATA[<b>गूगल खाते से साइनअप करें</b>]]></string>
+
+    <string name='enter_as_guest_user'><b>अतिथि उपयोगकर्ता</b></string> के रूप में दर्ज करें
+
+    <string name='first_time_user_signup_here'><![CDATA[पहली बार उपयोगकर्ता? <b><font color="#3D52C0">यहां साइन अप करें</font></b>]]></string>
+    <string name='already_a_user_login_here'><![CDATA[पहले से ही उपयोगकर्ता? <b><font color="#3D52C0">यहां लॉगिन करें</font></b>]]></string>
+    <string name='mobile_number'>मोबाइल नंबर</string>
+
+    <string name='by_continuing'>जारी रखकर, आप हमारी\n<font color='#3D52C0'>उपयोग की शर्तों</font> और <font color='#3D52C0'>गोपनीयता नीति</font> से सहमत होते हैं। </string>
+    <string name='enter_verification_code'>सत्यापन कोड दर्ज करें</string>
+    <string name='we_will_automatically_detect_the_verification_code_here'>हम स्वचालित रूप से यहां सत्यापन कोड का पता लगा लेंगे</string>
+    <string name='verification_code'>सत्यापन कोड</string>
+
+    <string name='didn_t_get_the_code_resend_code'><![CDATA[कोड नहीं मिला? <b>कोड दोबारा भेजें</b>]]></string>
+    <string name='didn_t_get_the_code_resend_code_color'><![CDATA[कोड नहीं मिला? <b><font color="#3D52C0">कोड पुनः भेजें</font></b>]]></string>
+
+    <string name='_23_seconds_left'><![CDATA[<b>%s</b> सेकंड बचे हैं]]></string>
 </resources>

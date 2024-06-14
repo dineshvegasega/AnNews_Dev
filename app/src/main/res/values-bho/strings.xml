@@ -1,0 +1,64 @@
+<resources>
+    <string name="no_internet_connection">इंटरनेट कनेक्शन नइखे</string>
+    <string name="something_went_wrong">कुछ गड़बड़ हो गइल!</string>
+    <string name="title">शीर्षक</string>
+    <string name="search">खोज</string>
+    <string name="Continue">जारी</string>
+    <string name="all_mauritius_news">सब मारीशस के खबर</string>
+    <string name="let_s_go">चलीं चलल जाव</string>
+
+    <string name="title1">रउरा दैनिक डिजिटल पढ़ल</string>
+    <string name="title2">व्यक्तिगत फीड </string>
+    <string name="title3">न्यूज ऑन द गो</string>
+
+    <string name="desc1">कुरकुरा पांच बुलेट पॉइंट में स्मार्ट लघुकथा</string>
+    <string name="desc2">रउरा चुनल देश आ श्रेणी से ताजा खबर</string>
+    <string name="desc3">भरोसेमंद स्रोत से विश्वसनीय कहानी के तोड़ल</string>
+    <string name="select_a_language">कवनो भाषा चुनीं</string>
+    <string name="please_tell_us_what_are_your_nlanguage_preferences">कृपया बताईं कि राउर\nभाषा पसंद का बा</string>
+
+
+    <string name="SelectLanguage">भाषा के चयन करीं</string>
+
+
+    <string name="french" translatable="false">Française</string>
+    <string name="english" translatable="false">English</string>
+    <string name="hindi" translatable="false">हिन्दी</string>
+    <string name="bhojpuri" translatable="false">भोजपुरी</string>
+
+    <string name="frenchVal" translatable="false">fr</string>
+    <string name="englishVal" translatable="false">en</string>
+    <string name="hindiVal" translatable="false">hi</string>
+    <string name="bhojpuriVal" translatable="false">bho</string>
+
+    <string name="already_have_an_account">पहिले से खाता बा</string>
+    <string name="login_here">इहाँ लॉगिन करीं</string>
+    <string name="create_account">खाता बनाईं</string>
+
+    <string name="choose_how_you_want_to_login_in_the_app"> चुनीं कि रउआ ऐप में कइसे लॉगिन कइल चाहत बानी</string>
+    <string name="choose_how_you_want_to_create_your_account">चयन करीं कि रउआँ आपन खाता कइसे बनावल चाहत बानी</string>
+
+    <string name="login_with_mobile_number"><![CDATA[के साथ लॉगिन करीं <b>मोबाइल नंबर</b>]]></string>
+    <string name="signup_with_mobile_number"><![CDATA[के साथे साइनअप करीं <b>मोबाइल नंबर</b>]]></string>
+
+    <string name="login_with_google_account"><![CDATA[के साथ लॉगिन करीं <b>गूगल अकाउंट</b>]]></string>
+    <string name="signup_with_google_account"><![CDATA[के साथे साइनअप करीं <b>गूगल अकाउंट</b>]]></string>
+
+    <string name="enter_as_guest_user">के रूप में दर्ज करीं <b>अतिथि उपयोगकर्ता के बा</b></string>
+
+    <string name="first_time_user_signup_here"><![CDATA[पहिला बेर प्रयोग कइले बानी? <b><font color="#3D52C0">इहाँ साइनअप करीं</font></b>]]></string>
+    <string name="already_a_user_login_here"><![CDATA[पहिलहीं से एगो यूजर बानी? <b><font color="#3D52C0">इहाँ लॉगिन करीं</font></b>]]></string>
+    <string name="mobile_number">मोबाइल नंबर</string>
+
+    <string name="by_continuing">जारी रख के , रउआ हमनी के सहमत बानी\n<font color="#3D52C0">उपयोग के शर्त बा</font> औरी <font color="#3D52C0">गोपनीयता नीति के बारे में बतावल गइल बा</font></string>
+    <string name="enter_verification_code">सत्यापन कोड दर्ज करीं</string>
+    <string name="we_will_automatically_detect_the_verification_code_here">हमनी के इहाँ सत्यापन कोड के स्वचालित रूप से पता लगा लेब</string>
+    <string name="verification_code">सत्यापन कोड के बारे में बतावल गइल बा</string>
+
+    <string name="didn_t_get_the_code_resend_code"><![CDATA[कोड ना मिलल ? <b>कोड के फेर से भेजल जाला</b>]]></string>
+    <string name="didn_t_get_the_code_resend_code_color"><![CDATA[कोड ना मिलल ? <b><font color="#3D52C0">कोड के फेर से भेजल जाला</font></b>]]></string>
+
+    <string name="_23_seconds_left"><![CDATA[<b>%s</b> सेकंड left]]></string>
+
+
+</resources>

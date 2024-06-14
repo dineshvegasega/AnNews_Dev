@@ -77,6 +77,7 @@ class OnboardLanguage : Fragment(){
                 linear1.background = ContextCompat.getDrawable(requireContext(), R.drawable.select_lang_radius)
                 linear2.background = ContextCompat.getDrawable(requireContext(), R.drawable.unselect_lang_radius)
                 linear3.background = ContextCompat.getDrawable(requireContext(), R.drawable.unselect_lang_radius)
+                linear4.background = ContextCompat.getDrawable(requireContext(), R.drawable.unselect_lang_radius)
                 Handler(Looper.getMainLooper()).postDelayed(Thread {
                     MainActivity.mainActivity.get()?.reloadActivity("fr", OnboardLanguage)
                 }, 300)
@@ -86,6 +87,7 @@ class OnboardLanguage : Fragment(){
                 linear1.background = ContextCompat.getDrawable(requireContext(), R.drawable.unselect_lang_radius)
                 linear2.background = ContextCompat.getDrawable(requireContext(), R.drawable.select_lang_radius)
                 linear3.background = ContextCompat.getDrawable(requireContext(), R.drawable.unselect_lang_radius)
+                linear4.background = ContextCompat.getDrawable(requireContext(), R.drawable.unselect_lang_radius)
                 Handler(Looper.getMainLooper()).postDelayed(Thread {
                     MainActivity.mainActivity.get()?.reloadActivity("en", OnboardLanguage)
                 }, 300)
@@ -94,8 +96,18 @@ class OnboardLanguage : Fragment(){
                 linear1.background = ContextCompat.getDrawable(requireContext(), R.drawable.unselect_lang_radius)
                 linear2.background = ContextCompat.getDrawable(requireContext(), R.drawable.unselect_lang_radius)
                 linear3.background = ContextCompat.getDrawable(requireContext(), R.drawable.select_lang_radius)
+                linear4.background = ContextCompat.getDrawable(requireContext(), R.drawable.unselect_lang_radius)
                 Handler(Looper.getMainLooper()).postDelayed(Thread {
                     MainActivity.mainActivity.get()?.reloadActivity("hi", OnboardLanguage)
+                }, 300)
+            }
+            linear4.singleClick {
+                linear1.background = ContextCompat.getDrawable(requireContext(), R.drawable.unselect_lang_radius)
+                linear2.background = ContextCompat.getDrawable(requireContext(), R.drawable.unselect_lang_radius)
+                linear3.background = ContextCompat.getDrawable(requireContext(), R.drawable.unselect_lang_radius)
+                linear4.background = ContextCompat.getDrawable(requireContext(), R.drawable.select_lang_radius)
+                Handler(Looper.getMainLooper()).postDelayed(Thread {
+                    MainActivity.mainActivity.get()?.reloadActivity("bho", OnboardLanguage)
                 }, 300)
             }
 

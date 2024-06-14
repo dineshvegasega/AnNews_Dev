@@ -26,10 +26,12 @@
     <string name="french" translatable="false">Française</string>
     <string name="english" translatable="false">English</string>
     <string name="hindi" translatable="false">हिन्दी</string>
+    <string name="bhojpuri" translatable="false">भोजपुरी</string>
 
     <string name="frenchVal" translatable="false">fr</string>
     <string name="englishVal" translatable="false">en</string>
     <string name="hindiVal" translatable="false">hi</string>
+    <string name="bhojpuriVal" translatable="false">bho</string>
 
     <string name="already_have_an_account">Already have an account</string>
     <string name="login_here">Login Here</string>

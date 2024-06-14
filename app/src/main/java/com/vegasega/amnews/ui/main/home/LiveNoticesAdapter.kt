@@ -2,12 +2,16 @@ package com.vegasega.amnews.ui.main.home
 
 import android.annotation.SuppressLint
 import android.media.MediaPlayer
+import android.os.Handler
+import android.os.Looper
 import android.speech.tts.TextToSpeech
+import android.speech.tts.UtteranceProgressListener
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.vegasega.amnews.R
 import com.vegasega.amnews.databinding.ItemLoadingBinding
@@ -16,10 +20,14 @@ import com.vegasega.amnews.models.Item
 import com.vegasega.amnews.ui.interfaces.OnItemClickListener
 import com.vegasega.amnews.ui.mainActivity.MainActivity
 import com.vegasega.amnews.BR
+import com.vegasega.amnews.utils.mainThread
+import com.vegasega.amnews.utils.singleClick
+import kotlinx.coroutines.delay
 
 class LiveNoticesAdapter(private val listener: OnItemClickListener,
                          textToSpeechVoice: TextToSpeech
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
     var isActive = false
     var isHide = false
     var counter = 0
@@ -35,6 +43,10 @@ class LiveNoticesAdapter(private val listener: OnItemClickListener,
         mp = MediaPlayer.create(MainActivity.context.get(), R.raw.sound_3)
     }
 
+
+    lateinit var itemRowBinding2: Lay3Binding
+
+
     private val item: Int = 0
     private val loading: Int = 1
 
@@ -47,6 +59,7 @@ class LiveNoticesAdapter(private val listener: OnItemClickListener,
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return  if(viewType == item){
             val binding: Lay3Binding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.lay3, parent, false)
+            itemRowBinding2 = binding
             TopMoviesVH(binding)
         }else{
             val binding: ItemLoadingBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_loading, parent, false)
@@ -90,40 +103,165 @@ class LiveNoticesAdapter(private val listener: OnItemClickListener,
     }
 
 
-    class TopMoviesVH(binding: Lay3Binding) : RecyclerView.ViewHolder(binding.root) {
+    inner class TopMoviesVH(binding: Lay3Binding) : RecyclerView.ViewHolder(binding.root) {
         var itemRowBinding: Lay3Binding = binding
+
         fun bind(obj: Any?,  position: Int) {
             itemRowBinding.setVariable(BR._all, obj)
             itemRowBinding.executePendingBindings()
-            val dataClass = obj as Item
+            val model = obj as Item
             itemRowBinding.apply {
-
-                if (dataClass.isAdd == true){
-                    textTitle0.text = dataClass.name
+                if (isHide) {
+                    baseButtons.visibility = View.GONE
+                    group.visibility = View.VISIBLE
                 } else {
-                    textTitle0.text = "Topic "+dataClass.notice_id
+                    baseButtons.visibility = View.VISIBLE
+                    group.visibility = View.GONE
+                }
+
+                itemView.singleClick {
+                    Log.e("TAG", "mainLayout")
+                    listener.onClickMain()
+                }
+
+                textTitle0.text = "" + model.name
+                textTitle1.text = "" + model.itemList[0].name
+                textTitle2.text = "" + model.itemList[1].name
+                textTitle3.text = "" + model.itemList[2].name
+                textTitle4.text = "" + model.itemList[3].name
+                textTitle5.text = "" + model.itemList[4].name
+
+                if (model.isAdd == false) {
+                    imageLogo.setImageResource(model.image)
+                    imageFull.visibility = View.GONE
+                    layoutAll.visibility = View.VISIBLE
+                } else {
+                    if (model.isAddBig == false) {
+                        imageLogo.setImageResource(model.image)
+                        layoutAll.visibility = View.VISIBLE
+                        imageFull.visibility = View.GONE
+                    } else {
+                        imageFull.setImageResource(model.image)
+                        layoutAll.visibility = View.GONE
+                        imageFull.visibility = View.VISIBLE
+                    }
+                }
+
+                timeline1.initLine(1)
+//        holder.timeline1.initLine(0)
+                timeline2.initLine(0)
+                timeline3.initLine(0)
+                timeline4.initLine(0)
+//        holder.timeline5.initLine(0)
+                timeline5.initLine(2)
+
+
+
+
+                if (position == counter) {
+                    Log.e("TAG", "QQQQQQQ " + position)
+                    counterChild = 0
+                    if (isActive == true) {
+
+                        if (model.isAdd == false) {
+                            Handler(Looper.myLooper()!!).postDelayed({
+                                playSong(model, itemRowBinding)
+                            }, 350)
+                        } else {
+                            if (model.isAddBig == false) {
+                                Handler(Looper.myLooper()!!).postDelayed({
+                                    playSong(model, itemRowBinding)
+                                }, 350)
+                            } else {
+                                MainActivity.activity.get()?.runOnUiThread {
+                                    counterChild = 0
+                                    ivPlayPause.setImageResource(R.drawable.play)
+                                    mainThread {
+                                        Log.e("MainActivity", "counterChilddelay " + counterChild);
+                                        delay(3000)
+//                                try {
+//                                    mp.start()
+//                                } catch (_: IOException) {
+//                                }
+//                                delay(500)
+                                        listener.onClickItem(counter + 1)
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                } else {
+                    Log.e("TAG", "WWWWWWW " + position)
+                    if (textToSpeech.isSpeaking) {
+                        textToSpeech.stop()
+                        ivPlayPause.setImageResource(R.drawable.play)
+                    }
                 }
 
 
-//                dataClass.notice_image?.url?.glideImage(itemRowBinding.root.context, ivMap)
-//                textTitle.setText(dataClass.name)
-//                textDesc.setText(dataClass.description)
-//
-////                textHeaderTxt4.setText(if (dataClass.status == "Active") root.context.resources.getString(R.string.live) else root.context.resources.getString(R.string.expired))
-////                textHeaderTxt4.backgroundTintList = if (dataClass.status == "Active") ContextCompat.getColorStateList(root.context,R.color._138808) else ContextCompat.getColorStateList(root.context,R.color._F02A2A)
-//
-//
-//                root.singleClick {
-////                    if (dataClass.user_scheme_status == "applied"){
-//                    if(networkFailed) {
-//                        viewModel.viewDetail(dataClass, position = position, root, 1)
-//                    } else {
-//                        root.context.callNetworkDialog()
-//                    }
-////                    }else{
-////                        viewModel.viewDetail(""+dataClass.scheme_id, position = position, root, 2)
-////                    }
-//                }
+                ivPlayback.setOnClickListener {
+                    if (counter != 0) {
+                        listener.onClickItem(counter - 1)
+                        Log.e("TAG", "ivPlayback " + counter)
+                    }
+                }
+
+                ivPlaynext.setOnClickListener {
+                    if (counter != itemModels.size - 1) {
+                        listener.onClickItem(counter + 1)
+                        Log.e("TAG", "ivPlaynext " + counter)
+                    }
+                }
+
+
+                ivPlayPause.setOnClickListener {
+                    if (textToSpeech.isSpeaking) {
+                        textToSpeech.stop()
+                        isActive = false
+                        ivPlayPause.setImageResource(R.drawable.play)
+                    } else {
+                        isActive = true
+                        Handler(Looper.myLooper()!!).postDelayed({
+                            playSong(model, itemRowBinding)
+                        }, 350)
+                        ivPlayPause.setImageResource(R.drawable.pause)
+                    }
+                }
+
+
+                ivCross.setOnClickListener {
+                    isHide = false
+                    if (textToSpeech.isSpeaking) {
+                        textToSpeech.stop()
+                    }
+                    isActive = false
+                    notifyDataSetChanged()
+                    baseButtons.visibility = View.VISIBLE
+                    group.visibility = View.GONE
+                }
+
+                ivAudio.setOnClickListener {
+                    isHide = true
+                    isActive = true
+                    notifyDataSetChanged()
+                    baseButtons.visibility = View.GONE
+                    group.visibility = View.VISIBLE
+                }
+
+
+
+
+
+                ivUp.setOnClickListener {
+                    isActive = false
+                    listener.onClickItemUp(0)
+                }
+
+                ivSearch.setOnClickListener {
+                    it.findNavController().navigate(R.id.action_home_to_search)
+                }
+
 
             }
         }
@@ -131,7 +269,7 @@ class LiveNoticesAdapter(private val listener: OnItemClickListener,
 
     }
 
-    class LoadingVH(binding: ItemLoadingBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class LoadingVH(binding: ItemLoadingBinding) : RecyclerView.ViewHolder(binding.root) {
         var itemRowBinding: ItemLoadingBinding = binding
     }
 
@@ -189,8 +327,155 @@ class LiveNoticesAdapter(private val listener: OnItemClickListener,
     fun updatePosition(position: Int) {
         counter = position
         Log.e("TAG", "updatePosition " + position)
+//        itemRowBinding2.apply {
+//            if (isHide) {
+//                baseButtons.visibility = View.GONE
+//                group.visibility = View.VISIBLE
+//            } else {
+//                baseButtons.visibility = View.VISIBLE
+//                group.visibility = View.GONE
+//            }
+//        }
+//        notifyItemChanged(position)
+
     }
 
 
+
+
+
+
+
+    private fun playSong(model: Item, holder: Lay3Binding) {
+        if (textToSpeech.isSpeaking) {
+            textToSpeech.stop()
+        }
+
+
+        holder.ivPlayPause.setImageResource(R.drawable.pause)
+        Handler(Looper.myLooper()!!).postDelayed({
+            holder.seekbar.max = 5
+            holder.seekbar.progress = 0
+            holder.textPlay.text = "H"
+//            when (model.lang){
+//                "en" -> textToSpeech.setLanguage(Locale("en","US"))
+//                "hi" -> textToSpeech.setLanguage(Locale("hi","IN"))
+//            }
+
+            textToSpeech.speak(model.name, TextToSpeech.QUEUE_FLUSH, null, model.name)
+            textToSpeech.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
+                override fun onDone(utteranceId: String) {
+                    if (model.name == utteranceId) {
+                        Log.e("MainActivity", "counter111 " + counter)
+                        playSongChild(model, holder)
+                    }
+                }
+
+                @Deprecated("Deprecated in Java")
+                override fun onError(utteranceId: String) {
+                }
+
+                override fun onStart(utteranceId: String) {
+                }
+
+                override fun onRangeStart(
+                    utteranceId: String?,
+                    start: Int,
+                    end: Int,
+                    frame: Int
+                ) {
+                    super.onRangeStart(utteranceId, start, end, frame)
+                }
+            })
+        }, 50)
+    }
+
+
+    @SuppressLint("SetTextI18n")
+    private fun playSongChild(itemMain: Item, holder: Lay3Binding) {
+        if (textToSpeech.isSpeaking) {
+            textToSpeech.stop()
+        }
+
+
+        holder.textPlay.text = "0" + (counterChild + 1)
+        holder.seekbar.max = 5
+        holder.seekbar.progress = counterChild + 1
+
+//        when (itemMain.lang){
+//            "en" -> textToSpeech.setLanguage(Locale("en","US"))
+//            "hi" -> textToSpeech.setLanguage(Locale("hi","IN"))
+//        }
+        textToSpeech.speak(
+            itemMain.itemList[counterChild].name,
+            TextToSpeech.QUEUE_FLUSH,
+            null,
+            itemMain.itemList[counterChild].name
+        )
+        textToSpeech.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
+            override fun onDone(utteranceId: String) {
+//                        Log.e("MainActivity", "TTS onDone " + utteranceId);
+                if (itemMain.itemList[counterChild].name == utteranceId) {
+                    if (counterChild != itemMain.itemList.size - 1) {
+                        counterChild++
+                        playSongChild(itemMain, holder)
+//                        MainActivity.activity.get()?.runOnUiThread {
+//                            ivPlayPause.setImageResource(R.drawable.play)
+//                        }
+//                                counter++
+//                                counterChild = 0
+                        Log.e("MainActivity", "counterChild " + counterChild);
+//                                lifecycleScope.launch {
+//
+//                                    delay(100)
+//                                    introViewPager.setCurrentItem(counter, true)
+//
+//                                    delay(100)
+//                                    playSong(viewModel.itemMain[counter])
+//
+//                                }
+                    } else {
+//                        MainActivity.activity.get()?.runOnUiThread {
+//                            counterChild = 0
+////                                    ivPlay.visibility = View.VISIBLE
+////                                    ivPause.visibility = View.GONE
+//
+//                        }
+
+                        MainActivity.activity.get()?.runOnUiThread {
+                            counterChild = 0
+                            holder.ivPlayPause.setImageResource(R.drawable.play)
+                            mainThread {
+//                                try {
+//                                    mp.start()
+//                                } catch (_: IOException) {
+//                                }
+                                Log.e("MainActivity", "counterChilddelay " + counterChild);
+                                delay(500)
+                                listener.onClickItem(counter + 1)
+                            }
+                        }
+                    }
+                }
+            }
+
+            @Deprecated("Deprecated in Java")
+            override fun onError(utteranceId: String) {
+            }
+
+            override fun onStart(utteranceId: String) {
+            }
+
+
+            override fun onRangeStart(
+                utteranceId: String?,
+                start: Int,
+                end: Int,
+                frame: Int
+            ) {
+                super.onRangeStart(utteranceId, start, end, frame)
+            }
+        })
+    }
 
 }

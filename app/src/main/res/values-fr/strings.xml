@@ -23,10 +23,40 @@
     <string name="french" translatable="false">Française</string>
     <string name="english" translatable="false">English</string>
     <string name="hindi" translatable="false">हिन्दी</string>
+    <string name="bhojpuri" translatable="false">भोजपुरी</string>
 
     <string name="frenchVal" translatable="false">fr</string>
     <string name="englishVal" translatable="false">en</string>
     <string name="hindiVal" translatable="false">hi</string>
+    <string name="bhojpuriVal" translatable="false">bho</string>
 
     <string name="already_have_an_account">Vous avez déjà un compte</string>
+    <string name="login_here">Connectez-vous ici</string>
+    <string name="create_account">Créer un compte</string>
+
+    <string name="choose_how_you_want_to_login_in_the_app">Choisissez comment vous souhaitez vous connecter à l\'application</string>
+    <string name="choose_how_you_want_to_create_your_account">Choisissez comment vous souhaitez créer votre compte</string>
+
+    <string name="login_with_mobile_number"><![CDATA[Connexion avec <b>Numéro de mobile</b>]]></string>
+    <string name="signup_with_mobile_number"><![CDATA[Inscription avec <b>Numéro de mobile</b>]]></string>
+
+    <string name="login_with_google_account"><![CDATA[Connexion avec un <b>compte Google</b>]]></string>
+    <string name="signup_with_google_account"><![CDATA[Inscrivez-vous avec un <b>compte Google</b>]]></string>
+
+    <string name="enter_as_guest_user">Entrer en tant qu\'<b>Utilisateur invité</b></string>
+
+    <string name="first_time_user_signup_here"><![CDATA[Premier utilisateur ? <b><font color="#3D52C0">Inscrivez-vous ici</font></b>]]></string>
+    <string name="already_a_user_login_here"><![CDATA[Déjà utilisateur ? <b><font color="#3D52C0">Connectez-vous ici</font></b>]]></string>
+    <string name="mobile_number">Numéro de mobile</string>
+
+    <string name="by_continuing">En continuant, vous acceptez nos\n<font color="#3D52C0">Conditions d\'utilisation</font> et notre <font color="#3D52C0">Politique de confidentialité</font></string>
+    <string name="enter_verification_code">Entrez le code de vérification</string>
+    <string name="we_will_automatically_detect_the_verification_code_here">Nous détecterons automatiquement le code de vérification ici</string>
+    <string name="verification_code">Code de vérification</string>
+
+    <string name="didn_t_get_the_code_resend_code"><![CDATA[Vous n\'avez pas reçu le code ? <b>renvoyer le code</b>]]></string>
+    <string name="didn_t_get_the_code_resend_code_color"><![CDATA[Vous n\'avez pas reçu le code ? <b><font color="#3D52C0">renvoyer le code</font></b>]]></string>
+
+    <string name="_23_seconds_left"><![CDATA[<b>%s</b> secondes restantes]]></string>
+
 </resources>

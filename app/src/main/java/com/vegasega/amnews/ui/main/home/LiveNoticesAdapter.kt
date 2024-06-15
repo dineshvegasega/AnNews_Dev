@@ -23,9 +23,12 @@ import com.vegasega.amnews.BR
 import com.vegasega.amnews.utils.mainThread
 import com.vegasega.amnews.utils.singleClick
 import kotlinx.coroutines.delay
+import java.io.IOException
 
-class LiveNoticesAdapter(private val listener: OnItemClickListener,
-                         textToSpeechVoice: TextToSpeech
+class LiveNoticesAdapter(
+    private val listener: OnItemClickListener,
+    textToSpeechVoice: TextToSpeech,
+    mp1: MediaPlayer
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var isActive = false
@@ -37,11 +40,13 @@ class LiveNoticesAdapter(private val listener: OnItemClickListener,
 
     var itemModels: MutableList<Item> = ArrayList()
 
-    var mp: MediaPlayer
 
-    init {
-        mp = MediaPlayer.create(MainActivity.context.get(), R.raw.sound_3)
-    }
+//    var mp:MediaPlayer = mp1
+//
+//
+//    init {
+//        mp = MediaPlayer.create(MainActivity.context.get(), R.raw.sound_22)
+//    }
 
 
     lateinit var itemRowBinding2: Lay3Binding
@@ -106,7 +111,8 @@ class LiveNoticesAdapter(private val listener: OnItemClickListener,
     inner class TopMoviesVH(binding: Lay3Binding) : RecyclerView.ViewHolder(binding.root) {
         var itemRowBinding: Lay3Binding = binding
 
-        fun bind(obj: Any?,  position: Int) {
+        @SuppressLint("NotifyDataSetChanged")
+        fun bind(obj: Any?, position: Int) {
             itemRowBinding.setVariable(BR._all, obj)
             itemRowBinding.executePendingBindings()
             val model = obj as Item
@@ -161,36 +167,35 @@ class LiveNoticesAdapter(private val listener: OnItemClickListener,
                 if (position == counter) {
                     Log.e("TAG", "QQQQQQQ " + position)
                     counterChild = 0
-                    if (isActive == true) {
+                    Handler(Looper.myLooper()!!).postDelayed({
+                        if (isActive == true) {
 
-                        if (model.isAdd == false) {
-                            Handler(Looper.myLooper()!!).postDelayed({
+                            if (model.isAdd == false) {
                                 playSong(model, itemRowBinding)
-                            }, 350)
-                        } else {
-                            if (model.isAddBig == false) {
-                                Handler(Looper.myLooper()!!).postDelayed({
-                                    playSong(model, itemRowBinding)
-                                }, 350)
                             } else {
-                                MainActivity.activity.get()?.runOnUiThread {
-                                    counterChild = 0
-                                    ivPlayPause.setImageResource(R.drawable.play)
-                                    mainThread {
-                                        Log.e("MainActivity", "counterChilddelay " + counterChild);
-                                        delay(3000)
+                                if (model.isAddBig == false) {
+                                    playSong(model, itemRowBinding)
+                                } else {
+                                    MainActivity.activity.get()?.runOnUiThread {
+                                        counterChild = 0
+                                        ivPlayPause.setImageResource(R.drawable.play)
+                                        mainThread {
+                                            Log.e("MainActivity", "counterChilddelay " + counterChild);
+                                            delay(3000)
 //                                try {
 //                                    mp.start()
 //                                } catch (_: IOException) {
 //                                }
 //                                delay(500)
-                                        listener.onClickItem(counter + 1)
+                                            listener.onClickItem(counter + 1)
+                                        }
                                     }
                                 }
                             }
-                        }
 
-                    }
+                        }
+                    }, 100)
+
                 } else {
                     Log.e("TAG", "WWWWWWW " + position)
                     if (textToSpeech.isSpeaking) {
@@ -224,7 +229,7 @@ class LiveNoticesAdapter(private val listener: OnItemClickListener,
                         isActive = true
                         Handler(Looper.myLooper()!!).postDelayed({
                             playSong(model, itemRowBinding)
-                        }, 350)
+                        }, 100)
                         ivPlayPause.setImageResource(R.drawable.pause)
                     }
                 }
@@ -353,7 +358,7 @@ class LiveNoticesAdapter(private val listener: OnItemClickListener,
 
 
         holder.ivPlayPause.setImageResource(R.drawable.pause)
-        Handler(Looper.myLooper()!!).postDelayed({
+//        Handler(Looper.myLooper()!!).postDelayed({
             holder.seekbar.max = 5
             holder.seekbar.progress = 0
             holder.textPlay.text = "H"
@@ -361,8 +366,10 @@ class LiveNoticesAdapter(private val listener: OnItemClickListener,
 //                "en" -> textToSpeech.setLanguage(Locale("en","US"))
 //                "hi" -> textToSpeech.setLanguage(Locale("hi","IN"))
 //            }
+            Handler(Looper.myLooper()!!).postDelayed({
+                textToSpeech.speak(model.name, TextToSpeech.QUEUE_FLUSH, null, model.name)
+            }, 600)
 
-            textToSpeech.speak(model.name, TextToSpeech.QUEUE_FLUSH, null, model.name)
             textToSpeech.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
                 override fun onDone(utteranceId: String) {
                     if (model.name == utteranceId) {
@@ -387,7 +394,7 @@ class LiveNoticesAdapter(private val listener: OnItemClickListener,
                     super.onRangeStart(utteranceId, start, end, frame)
                 }
             })
-        }, 50)
+//        }, 50)
     }
 
 
@@ -451,7 +458,17 @@ class LiveNoticesAdapter(private val listener: OnItemClickListener,
 //                                } catch (_: IOException) {
 //                                }
                                 Log.e("MainActivity", "counterChilddelay " + counterChild);
-                                delay(500)
+//                                try {
+//                                   // val mp = MediaPlayer.create(MainActivity.context.get(), R.raw.sound_22)
+//                                    if (mp.isPlaying) {
+//                                        mp.stop()
+////                                        mp.reset()
+////                                        mp.release()
+//                                    }
+//                                    mp.start()
+//                                } catch (_: IOException) {
+//                                }
+                                delay(100)
                                 listener.onClickItem(counter + 1)
                             }
                         }

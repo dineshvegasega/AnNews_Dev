@@ -1,8 +1,6 @@
 package com.vegasega.amnews.ui.main.home
 
 import android.annotation.SuppressLint
-import android.media.AudioAttributes
-import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
@@ -29,16 +27,13 @@ import com.streetsaarthi.nasvi.screens.interfaces.CallBackListener
 import com.vegasega.amnews.R
 import com.vegasega.amnews.databinding.CenterHomeBinding
 import com.vegasega.amnews.ui.interfaces.OnItemClickListener
-import com.vegasega.amnews.ui.mainActivity.MainActivity
 import com.vegasega.amnews.utils.autoScroll
 import com.vegasega.amnews.utils.getRecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import org.json.JSONObject
 import java.io.IOException
 import com.vegasega.amnews.models.Item
-import com.vegasega.amnews.models.ItemList
 import com.vegasega.amnews.utils.PaginationScrollListener
-import kotlinx.coroutines.delay
 
 
 @AndroidEntryPoint
@@ -66,7 +61,7 @@ class CenterHome : Fragment(), OnItemClickListener, CallBackListener {
 
         var callBackListener: CallBackListener? = null
 
-//        lateinit var mp: MediaPlayer
+        lateinit var mp: MediaPlayer
 
     }
 
@@ -91,7 +86,7 @@ class CenterHome : Fragment(), OnItemClickListener, CallBackListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         callBackListener = this
-//        mp = MediaPlayer.create(MainActivity.context.get(), R.raw.sound_2)
+        mp = MediaPlayer.create(requireContext(), R.raw.sound_22)
 //        mp.setAudioAttributes(
 //            AudioAttributes.Builder()
 //                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
@@ -200,7 +195,7 @@ class CenterHome : Fragment(), OnItemClickListener, CallBackListener {
 //                    val v = Voice("en-us-x-sfg#male_1-local", Locale("en", "US"), 400, 200, true, a)
 //                    textToSpeech.setVoice(v)
 
-                    adapter = LiveNoticesAdapter(this, textToSpeech)
+                    adapter = LiveNoticesAdapter(this, textToSpeech, mp)
                     if (Home.consentIntent != null) {
                         viewModel.itemMainFinal.clear()
                         Log.e("TAG", "consentIntent " + Home.consentIntent.toString())
@@ -487,32 +482,29 @@ class CenterHome : Fragment(), OnItemClickListener, CallBackListener {
                     super.onPageSelected(position)
                     adapter.updatePosition(position)
 //                    introViewPager.setCurrentItem(position, true)
-//                    lifecycleScope.launch {
-//                        delay(500)
-//                    }
+                    requireActivity().runOnUiThread {
+                        try {
+                            //   val mp = MediaPlayer.create(MainActivity.context.get(), R.raw.sound_22)
+                            if (mp.isPlaying) {
+                                mp.stop()
+//                                mp.reset()
+//                                mp.release()
+                            }
+                            mp.start()
+                        } catch (_: IOException) {
+                        }
+
+                    }
+
                 }
 
                 override fun onPageScrollStateChanged(state: Int) {
                     super.onPageScrollStateChanged(state)
                     Log.e("TAG", "state" + state)
                     if (state == 0) {
-                        try {
-                            val mp = MediaPlayer.create(MainActivity.context.get(), R.raw.sound_2)
-                            if (mp.isPlaying) {
-                                mp.stop()
-                                mp.reset()
-                                mp.release()
-                            }
-                            mp.start()
-                        } catch (_: IOException) {
-                        }
 
-//                        mp.setOnPreparedListener {
-//                            mp.start()
-//                        }
                         adapter.notifyItemChanged(adapter.counter)
                         onClickItem(pageChangeValue)
-
                     }
                 }
             })

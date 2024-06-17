@@ -7,6 +7,7 @@ plugins {
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
     id("kotlin-parcelize")
+    id ("com.apollographql.apollo3") version ("3.7.0")
 }
 
 android {
@@ -161,8 +162,19 @@ dependencies {
     implementation ("androidx.work:work-runtime-ktx:2.9.0")
     implementation ("com.hbb20:ccp:2.7.0")
     implementation ("com.github.rajputmukesh748:MukeshOtpView:1.0.0")
+    implementation ("com.apollographql.apollo3:apollo-runtime:3.7.0")
 
 
 //    implementation ("com.reginald.swiperefresh:library:1.0.0")
 
 }
+
+
+//apollo {
+//    generateModelBuilder = true
+//}
+
+apollo {
+    packageName.set("com.vegasega.amnews")
+}
+

@@ -28,7 +28,7 @@ class SearchVM @Inject constructor() : ViewModel() {
 
     init {
         itemMain?.add(
-            Item(
+            Item("I",
                 "I", R.drawable.m1,false,false,
                 false,
                 "en",
@@ -43,7 +43,7 @@ class SearchVM @Inject constructor() : ViewModel() {
             )
         )
         itemMain?.add(
-            Item(
+            Item("J",
                 "J", R.drawable.m1,false,false,
                 false,
                 "en",
@@ -58,7 +58,7 @@ class SearchVM @Inject constructor() : ViewModel() {
             )
         )
         itemMain?.add(
-            Item(
+            Item("K",
                 "K", R.drawable.m1,false,false,
                 false,
                 "en",

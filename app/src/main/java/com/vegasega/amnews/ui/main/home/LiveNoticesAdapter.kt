@@ -1,7 +1,6 @@
 package com.vegasega.amnews.ui.main.home
 
 import android.annotation.SuppressLint
-import android.media.MediaPlayer
 import android.os.Handler
 import android.os.Looper
 import android.speech.tts.TextToSpeech
@@ -9,26 +8,27 @@ import android.speech.tts.UtteranceProgressListener
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnTouchListener
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.vegasega.amnews.BR
 import com.vegasega.amnews.R
 import com.vegasega.amnews.databinding.ItemLoadingBinding
 import com.vegasega.amnews.databinding.Lay3Binding
 import com.vegasega.amnews.models.Item
 import com.vegasega.amnews.ui.interfaces.OnItemClickListener
 import com.vegasega.amnews.ui.mainActivity.MainActivity
-import com.vegasega.amnews.BR
 import com.vegasega.amnews.utils.mainThread
 import com.vegasega.amnews.utils.singleClick
 import kotlinx.coroutines.delay
-import java.io.IOException
+
 
 class LiveNoticesAdapter(
     private val listener: OnItemClickListener,
-    textToSpeechVoice: TextToSpeech,
-    mp1: MediaPlayer
+    textToSpeechVoice: TextToSpeech
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var isActive = false
@@ -39,6 +39,8 @@ class LiveNoticesAdapter(
     var textToSpeech: TextToSpeech = textToSpeechVoice
 
     var itemModels: MutableList<Item> = ArrayList()
+
+    var isPlayChild = 0
 
 
 //    var mp:MediaPlayer = mp1
@@ -111,7 +113,7 @@ class LiveNoticesAdapter(
     inner class TopMoviesVH(binding: Lay3Binding) : RecyclerView.ViewHolder(binding.root) {
         var itemRowBinding: Lay3Binding = binding
 
-        @SuppressLint("NotifyDataSetChanged")
+        @SuppressLint("NotifyDataSetChanged", "SetTextI18n", "ClickableViewAccessibility")
         fun bind(obj: Any?, position: Int) {
             itemRowBinding.setVariable(BR._all, obj)
             itemRowBinding.executePendingBindings()
@@ -130,7 +132,7 @@ class LiveNoticesAdapter(
                     listener.onClickMain()
                 }
 
-                textTitle0.text = "" + model.name
+                textTitle0.text = "" + model.title
                 textTitle1.text = "" + model.itemList[0].name
                 textTitle2.text = "" + model.itemList[1].name
                 textTitle3.text = "" + model.itemList[2].name
@@ -153,6 +155,9 @@ class LiveNoticesAdapter(
                     }
                 }
 
+                seekbar.isFocusableInTouchMode = false
+
+
                 timeline1.initLine(1)
 //        holder.timeline1.initLine(0)
                 timeline2.initLine(0)
@@ -161,7 +166,25 @@ class LiveNoticesAdapter(
 //        holder.timeline5.initLine(0)
                 timeline5.initLine(2)
 
+                timeline1.marker = ContextCompat.getDrawable(root.context, R.drawable.ellipse_grey)
+                timeline1.setStartLineColor(ContextCompat.getColor(root.context, R.color._C4C4C4), 1)
+                timeline1.setEndLineColor(ContextCompat.getColor(root.context, R.color._C4C4C4), 1)
 
+                timeline2.marker = ContextCompat.getDrawable(root.context, R.drawable.ellipse_grey)
+                timeline2.setStartLineColor(ContextCompat.getColor(root.context, R.color._C4C4C4), 0)
+                timeline2.setEndLineColor(ContextCompat.getColor(root.context, R.color._C4C4C4), 0)
+
+                timeline3.marker = ContextCompat.getDrawable(root.context, R.drawable.ellipse_grey)
+                timeline3.setStartLineColor(ContextCompat.getColor(root.context, R.color._C4C4C4), 0)
+                timeline3.setEndLineColor(ContextCompat.getColor(root.context, R.color._C4C4C4), 0)
+
+                timeline4.marker = ContextCompat.getDrawable(root.context, R.drawable.ellipse_grey)
+                timeline4.setStartLineColor(ContextCompat.getColor(root.context, R.color._C4C4C4), 0)
+                timeline4.setEndLineColor(ContextCompat.getColor(root.context, R.color._C4C4C4), 0)
+
+                timeline5.marker = ContextCompat.getDrawable(root.context, R.drawable.ellipse_grey)
+                timeline5.setStartLineColor(ContextCompat.getColor(root.context, R.color._C4C4C4), 2)
+                timeline5.setEndLineColor(ContextCompat.getColor(root.context, R.color._C4C4C4), 2)
 
 
                 if (position == counter) {
@@ -228,7 +251,11 @@ class LiveNoticesAdapter(
                     } else {
                         isActive = true
                         Handler(Looper.myLooper()!!).postDelayed({
-                            playSong(model, itemRowBinding)
+                            if (isPlayChild == 1){
+                                playSong(model, itemRowBinding)
+                            } else if(isPlayChild == 2){
+                                playSongChild(model, itemRowBinding)
+                            }
                         }, 100)
                         ivPlayPause.setImageResource(R.drawable.pause)
                     }
@@ -351,6 +378,7 @@ class LiveNoticesAdapter(
 
 
 
+    @SuppressLint("SetTextI18n")
     private fun playSong(model: Item, holder: Lay3Binding) {
         if (textToSpeech.isSpeaking) {
             textToSpeech.stop()
@@ -367,12 +395,13 @@ class LiveNoticesAdapter(
 //                "hi" -> textToSpeech.setLanguage(Locale("hi","IN"))
 //            }
             Handler(Looper.myLooper()!!).postDelayed({
-                textToSpeech.speak(model.name, TextToSpeech.QUEUE_FLUSH, null, model.name)
+                isPlayChild = 1
+                textToSpeech.speak(model.title, TextToSpeech.QUEUE_FLUSH, null, model.title)
             }, 600)
 
             textToSpeech.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
                 override fun onDone(utteranceId: String) {
-                    if (model.name == utteranceId) {
+                    if (model.title == utteranceId) {
                         Log.e("MainActivity", "counter111 " + counter)
                         playSongChild(model, holder)
                     }
@@ -409,10 +438,65 @@ class LiveNoticesAdapter(
         holder.seekbar.max = 5
         holder.seekbar.progress = counterChild + 1
 
-//        when (itemMain.lang){
-//            "en" -> textToSpeech.setLanguage(Locale("en","US"))
-//            "hi" -> textToSpeech.setLanguage(Locale("hi","IN"))
-//        }
+        when(counterChild){
+            0 -> {
+                holder.timeline1.marker = ContextCompat.getDrawable(holder.root.context, R.drawable.ellipse_black)
+            }
+            1 -> {
+                holder.timeline1.marker = ContextCompat.getDrawable(holder.root.context, R.drawable.ellipse_black)
+                holder.timeline1.setEndLineColor(ContextCompat.getColor(holder.root.context, R.color._138808), 1)
+
+                holder.timeline2.marker = ContextCompat.getDrawable(holder.root.context, R.drawable.ellipse_black)
+                holder.timeline2.setStartLineColor(ContextCompat.getColor(holder.root.context, R.color._138808), 0)
+            }
+            2 -> {
+                holder.timeline1.marker = ContextCompat.getDrawable(holder.root.context, R.drawable.ellipse_black)
+                holder.timeline1.setEndLineColor(ContextCompat.getColor(holder.root.context, R.color._138808), 1)
+
+                holder.timeline2.marker = ContextCompat.getDrawable(holder.root.context, R.drawable.ellipse_black)
+                holder.timeline2.setStartLineColor(ContextCompat.getColor(holder.root.context, R.color._138808), 0)
+                holder.timeline2.setEndLineColor(ContextCompat.getColor(holder.root.context, R.color._138808), 0)
+
+                holder.timeline3.marker = ContextCompat.getDrawable(holder.root.context, R.drawable.ellipse_black)
+                holder.timeline3.setStartLineColor(ContextCompat.getColor(holder.root.context, R.color._138808), 0)
+            }
+            3 -> {
+                holder.timeline1.marker = ContextCompat.getDrawable(holder.root.context, R.drawable.ellipse_black)
+                holder.timeline1.setEndLineColor(ContextCompat.getColor(holder.root.context, R.color._138808), 1)
+
+                holder.timeline2.marker = ContextCompat.getDrawable(holder.root.context, R.drawable.ellipse_black)
+                holder.timeline2.setStartLineColor(ContextCompat.getColor(holder.root.context, R.color._138808), 0)
+                holder.timeline2.setEndLineColor(ContextCompat.getColor(holder.root.context, R.color._138808), 0)
+
+                holder.timeline3.marker = ContextCompat.getDrawable(holder.root.context, R.drawable.ellipse_black)
+                holder.timeline3.setStartLineColor(ContextCompat.getColor(holder.root.context, R.color._138808), 0)
+                holder.timeline3.setEndLineColor(ContextCompat.getColor(holder.root.context, R.color._138808), 0)
+
+                holder.timeline4.marker = ContextCompat.getDrawable(holder.root.context, R.drawable.ellipse_black)
+                holder.timeline4.setStartLineColor(ContextCompat.getColor(holder.root.context, R.color._138808), 0)
+            }
+            4 -> {
+                holder.timeline1.marker = ContextCompat.getDrawable(holder.root.context, R.drawable.ellipse_black)
+                holder.timeline1.setEndLineColor(ContextCompat.getColor(holder.root.context, R.color._138808), 1)
+
+                holder.timeline2.marker = ContextCompat.getDrawable(holder.root.context, R.drawable.ellipse_black)
+                holder.timeline2.setStartLineColor(ContextCompat.getColor(holder.root.context, R.color._138808), 0)
+                holder.timeline2.setEndLineColor(ContextCompat.getColor(holder.root.context, R.color._138808), 0)
+
+                holder.timeline3.marker = ContextCompat.getDrawable(holder.root.context, R.drawable.ellipse_black)
+                holder.timeline3.setStartLineColor(ContextCompat.getColor(holder.root.context, R.color._138808), 0)
+                holder.timeline3.setEndLineColor(ContextCompat.getColor(holder.root.context, R.color._138808), 0)
+
+                holder.timeline4.marker = ContextCompat.getDrawable(holder.root.context, R.drawable.ellipse_black)
+                holder.timeline4.setStartLineColor(ContextCompat.getColor(holder.root.context, R.color._138808), 0)
+                holder.timeline4.setEndLineColor(ContextCompat.getColor(holder.root.context, R.color._138808), 0)
+
+                holder.timeline5.marker = ContextCompat.getDrawable(holder.root.context, R.drawable.ellipse_black)
+                holder.timeline5.setStartLineColor(ContextCompat.getColor(holder.root.context, R.color._138808), 2)
+            }
+        }
+
+        isPlayChild = 2
         textToSpeech.speak(
             itemMain.itemList[counterChild].name,
             TextToSpeech.QUEUE_FLUSH,
@@ -451,6 +535,7 @@ class LiveNoticesAdapter(
 
                         MainActivity.activity.get()?.runOnUiThread {
                             counterChild = 0
+                            isPlayChild = 0
                             holder.ivPlayPause.setImageResource(R.drawable.play)
                             mainThread {
 //                                try {

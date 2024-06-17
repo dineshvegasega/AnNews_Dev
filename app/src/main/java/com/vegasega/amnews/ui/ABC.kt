@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.github.vipulasri.timelineview.TimelineView
 import com.google.android.material.button.MaterialButton
 import com.vegasega.amnews.R
 
@@ -23,6 +25,18 @@ class ABC : AppCompatActivity() {
 
         val btSignIn = findViewById<MaterialButton>(R.id.btSignIn)
         val btSignIn2 = findViewById<MaterialButton>(R.id.btSignIn2)
+
+        val timeline1 = findViewById<TimelineView>(R.id.timeline1)
+
+
+        timeline1.initLine(1)
+        timeline1.marker = ContextCompat.getDrawable(this, R.drawable.ellipse_black)
+        timeline1.setStartLineColor(ContextCompat.getColor(this, R.color._138808), 1)
+        timeline1.setEndLineColor(ContextCompat.getColor(this, R.color._138808), 1)
+
+
+
+
 
 //        val pullToRefresh = findViewById<SwipeRefreshLayout>(R.id.pullToRefresh)
 //

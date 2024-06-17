@@ -69,6 +69,24 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
+    <com.github.vipulasri.timelineview.TimelineView
+        android:id="@+id/timeline1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:markerSize="@dimen/_8sdp"
+        app:lineWidth="@dimen/_1sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        app:startLineColor="@color/_C4C4C4"
+        app:marker="@drawable/ellipse_grey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:endLineColor="@color/_C4C4C4"
+        app:lineStyle="dash"
+
+        />
+
+
 
 
     <com.google.android.material.button.MaterialButton

@@ -471,6 +471,8 @@
                 android:paddingEnd="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_minus8sdp"
                 android:visibility="gone"
+                android:clickable="false"
+                android:focusable="false"
                 />
 
             <androidx.constraintlayout.widget.ConstraintLayout

@@ -233,7 +233,9 @@ class HomeVM @Inject constructor(private val repository: Repository) : ViewModel
 
 
 
-        itemMainAds?.add(Item("Add A",R.drawable.add1,
+        itemMainAds?.add(Item(
+            "Add A",
+            "Add A",R.drawable.add1,
             false,
             true,
             false,
@@ -248,7 +250,7 @@ class HomeVM @Inject constructor(private val repository: Repository) : ViewModel
             )))
 
 
-        itemMainAds?.add(Item("Add B",R.drawable.add2,
+        itemMainAds?.add(Item("Add B","Add B",R.drawable.add2,
             false,
             true,
             false,
@@ -263,7 +265,7 @@ class HomeVM @Inject constructor(private val repository: Repository) : ViewModel
             )))
 
 
-        itemMainAds?.add(Item("Add C",R.drawable.add1,
+        itemMainAds?.add(Item("Add C","Add C",R.drawable.add1,
             false,
             true,
             false,
@@ -277,7 +279,7 @@ class HomeVM @Inject constructor(private val repository: Repository) : ViewModel
                 ItemList("CC55"),
             )))
 
-        itemMainAds?.add(Item("Add D",R.drawable.add1,
+        itemMainAds?.add(Item("Add D","Add D",R.drawable.add1,
             false,
             true,
             false,
@@ -291,7 +293,7 @@ class HomeVM @Inject constructor(private val repository: Repository) : ViewModel
                 ItemList("CC55"),
             )))
 
-        itemMainAds?.add(Item("Add E",R.drawable.add1,
+        itemMainAds?.add(Item("Add E","Add E",R.drawable.add1,
             false,
             true,
             false,

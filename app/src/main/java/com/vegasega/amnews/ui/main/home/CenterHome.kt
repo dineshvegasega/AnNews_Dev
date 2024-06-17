@@ -34,6 +34,7 @@ import org.json.JSONObject
 import java.io.IOException
 import com.vegasega.amnews.models.Item
 import com.vegasega.amnews.utils.PaginationScrollListener
+import java.util.Locale
 
 
 @AndroidEntryPoint
@@ -188,14 +189,15 @@ class CenterHome : Fragment(), OnItemClickListener, CallBackListener {
                 if (status != TextToSpeech.ERROR) {
                     Log.e("XXX", "Google tts initialized")
 //                    textToSpeech.setLanguage(Locale("hi","IN"))
-//                    textToSpeech.setLanguage(Locale("en","US"))
+                    textToSpeech.setLanguage(Locale("en","UK"))
+
                     textToSpeech.setSpeechRate(0.7f)
 //                    val a: HashSet<String> = HashSet<String>()
 //                    a.add("male")
 //                    val v = Voice("en-us-x-sfg#male_1-local", Locale("en", "US"), 400, 200, true, a)
 //                    textToSpeech.setVoice(v)
 
-                    adapter = LiveNoticesAdapter(this, textToSpeech, mp)
+                    adapter = LiveNoticesAdapter(this, textToSpeech)
                     if (Home.consentIntent != null) {
                         viewModel.itemMainFinal.clear()
                         Log.e("TAG", "consentIntent " + Home.consentIntent.toString())
@@ -513,11 +515,6 @@ class CenterHome : Fragment(), OnItemClickListener, CallBackListener {
 
     }
 
-    fun viewPagerHandler(view: View, position: Int): View {
-        //ALL LOGIC BUTTONS ACTIONS ETC.
-        view.invalidate()
-        return view
-    }
 
 
     inner class SwipeTransformer : ViewPager2.PageTransformer {

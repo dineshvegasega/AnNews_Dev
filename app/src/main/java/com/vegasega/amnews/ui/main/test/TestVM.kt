@@ -28,122 +28,122 @@ class TestVM @Inject constructor() : ViewModel() {
         itemMenusArray.add(ItemMenu("Featured", R.drawable.icon_featured, false))
         itemMenusArray.add(ItemMenu("Saved", R.drawable.icon_saved, false))
 
-        itemMain?.add(
-            Item("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते हैं।",
-                R.drawable.m1, true,
-                false,
-                false,
-                "en",
-                "",
-                arrayListOf(
-                    ItemList("I can easily put icon"),
-                    ItemList("but if I set gravity to center") ,
-                    ItemList("then only text is centered"),
-                    ItemList("but no icon"),
-                    ItemList(" my drawableLeft icon"),
-                ))
-        )
-        itemMain?.add(
-            Item("B", R.drawable.m1, false,
-                false,
-                false,
-                "en",
-                "",
-                arrayListOf(
-                    ItemList("1"),
-                    ItemList("2") ,
-                    ItemList("3"),
-                    ItemList("4"),
-                    ItemList("5"),
-                ))
-        )
-        itemMain?.add(
-            Item("C", R.drawable.m1, false,
-                false,
-                false,
-                "en",
-                "",
-                arrayListOf(
-                    ItemList("1C"),
-                    ItemList("2C") ,
-                    ItemList("3C"),
-                    ItemList("4C"),
-                    ItemList("5C"),
-                ))
-        )
-        itemMain?.add(
-            Item("D", R.drawable.m1, false,
-                false,
-                false,
-                "en",
-                "",
-                arrayListOf(
-                    ItemList("put icon"),
-                    ItemList("set gravity") ,
-                    ItemList("only text"),
-                    ItemList("no icon"),
-                    ItemList("icon"),
-                ))
-        )
-        itemMain?.add(
-            Item("E", R.drawable.m1, false,
-                false,
-                false,
-                "en",
-                "",
-                arrayListOf(
-                    ItemList("I can icon"),
-                    ItemList("but gravity to center") ,
-                    ItemList("then centered"),
-                    ItemList("but icon"),
-                    ItemList("my icon"),
-                ))
-        )
-        itemMain?.add(
-            Item("F", R.drawable.m1, false,
-                false,
-                false,
-                "en",
-                "",
-                arrayListOf(
-                    ItemList("I put icon"),
-                    ItemList("I set gravity center") ,
-                    ItemList("then centered"),
-                    ItemList("icon icon"),
-                    ItemList("my icon"),
-                ))
-        )
-
-        itemMain?.add(
-            Item("G", R.drawable.m1, false,
-                false,
-                false,
-                "en",
-                "",
-                arrayListOf(
-                    ItemList("I put icon"),
-                    ItemList("I set gravity center") ,
-                    ItemList("then centered"),
-                    ItemList("icon icon"),
-                    ItemList("my icon"),
-                ))
-        )
-
-
-        itemMain?.add(
-            Item("H", R.drawable.m1, false,
-                false,
-                false,
-                "en",
-                "",
-                arrayListOf(
-                    ItemList("I put icon"),
-                    ItemList("I set gravity center") ,
-                    ItemList("then centered"),
-                    ItemList("icon icon"),
-                    ItemList("my icon"),
-                ))
-        )
+//        itemMain?.add(
+//            Item("समाचार प्रस्तुतकर्ता, अर्थव्यवस्था, राजनीति और खेल से संबंधित नवीनतम समाचारों और घटनाक्रमों की जानकारी पेश करते हैं।",
+//                R.drawable.m1, true,
+//                false,
+//                false,
+//                "en",
+//                "",
+//                arrayListOf(
+//                    ItemList("I can easily put icon"),
+//                    ItemList("but if I set gravity to center") ,
+//                    ItemList("then only text is centered"),
+//                    ItemList("but no icon"),
+//                    ItemList(" my drawableLeft icon"),
+//                ))
+//        )
+//        itemMain?.add(
+//            Item("B", R.drawable.m1, false,
+//                false,
+//                false,
+//                "en",
+//                "",
+//                arrayListOf(
+//                    ItemList("1"),
+//                    ItemList("2") ,
+//                    ItemList("3"),
+//                    ItemList("4"),
+//                    ItemList("5"),
+//                ))
+//        )
+//        itemMain?.add(
+//            Item("C", R.drawable.m1, false,
+//                false,
+//                false,
+//                "en",
+//                "",
+//                arrayListOf(
+//                    ItemList("1C"),
+//                    ItemList("2C") ,
+//                    ItemList("3C"),
+//                    ItemList("4C"),
+//                    ItemList("5C"),
+//                ))
+//        )
+//        itemMain?.add(
+//            Item("D", R.drawable.m1, false,
+//                false,
+//                false,
+//                "en",
+//                "",
+//                arrayListOf(
+//                    ItemList("put icon"),
+//                    ItemList("set gravity") ,
+//                    ItemList("only text"),
+//                    ItemList("no icon"),
+//                    ItemList("icon"),
+//                ))
+//        )
+//        itemMain?.add(
+//            Item("E", R.drawable.m1, false,
+//                false,
+//                false,
+//                "en",
+//                "",
+//                arrayListOf(
+//                    ItemList("I can icon"),
+//                    ItemList("but gravity to center") ,
+//                    ItemList("then centered"),
+//                    ItemList("but icon"),
+//                    ItemList("my icon"),
+//                ))
+//        )
+//        itemMain?.add(
+//            Item("F", R.drawable.m1, false,
+//                false,
+//                false,
+//                "en",
+//                "",
+//                arrayListOf(
+//                    ItemList("I put icon"),
+//                    ItemList("I set gravity center") ,
+//                    ItemList("then centered"),
+//                    ItemList("icon icon"),
+//                    ItemList("my icon"),
+//                ))
+//        )
+//
+//        itemMain?.add(
+//            Item("G", R.drawable.m1, false,
+//                false,
+//                false,
+//                "en",
+//                "",
+//                arrayListOf(
+//                    ItemList("I put icon"),
+//                    ItemList("I set gravity center") ,
+//                    ItemList("then centered"),
+//                    ItemList("icon icon"),
+//                    ItemList("my icon"),
+//                ))
+//        )
+//
+//
+//        itemMain?.add(
+//            Item("H", R.drawable.m1, false,
+//                false,
+//                false,
+//                "en",
+//                "",
+//                arrayListOf(
+//                    ItemList("I put icon"),
+//                    ItemList("I set gravity center") ,
+//                    ItemList("then centered"),
+//                    ItemList("icon icon"),
+//                    ItemList("my icon"),
+//                ))
+//        )
 
     }
 

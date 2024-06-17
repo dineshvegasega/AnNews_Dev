@@ -21,6 +21,7 @@ data class ItemMenu(
 
 @Parcelize
 data class Item(
+    var title: String = "A while back I needed to count the amount of letters that a piece of text. in an email template had (to avoid passing any",
     var name: String = "A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any",
     var image: Int = R.drawable.m1,
     var isSelected: Boolean = false,
@@ -29,11 +30,11 @@ data class Item(
     var lang: String = "en",
     var notice_id: String = "",
     var itemList: ArrayList<ItemList> = arrayListOf(
-        ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
-        ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
-        ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
-        ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
-        ItemList("A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any"),
+        ItemList("A while back I needed to count the amount of letters that a piece, of text in an email template had (to avoid passing any"),
+        ItemList("A while back I needed to count the amount of letters that a piece? of text in an email template had (to avoid passing any"),
+        ItemList("A while back I needed to count the amount of letters that a piece- of text in an email template had (to avoid passing any"),
+        ItemList("A while back I needed to count the amount of letters that a piece@ of text in an email template had (to avoid passing any"),
+        ItemList("A while back I needed to count the amount of letters that a piece& of text in an email template had (to avoid passing any"),
     )
 ) : Parcelable
 

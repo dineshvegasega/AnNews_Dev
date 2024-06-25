@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import com.stfalcon.imageviewer.StfalconImageViewer;
 import com.vegasega.amnews.R;
 
 import java.util.ArrayList;

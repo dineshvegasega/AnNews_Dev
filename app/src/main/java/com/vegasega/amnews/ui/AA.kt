@@ -39,6 +39,7 @@ class AA : AppCompatActivity() {
         val button: AppCompatButton = findViewById(R.id.button)
 
 
+
 //        val swipe: SwipeLayout = findViewById(R.id.swipe)
 //        swipe.addDrag(SwipeLayout.DragEdge.Left, swipe.findViewById(R.id.left));
 //        swipe.addDrag(SwipeLayout.DragEdge.Right, swipe.findViewById(R.id.center));

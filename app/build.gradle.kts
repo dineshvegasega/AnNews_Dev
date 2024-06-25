@@ -138,7 +138,7 @@ dependencies {
     implementation ("com.google.firebase:firebase-config-ktx")
     implementation ("com.google.firebase:firebase-dynamic-links-ktx")
 
-//    implementation ("com.github.stfalcon-studio:StfalconImageViewer:v1.0.1")
+    implementation ("com.github.stfalcon-studio:StfalconImageViewer:v1.0.1")
     implementation ("com.google.android.gms:play-services-auth-api-phone:18.1.0")
 
     implementation ("androidx.paging:paging-common-ktx:3.3.0")

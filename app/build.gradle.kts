@@ -112,7 +112,6 @@ dependencies {
         exclude("glide-parent")
     }
 
-
     implementation ("androidx.preference:preference-ktx:1.2.1")
     implementation ("io.coil-kt:coil:2.4.0")
 
